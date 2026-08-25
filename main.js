@@ -17,12 +17,8 @@ document.getElementById('links').addEventListener('click', e => {
 const media = document.getElementById('media');
 const copy = document.getElementById('copy');
 const cue = document.getElementById('cue');
-const video = media.querySelector('video');
 
-if (reduce) {
-  video.removeAttribute('autoplay');
-  video.pause();
-} else {
+if (!reduce) {
   let ticking = false;
   const onScroll = () => {
     if (ticking) return;
@@ -31,9 +27,12 @@ if (reduce) {
       const y = window.scrollY;
       const h = window.innerHeight;
       const p = Math.min(y / h, 1);
-      media.style.transform = 'translateY(' + (y * 0.18).toFixed(1) + 'px)';
-      copy.style.transform = 'translateY(' + (y * 0.32).toFixed(1) + 'px)';
-      copy.style.opacity = String(1 - p * 1.4);
+      const mediaY = Math.round(y * 0.18 / 4) * 4;
+      const copyY = Math.round(y * 0.3 / 4) * 4;
+      const opacity = Math.max(0, Math.min(1, Math.round((1 - p * 1.4) * 4) / 4));
+      media.style.transform = 'translateY(' + mediaY + 'px)';
+      copy.style.transform = 'translateY(' + copyY + 'px)';
+      copy.style.opacity = String(opacity);
       cue.classList.toggle('gone', y > 40);
       ticking = false;
     });

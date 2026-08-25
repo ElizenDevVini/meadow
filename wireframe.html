@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Meadow · wireframe</title>
 <style>
-  :root { --wf: #6b7580; --wf-2: #aab2ba; --wf-3: #e3e7ea; --note: #d9541f; }
+  :root { --wf: #6b7580; --wf-2: #aab2ba; --wf-3: #e3e7ea; --note: #1f56d6; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font: 12px/1.5 ui-monospace, "SF Mono", Menlo, monospace;
@@ -188,10 +188,10 @@
 </div>
 
 <ul class="notes">
-  <li><span class="n">1</span><div><b>Nav pill</b> fixed, 20px from top, frosted white (blur 18px). Drops in at 0.25s. Collapses to logo + burger under 680px.</div></li>
-  <li><span class="n">2</span><div><b>Hero copy</b> staggered entrance: badge 0.55s, headline words rise from a clip mask 0.65 to 0.93s, lede 1.05s, CTAs 1.2s. Parallax on scroll: copy moves at 0.32x and fades, media at 0.18x.</div></li>
-  <li><span class="n">3</span><div><b>Background</b> Higgsfield still (Soul Location) animated with Kling 3.0, same frame as start and end so the 10s loop is seamless. Poster jpg for first paint. Slow 40s scale drift on top. Pollen specks float upward.</div></li>
-  <li><span class="n">4</span><div><b>Sections</b> reveal on intersection (fade + 22px rise, staggered by row). Left heading sticks while feature rows scroll. Type: Bricolage Grotesque display, Instrument Sans body.</div></li>
+  <li><span class="n">1</span><div><b>Nav</b> fixed 16px from top, 2px ink box on paper with a hard 4px offset shadow, no blur, no radius. Drops in with steps(4), not an ease curve. Collapses to logo + burger under 680px.</div></li>
+  <li><span class="n">2</span><div><b>Hero copy</b> is a Mac-style window plate: striped titlebar with a close box and centered "meadow" label, paper fill, 2px ink border, 6px hard shadow. Badge reads "[ now in public beta ]". Headline words rise from a clip mask with steps(5), not eased. Parallax on scroll is quantized to 4px steps.</div></li>
+  <li><span class="n">3</span><div><b>Background</b> a Higgsfield Nano Banana 2 one-bit room drawing, quantized to the two-color palette and rendered pixelated. A butterfly sprite is split into left/right halves and flapped with rotateY, timed with steps(3, jump-none) instead of a smooth curve.</div></li>
+  <li><span class="n">4</span><div><b>Sections</b> use 2px ink dividers and dither strips (checkerboard) instead of tinted backgrounds. Reveals fade and rise with steps(4). Type: Pixelify Sans display, IBM Plex Mono body. Palette is strictly #e0e0e0 paper / #1f56d6 ink, no other colors.</div></li>
 </ul>
 
 </body>
