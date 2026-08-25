@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work · Meadow Art</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 5 5'%3E%3Crect width='5' height='5' fill='%23e0e0e0'/%3E%3Crect x='0' y='0' width='1' height='1' fill='%231f56d6'/%3E%3Crect x='4' y='0' width='1' height='1' fill='%231f56d6'/%3E%3Crect x='0' y='1' width='1' height='1' fill='%231f56d6'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%231f56d6'/%3E%3Crect x='3' y='1' width='1' height='1' fill='%231f56d6'/%3E%3Crect x='4' y='1' width='1' height='1' fill='%231f56d6'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%231f56d6'/%3E%3Crect x='1' y='3' width='1' height='1' fill='%231f56d6'/%3E%3Crect x='3' y='3' width='1' height='1' fill='%231f56d6'/%3E%3Crect x='0' y='4' width='1' height='1' fill='%231f56d6'/%3E%3Crect x='4' y='4' width='1' height='1' fill='%231f56d6'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Pixelify+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="art.css">
+</head>
+<body class="art-body" data-page="work">
+
+<header class="nav" id="nav">
+  <a class="brand" href="../#top" aria-label="Meadow home">
+    <svg viewBox="0 0 5 5" aria-hidden="true"><rect x="0" y="0" width="1" height="1"/><rect x="4" y="0" width="1" height="1"/><rect x="0" y="1" width="1" height="1"/><rect x="1" y="1" width="1" height="1"/><rect x="3" y="1" width="1" height="1"/><rect x="4" y="1" width="1" height="1"/><rect x="2" y="2" width="1" height="1"/><rect x="1" y="3" width="1" height="1"/><rect x="3" y="3" width="1" height="1"/><rect x="0" y="4" width="1" height="1"/><rect x="4" y="4" width="1" height="1"/></svg>
+    Meadow
+  </a>
+  <nav class="links" id="links">
+    <a href="../#product">Product</a>
+    <a href="../#usecases">Use cases</a>
+    <a href="../#pricing">Pricing</a>
+    <a href="../#changelog">Changelog</a>
+    <a href="../#contact">Contact</a>
+    <a href="./" aria-current="page">Art</a>
+  </nav>
+  <a class="btn btn-dark" href="../#login">Log in</a>
+  <button class="menu" id="menu" aria-label="Open menu" aria-expanded="false" aria-controls="links">
+    <span></span><span></span>
+  </button>
+</header>
+
+<main class="art-main" id="workRoot">
+  <div class="work-grid" data-reveal>
+    <div class="work-media" id="workMedia"></div>
+    <div class="work-info">
+      <p class="eyebrow" id="workArtist"></p>
+      <h1 id="workTitle"></h1>
+      <p class="meta" id="workMeta"></p>
+
+      <div class="numbers">
+        <div>
+          <p class="label">last sale</p>
+          <p class="big" id="lastSale"></p>
+        </div>
+        <div>
+          <p class="label">indexed est.</p>
+          <p class="big" id="estNow"></p>
+          <div id="estReason"></div>
+        </div>
+      </div>
+
+      <div class="chart-wrap" id="chartWrap">
+        <canvas id="workChart" height="240"></canvas>
+      </div>
+
+      <div id="salesTable"></div>
+
+      <a id="wikiLink" class="btn btn-outline" target="_blank" rel="noopener">Read more</a>
+    </div>
+  </div>
+</main>
+
+<footer class="art-footer" id="artFooter"></footer>
+
+<script src="art.js"></script>
+</body>
+</html>

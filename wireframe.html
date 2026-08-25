@@ -86,6 +86,20 @@
   .notes .n { position: static; }
   .notes b { color: #333; font-weight: 600; }
 
+  .artwf .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 20px; }
+  .artwf .cardwf { border: 1.5px solid var(--wf); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 8px; }
+  .artwf .cardwf .img { height: 110px; border-radius: 6px; }
+  .artwf .ctrlwf { display: flex; gap: 12px; margin-top: 16px; }
+  .artwf .ctrlwf .pill { border-radius: 6px; width: 160px; }
+  .artwf .marketwf { border: 1.5px solid var(--wf); border-radius: 12px; padding: 24px; }
+  .artwf .marketwf .img { height: 160px; border-radius: 6px; margin: 16px 0; }
+  .artwf .detailsplit { display: grid; grid-template-columns: 400px 1fr; gap: 48px; margin-top: 20px; }
+  .artwf .detailsplit .img { height: 300px; border-radius: 6px; }
+  .artwf .numbrow { display: flex; gap: 32px; margin: 16px 0; }
+  .artwf .numbrow .txt { width: 100px; height: 34px; }
+  .artwf .chartbox { height: 220px; border-radius: 6px; margin: 16px 0; position: relative; }
+  .artwf .tablewf .row { grid-template-columns: 1fr 1fr 1fr 1fr; padding: 12px 0; }
+
   @media (max-width: 1000px) {
     .page { overflow-x: auto; }
     .page > * { min-width: 960px; }
@@ -187,11 +201,55 @@
   </div>
 </div>
 
+<div class="page artwf" style="margin-top:32px">
+  <div class="section">
+    <span class="lbl">art catalog · market window &rarr; controls &rarr; 3-col grid</span>
+    <span class="n" style="top:80px;left:24px">5</span>
+    <div class="marketwf">
+      <div class="txt" style="width:60px;height:8px"></div>
+      <div class="h2" style="width:60%">meadow trophy index</div>
+      <div class="img"></div>
+      <div class="txt" style="width:75%"></div>
+      <div class="txt" style="width:50%"></div>
+    </div>
+    <div class="ctrlwf">
+      <div class="pill dash">artist ▾</div>
+      <div class="pill dash">sort by ▾</div>
+    </div>
+    <div class="grid3">
+      <div class="cardwf"><div class="img"></div><div class="txt t" style="height:14px;width:70%"></div><div class="txt" style="width:50%"></div></div>
+      <div class="cardwf"><div class="img"></div><div class="txt t" style="height:14px;width:70%"></div><div class="txt" style="width:50%"></div></div>
+      <div class="cardwf"><div class="img"></div><div class="txt t" style="height:14px;width:70%"></div><div class="txt" style="width:50%"></div></div>
+    </div>
+  </div>
+
+  <div class="section" style="border-top:1.5px solid var(--wf)">
+    <span class="lbl">work detail · image left (sticky) / chart + table right</span>
+    <div class="detailsplit">
+      <div class="img"></div>
+      <div>
+        <div class="txt" style="width:40%;height:8px"></div>
+        <div class="h2" style="width:80%;margin-top:8px">work title</div>
+        <div class="numbrow">
+          <div class="txt" style="height:8px;width:60px"></div>
+          <div class="txt" style="height:8px;width:60px"></div>
+        </div>
+        <div class="chartbox img"><span class="n" style="top:8px;left:8px">5</span></div>
+        <div class="tablewf">
+          <div class="row"><div class="txt"></div><div class="txt"></div><div class="txt"></div><div class="txt"></div></div>
+          <div class="row"><div class="txt"></div><div class="txt"></div><div class="txt"></div><div class="txt"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <ul class="notes">
   <li><span class="n">1</span><div><b>Nav</b> fixed 16px from top, 2px ink box on paper with a hard 4px offset shadow, no blur, no radius. Drops in with steps(4), not an ease curve. Collapses to logo + burger under 680px.</div></li>
   <li><span class="n">2</span><div><b>Hero copy</b> is a Mac-style window plate: striped titlebar with a close box and centered "meadow" label, paper fill, 2px ink border, 6px hard shadow. Badge reads "[ now in public beta ]". Headline words rise from a clip mask with steps(5), not eased. Parallax on scroll is quantized to 4px steps.</div></li>
   <li><span class="n">3</span><div><b>Background</b> a Higgsfield Nano Banana 2 one-bit room drawing, quantized to the two-color palette and rendered pixelated. A butterfly sprite is split into left/right halves and flapped with rotateY, timed with steps(3, jump-none) instead of a smooth curve.</div></li>
   <li><span class="n">4</span><div><b>Sections</b> use 2px ink dividers and dither strips (checkerboard) instead of tinted backgrounds. Reveals fade and rise with steps(4). Type: Pixelify Sans display, IBM Plex Mono body. Palette is strictly #e0e0e0 paper / #1f56d6 ink, no other colors.</div></li>
+  <li><span class="n">5</span><div><b>Pixel charts</b> (market index, work detail, card sparklines) are drawn with fillRect calls only, no strokes or gradients, in the two-color palette. The work-detail chart uses a log y-axis so a single record sale doesn't flatten the rest of the series; the stepped line holds each value across its bin then jumps in one vertical run, with a checkerboard fill beneath it. Axis ticks are plain HTML spans positioned from the chart's own pixel coordinates, not canvas text.</div></li>
 </ul>
 
 </body>

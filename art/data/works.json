@@ -1,0 +1,1107 @@
+[
+  {
+    "id": "salvator-mundi",
+    "title": "Salvator Mundi",
+    "artist": "Leonardo da Vinci (attribution disputed)",
+    "artist_died": 1519,
+    "year": 1500,
+    "year_text": "c. 1500",
+    "medium": "oil on walnut panel",
+    "image": "Leonardo_da_Vinci,_Salvator_Mundi,_c.1500,_oil_on_walnut,_45.4_×_65.6_cm.jpg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Salvator_Mundi_(Leonardo)",
+    "sales": [
+      {
+        "date": "2005-04-10",
+        "price_usd": 1175,
+        "channel": "St. Charles Gallery, New Orleans",
+        "source": "https://en.wikipedia.org/wiki/Salvator_Mundi_(Leonardo)",
+        "index": false,
+        "index_note": "sold from the Basil Clovis Hendry Sr. estate catalogued as 'After Leonardo da Vinci', before the 2011 reattribution"
+      },
+      {
+        "date": "2013",
+        "price_usd": 80000000,
+        "channel": "private sale (Parish, Simon and Adelson to Yves Bouvier)",
+        "source": "https://en.wikipedia.org/wiki/Salvator_Mundi_(Leonardo)",
+        "note": "occurred after the 2011 reattribution/exhibition as an autograph Leonardo; exact date not given by the source, only the year"
+      },
+      {
+        "date": "2013",
+        "price_usd": 127500000,
+        "channel": "private sale (Yves Bouvier to Dmitry Rybolovlev)",
+        "source": "https://en.wikipedia.org/wiki/Salvator_Mundi_(Leonardo)",
+        "note": "Bouvier acted as an undisclosed principal reselling from his own purchase; later the subject of Bouvier-Rybolovlev litigation over the markup, but the price itself was a real arm's-length amount paid, not a reattribution/copy/forced/restitution case"
+      },
+      {
+        "date": "2017-11-15",
+        "price_usd": 450312500,
+        "channel": "Christie's, New York",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings",
+        "note": "with buyer's premium"
+      }
+    ]
+  },
+  {
+    "id": "interchange",
+    "title": "Interchange",
+    "artist": "Willem de Kooning",
+    "artist_died": 1997,
+    "year": 1955,
+    "year_text": "1955",
+    "medium": "oil on canvas",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Interchange_(de_Kooning)",
+    "sales": [
+      {
+        "date": "1955",
+        "price_usd": 4000,
+        "channel": "Sidney Janis Gallery, New York (sale from the artist to Edgar Kaufmann Jr.)",
+        "source": "https://en.wikipedia.org/wiki/Interchange_(de_Kooning)"
+      },
+      {
+        "date": "1989-11",
+        "price_usd": 20700000,
+        "channel": "Sotheby's, New York",
+        "source": "https://en.wikipedia.org/wiki/Interchange_(de_Kooning)",
+        "index": false,
+        "index_note": "sold from the estate of original owner Edgar Kaufmann Jr. after his death"
+      },
+      {
+        "date": "2015-09",
+        "price_usd": 300000000,
+        "channel": "Private sale",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings",
+        "approx": true,
+        "index": false,
+        "index_note": "part of a bundled $500M two-work private sale with Pollock's Number 17A; the $300M is an allocated share, not an itemized price"
+      }
+    ]
+  },
+  {
+    "id": "the-card-players",
+    "title": "The Card Players",
+    "artist": "Paul Cézanne",
+    "artist_died": 1906,
+    "year": 1892,
+    "year_text": "1892/93",
+    "medium": "oil on canvas",
+    "image": "Les_Joueurs_de_cartes,_par_Paul_Cézanne,_collection_Al-Thani,_Yorck.jpg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/The_Card_Players",
+    "sales": [
+      {
+        "date": "2011-04",
+        "price_usd": 250000000,
+        "channel": "Private sale",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings",
+        "approx": true
+      }
+    ]
+  },
+  {
+    "id": "portrait-of-elisabeth-lederer",
+    "title": "Portrait of Elisabeth Lederer",
+    "artist": "Gustav Klimt",
+    "artist_died": 1918,
+    "year": 1914,
+    "year_text": "1914-1916",
+    "medium": "oil on canvas",
+    "image": "Gustav_Klimt_Porträt_der_Baroness_Elisabeth_Bachofen-Echt.jpg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Portrait_of_Elisabeth_Lederer",
+    "sales": [
+      {
+        "date": "2025-11-18",
+        "price_usd": 236400000,
+        "channel": "Sotheby's, New York",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "nafea-faa-ipoipo-when-will-you-marry",
+    "title": "Nafea Faa Ipoipo (When Will You Marry?)",
+    "artist": "Paul Gauguin",
+    "artist_died": 1903,
+    "year": 1892,
+    "year_text": "1892",
+    "medium": "oil on canvas",
+    "image": "Paul_Gauguin,_Nafea_Faa_Ipoipo?_(When_Will_You_Marry?)_1892,_oil_on_canvas,_101_x_77_cm.jpg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/When_Will_You_Marry%3F",
+    "sales": [
+      {
+        "date": "2015-02",
+        "price_usd": 210000000,
+        "channel": "Private sale",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "shot-sage-blue-marilyn",
+    "title": "Shot Sage Blue Marilyn",
+    "artist": "Andy Warhol",
+    "artist_died": 1987,
+    "year": 1964,
+    "year_text": "1964",
+    "medium": "acrylic and silkscreen ink on linen",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Shot_Marilyns",
+    "sales": [
+      {
+        "date": "2022-05-09",
+        "price_usd": 195000000,
+        "channel": "Christie's, New York",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "les-femmes-d-alger-version-o",
+    "title": "Les Femmes d'Alger (\"Version O\")",
+    "artist": "Pablo Picasso",
+    "artist_died": 1973,
+    "year": 1955,
+    "year_text": "1955",
+    "medium": "oil on canvas",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Les_Femmes_d%27Alger_(Picasso)#Version_\"O\"",
+    "sales": [
+      {
+        "date": "1956-06",
+        "price_usd": 212500,
+        "channel": "Galerie Louise Leiris, Paris (private sale)",
+        "source": "https://en.wikipedia.org/wiki/Les_Femmes_d%27Alger_(Picasso)",
+        "index": false,
+        "index_note": "covers the Ganzes' purchase of the entire series of paintings, not Version O alone -- a bundled sale"
+      },
+      {
+        "date": "1997-11",
+        "price_usd": 31900000,
+        "channel": "Christie's, New York",
+        "source": "https://en.wikipedia.org/wiki/Les_Femmes_d%27Alger_(Picasso)",
+        "index": false,
+        "index_note": "sold from the Ganz estate at Christie's, November 1997 -- an estate sale"
+      },
+      {
+        "date": "2015-05-11",
+        "price_usd": 179400000,
+        "channel": "Christie's, New York",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "nu-couche",
+    "title": "Nu couché",
+    "artist": "Amedeo Modigliani",
+    "artist_died": 1920,
+    "year": 1917,
+    "year_text": "1917/18",
+    "medium": "oil on canvas",
+    "image": "Modigliani_-_Nu_couché.jpg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Nu_couch%C3%A9",
+    "sales": [
+      {
+        "date": "2015-11-09",
+        "price_usd": 170400000,
+        "channel": "Christie's, New York",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "masterpiece",
+    "title": "Masterpiece",
+    "artist": "Roy Lichtenstein",
+    "artist_died": 1997,
+    "year": 1962,
+    "year_text": "1962",
+    "medium": "oil, graphite pencil on canvas",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Masterpiece_(Lichtenstein)",
+    "sales": [
+      {
+        "date": "2017-01",
+        "price_usd": 165000000,
+        "channel": "Private sale",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "le-reve",
+    "title": "Le Rêve",
+    "artist": "Pablo Picasso",
+    "artist_died": 1973,
+    "year": 1932,
+    "year_text": "1932",
+    "medium": "oil on canvas",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Le_R%C3%AAve_(Picasso)",
+    "sales": [
+      {
+        "date": "1941",
+        "price_usd": 7000,
+        "channel": "private purchase (Victor and Sally Ganz)",
+        "source": "https://en.wikipedia.org/wiki/Le_R%C3%AAve_(Picasso)"
+      },
+      {
+        "date": "1997-11-11",
+        "price_usd": 48400000,
+        "channel": "Christie's, New York",
+        "source": "https://en.wikipedia.org/wiki/Le_R%C3%AAve_(Picasso)",
+        "index": false,
+        "index_note": "sold from the Ganz collection at Christie's to settle inheritance tax after Victor and Sally Ganz both died -- an estate sale"
+      },
+      {
+        "date": "2013-03-26",
+        "price_usd": 155000000,
+        "channel": "Private sale",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "three-studies-of-lucian-freud",
+    "title": "Three Studies of Lucian Freud",
+    "artist": "Francis Bacon",
+    "artist_died": 1992,
+    "year": 1969,
+    "year_text": "1969",
+    "medium": "oil on canvas (triptych)",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Three_Studies_of_Lucian_Freud",
+    "sales": [
+      {
+        "date": "2013-11-12",
+        "price_usd": 142400000,
+        "channel": "Christie's, New York",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "portrait-of-adele-bloch-bauer-i",
+    "title": "Portrait of Adele Bloch-Bauer I",
+    "artist": "Gustav Klimt",
+    "artist_died": 1918,
+    "year": 1907,
+    "year_text": "1907",
+    "medium": "oil, silver, and gold leaf on canvas",
+    "image": "Gustav_Klimt,_1907,_Adele_Bloch-Bauer_I,_Neue_Galerie_New_York.jpg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Portrait_of_Adele_Bloch-Bauer_I",
+    "sales": [
+      {
+        "date": "2006-06-18",
+        "price_usd": 135000000,
+        "channel": "Private sale via Christie's",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "the-scream",
+    "title": "The Scream",
+    "artist": "Edvard Munch",
+    "artist_died": 1944,
+    "year": 1895,
+    "year_text": "1895",
+    "medium": "pastel on cardboard",
+    "image": "The_Scream_Pastel.jpg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/The_Scream",
+    "sales": [
+      {
+        "date": "2012-05-02",
+        "price_usd": 119900000,
+        "channel": "Sotheby's, New York",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "verger-avec-cypres",
+    "title": "Verger avec cyprès",
+    "artist": "Vincent van Gogh",
+    "artist_died": 1890,
+    "year": 1888,
+    "year_text": "1888",
+    "medium": "oil on canvas",
+    "image": "Van_Gogh_-_Blühender_Obstgarten_mit_Pfirsichbäumen.jpeg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Orchard_with_Cypresses",
+    "sales": [
+      {
+        "date": "2022-11-09",
+        "price_usd": 117100000,
+        "channel": "Christie's, New York",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "meules",
+    "title": "Meules",
+    "artist": "Claude Monet",
+    "artist_died": 1926,
+    "year": 1890,
+    "year_text": "1890",
+    "medium": "oil on canvas",
+    "image": "Claude_Monet_-_Meules_(W_1273).jpg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Haystacks_(Monet_series)",
+    "sales": [
+      {
+        "date": "1986-05",
+        "price_usd": 2530000,
+        "channel": "Christie's, New York",
+        "source": "https://juddtully.net/auctions/record-breaking-110-7-m-monet-painting-leads-sothebys-imp-mod-sale-to-robust-349-9-m-finish/",
+        "note": "Article states the Monet last sold at Christie's New York in May 1986 for $2.53 million, before entering the collection that consigned it to Sotheby's in 2019."
+      },
+      {
+        "date": "2019-05-14",
+        "price_usd": 110700000,
+        "channel": "Sotheby's, New York",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "untitled-1982",
+    "title": "Untitled",
+    "artist": "Jean-Michel Basquiat",
+    "artist_died": 1988,
+    "year": 1982,
+    "year_text": "1982",
+    "medium": "acrylic, spray paint and oilstick on canvas",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Untitled_(1982_Basquiat_skull_painting)",
+    "sales": [
+      {
+        "date": "1982",
+        "price_usd": 4000,
+        "channel": "Annina Nosei Gallery, New York",
+        "source": "https://en.wikipedia.org/wiki/Untitled_(1982_Basquiat_skull_painting)"
+      },
+      {
+        "date": "1984",
+        "price_usd": 19000,
+        "channel": "Christie's, New York",
+        "source": "https://en.wikipedia.org/wiki/Untitled_(1982_Basquiat_skull_painting)",
+        "note": "Sold to Emily and Jerry Spiegel; the painting then stayed out of public view for 33 years until the 2017 Sotheby's sale."
+      },
+      {
+        "date": "2017-05-18",
+        "price_usd": 110500000,
+        "channel": "Sotheby's, New York",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "flag",
+    "title": "Flag",
+    "artist": "Jasper Johns",
+    "artist_died": null,
+    "year": 1958,
+    "year_text": "1958",
+    "medium": "encaustic, oil and collage on fabric mounted on plywood",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Flag_(painting)",
+    "sales": [
+      {
+        "date": "2010-03",
+        "price_usd": 110000000,
+        "channel": "Private sale, estimated price",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "garcon-a-la-pipe",
+    "title": "Garçon à la pipe",
+    "artist": "Pablo Picasso",
+    "artist_died": 1973,
+    "year": 1905,
+    "year_text": "1905",
+    "medium": "oil on canvas",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Gar%C3%A7on_%C3%A0_la_pipe",
+    "sales": [
+      {
+        "date": "1950-01-13",
+        "price_usd": 30000,
+        "channel": "private sale (dealer Walter Feilchenfeldt, Zurich, to Mr. and Mrs. John Hay Whitney)",
+        "source": "https://en.wikipedia.org/wiki/Gar%C3%A7on_%C3%A0_la_pipe"
+      },
+      {
+        "date": "2004-05-05",
+        "price_usd": 104200000,
+        "channel": "Sotheby's, New York",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "silver-car-crash-double-disaster",
+    "title": "Silver Car Crash (Double Disaster)",
+    "artist": "Andy Warhol",
+    "artist_died": 1987,
+    "year": 1963,
+    "year_text": "1963",
+    "medium": "acrylic on canvas",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Silver_Car_Crash_(Double_Disaster)",
+    "sales": [
+      {
+        "date": "2013-11-13",
+        "price_usd": 105400000,
+        "channel": "Sotheby's, New York",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "nurse",
+    "title": "Nurse",
+    "artist": "Roy Lichtenstein",
+    "artist_died": 1997,
+    "year": 1964,
+    "year_text": "1964",
+    "medium": "acrylic, oil, graphite pencil on canvas",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Nurse_(Lichtenstein)",
+    "sales": [
+      {
+        "date": "1995",
+        "price_usd": 1700000,
+        "channel": "auction (house not named in source)",
+        "source": "https://en.wikipedia.org/wiki/Nurse_(Lichtenstein)",
+        "note": "Wikipedia states the painting had previously sold at auction in 1995 for $1.7 million; auction house not identified."
+      },
+      {
+        "date": "2015-11-09",
+        "price_usd": 95400000,
+        "channel": "Christie's, New York",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "dora-maar-au-chat",
+    "title": "Dora Maar au Chat",
+    "artist": "Pablo Picasso",
+    "artist_died": 1973,
+    "year": 1941,
+    "year_text": "1941",
+    "medium": "oil on canvas",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Dora_Maar_au_Chat",
+    "sales": [
+      {
+        "date": "2006-05-03",
+        "price_usd": 95200000,
+        "channel": "Sotheby's, New York",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "chop-suey",
+    "title": "Chop Suey",
+    "artist": "Edward Hopper",
+    "artist_died": 1967,
+    "year": 1929,
+    "year_text": "1929",
+    "medium": "oil on canvas",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Chop_Suey_(painting)",
+    "sales": [
+      {
+        "date": "2018-11-13",
+        "price_usd": 91900000,
+        "channel": "Christie's, New York",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "orange-red-yellow",
+    "title": "Orange, Red, Yellow",
+    "artist": "Mark Rothko",
+    "artist_died": 1970,
+    "year": 1961,
+    "year_text": "1961",
+    "medium": "acrylic on canvas",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Orange,_Red,_Yellow",
+    "sales": [
+      {
+        "date": "2012-05-08",
+        "price_usd": 86900000,
+        "channel": "Christie's, New York",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "portrait-of-dr-gachet",
+    "title": "Portrait of Dr. Gachet",
+    "artist": "Vincent van Gogh",
+    "artist_died": 1890,
+    "year": 1890,
+    "year_text": "1890",
+    "medium": "oil on canvas",
+    "image": "Portrait_of_Dr._Gachet.jpg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Portrait_of_Dr._Gachet",
+    "sales": [
+      {
+        "date": "1990-05-15",
+        "price_usd": 82500000,
+        "channel": "Christie's, New York",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "balloon-dog-orange",
+    "title": "Balloon Dog (Orange)",
+    "artist": "Jeff Koons",
+    "artist_died": null,
+    "year": null,
+    "year_text": "1994–2000",
+    "medium": "mirror-polished stainless steel with transparent color coating",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Balloon_Dog",
+    "sales": [
+      {
+        "date": "2013-11-12",
+        "price_usd": 58405000,
+        "channel": "Christie's, New York",
+        "source": "https://www.dailyartmagazine.com/jeff-koons-balloon-dog/"
+      }
+    ]
+  },
+  {
+    "id": "rabbit",
+    "title": "Rabbit",
+    "artist": "Jeff Koons",
+    "artist_died": null,
+    "year": 1986,
+    "year_text": "1986",
+    "medium": "stainless steel",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Rabbit_(Koons)",
+    "sales": [
+      {
+        "date": "2019-05-15",
+        "price_usd": 91100000,
+        "channel": "Christie's, New York",
+        "source": "https://fortune.com/2019/05/15/mnuchin-jeff-koons-rabbit/"
+      }
+    ]
+  },
+  {
+    "id": "number-17a",
+    "title": "Number 17A",
+    "artist": "Jackson Pollock",
+    "artist_died": 1956,
+    "year": 1948,
+    "year_text": "1948",
+    "medium": "oil paint on fiberboard",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Number_17A",
+    "sales": [
+      {
+        "date": "2015-09",
+        "price_usd": 200000000,
+        "channel": "Private sale",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings",
+        "approx": true,
+        "index": false,
+        "index_note": "part of a bundled $500M two-work private sale with de Kooning's Interchange; the $200M is an allocated share, not an itemized price"
+      }
+    ]
+  },
+  {
+    "id": "the-standard-bearer",
+    "title": "The Standard Bearer",
+    "artist": "Rembrandt",
+    "artist_died": 1669,
+    "year": 1636,
+    "year_text": "1636",
+    "medium": "oil on canvas",
+    "image": "Rembrandt_-_De_vaandeldrager_(Q21467444).jpeg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/The_Standard_Bearer_(Rembrandt,_1636)",
+    "sales": [
+      {
+        "date": "2022-02",
+        "price_usd": 198000000,
+        "channel": "Private sale",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings",
+        "amount_original": 175.0,
+        "currency_original": "EUR"
+      }
+    ]
+  },
+  {
+    "id": "no-6-violet-green-and-red",
+    "title": "No. 6 (Violet, Green and Red)",
+    "artist": "Mark Rothko",
+    "artist_died": 1970,
+    "year": 1951,
+    "year_text": "1951",
+    "medium": "oil on canvas",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/No._6_(Violet,_Green_and_Red)",
+    "sales": [
+      {
+        "date": "2014-08",
+        "price_usd": 186000000,
+        "channel": "Private sale via Yves Bouvier",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings",
+        "amount_original": 140.0,
+        "currency_original": "EUR"
+      }
+    ]
+  },
+  {
+    "id": "wasserschlangen-ii",
+    "title": "Wasserschlangen II",
+    "artist": "Gustav Klimt",
+    "artist_died": 1918,
+    "year": 1904,
+    "year_text": "1904–1907",
+    "medium": "oil on canvas",
+    "image": "Klimt_-_Wasserschlangen_II_(Freundinnen)_-_1904.jpeg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Water_Serpents_II",
+    "sales": [
+      {
+        "date": "2012",
+        "price_usd": 112000000,
+        "channel": "private sale (Yves Bouvier, purchased from the estate of Ursula Ucicky)",
+        "source": "https://en.wikipedia.org/wiki/Wasserschlangen_II",
+        "note": "First leg of a Bouvier-flip pattern (same intermediary as Salvator Mundi): Bouvier bought for $112M in 2012, then resold to Rybolovlev in 2013 for $183.8M."
+      },
+      {
+        "date": "2013",
+        "price_usd": 183800000,
+        "channel": "Private sale",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "number-7a",
+    "title": "Number 7A",
+    "artist": "Jackson Pollock",
+    "artist_died": 1956,
+    "year": 1948,
+    "year_text": "1948",
+    "medium": "oil and enamel on canvas",
+    "image": null,
+    "wikipedia_url": null,
+    "sales": [
+      {
+        "date": "2026-05-18",
+        "price_usd": 181200000,
+        "channel": "Christie’s, New York",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "pendant-portraits-of-maerten-soolmans-and-oopjen-coppit",
+    "title": "Pendant portraits of Maerten Soolmans and Oopjen Coppit",
+    "artist": "Rembrandt",
+    "artist_died": 1669,
+    "year": 1634,
+    "year_text": "1634",
+    "medium": "oil on canvas",
+    "image": "Pendant_portraits_of_Maerten_Soolmans_and_Oopjen_Coppit.jpeg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Pendant_portraits_of_Maerten_Soolmans_and_Oopjen_Coppit",
+    "sales": [
+      {
+        "date": "2016-02-01",
+        "price_usd": 180000000,
+        "channel": "Private sale",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "portrait-of-adele-bloch-bauer-ii",
+    "title": "Portrait of Adele Bloch-Bauer II",
+    "artist": "Gustav Klimt",
+    "artist_died": 1918,
+    "year": 1912,
+    "year_text": "1912",
+    "medium": "oil on canvas",
+    "image": "Gustav_Klimt_047.jpg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Portrait_of_Adele_Bloch-Bauer_II",
+    "sales": [
+      {
+        "date": "2006-11-08",
+        "price_usd": 87900000,
+        "channel": "Christie's, New York",
+        "source": "https://news.artnet.com/market/oprah-sells-famed-gustav-klimt-portrait-150-million-851537"
+      },
+      {
+        "date": "2016",
+        "price_usd": 150000000,
+        "channel": "Private sale via Larry Gagosian",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "les-poseuses-ensemble-petite-version",
+    "title": "Les Poseuses, Ensemble (Petite version)",
+    "artist": "Georges Seurat",
+    "artist_died": 1891,
+    "year": 1888,
+    "year_text": "1888",
+    "medium": "oil on canvas",
+    "image": "Georges_Seurat_047.jpg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Models_(painting)#Les_Poseuses",
+    "sales": [
+      {
+        "date": "2022-11-09",
+        "price_usd": 149200000,
+        "channel": "Christie's, New York",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "twelve-landscape-screens",
+    "title": "Twelve Landscape Screens",
+    "artist": "Qi Baishi",
+    "artist_died": 1957,
+    "year": 1925,
+    "year_text": "1925",
+    "medium": "hanging scroll, ink brush on silk",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Twelve_Landscape_Screens",
+    "sales": [
+      {
+        "date": "2017-12-17",
+        "price_usd": 140800000,
+        "channel": "Beijing Poly Auction",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings",
+        "amount_original": 931.5,
+        "currency_original": "CNY"
+      }
+    ]
+  },
+  {
+    "id": "no-5-1948",
+    "title": "No. 5, 1948",
+    "artist": "Jackson Pollock",
+    "artist_died": 1956,
+    "year": 1948,
+    "year_text": "1948",
+    "medium": "oil on fiberboard",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/No._5,_1948",
+    "sales": [
+      {
+        "date": "1949-01",
+        "price_usd": 1500,
+        "channel": "Betty Parsons Gallery (sold to Alfonso A. Ossorio)",
+        "source": "https://en.wikipedia.org/wiki/No._5,_1948"
+      },
+      {
+        "date": "2006-11-02",
+        "price_usd": 140000000,
+        "channel": "Private sale via Sotheby's",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "femme-a-la-montre",
+    "title": "Femme à la montre",
+    "artist": "Pablo Picasso",
+    "artist_died": 1973,
+    "year": 1932,
+    "year_text": "1932",
+    "medium": "oil on canvas",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Femme_%C3%A0_la_montre",
+    "sales": [
+      {
+        "date": "2023-11-09",
+        "price_usd": 139300000,
+        "channel": "Sotheby's, New York",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "la-montagne-sainte-victoire",
+    "title": "La Montagne Sainte-Victoire",
+    "artist": "Paul Cezanne",
+    "artist_died": 1906,
+    "year": 1888,
+    "year_text": "1888-1890",
+    "medium": "oil on canvas",
+    "image": "Montagne_Sainte-Victoire,_par_Paul_Cézanne_114.jpg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Mont_Sainte-Victoire_(C%C3%A9zanne)",
+    "sales": [
+      {
+        "date": "2001-05",
+        "price_usd": 38500000,
+        "channel": "Phillips de Pury & Luxembourg, New York (purchased by Paul Allen)",
+        "source": "https://juddtully.net/auctions/microsoft-co-founder-paul-allens-collection-brings-record-smashing-1-5bn-at-christies-evening-sale-in-new-york/",
+        "note": "Hammer price was $35M; $38.5M includes buyer's premium/fees, matching the format used for the 2022 sale figure."
+      },
+      {
+        "date": "2022-11-09",
+        "price_usd": 137700000,
+        "channel": "Christie's, New York",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "woman-iii",
+    "title": "Woman III",
+    "artist": "Willem de Kooning",
+    "artist_died": 1997,
+    "year": 1953,
+    "year_text": "1953",
+    "medium": "oil on canvas",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Woman_III",
+    "sales": [
+      {
+        "date": "2006-11-18",
+        "price_usd": 137500000,
+        "channel": "Private sale via Larry Gagosian",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "the-empire-of-light",
+    "title": "The Empire of Light",
+    "artist": "René Magritte",
+    "artist_died": 1967,
+    "year": 1954,
+    "year_text": "1954",
+    "medium": "oil on canvas",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/The_Empire_of_Light",
+    "sales": [
+      {
+        "date": "2024-11-19",
+        "price_usd": 121200000,
+        "channel": "Christie's, New York",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "otahi",
+    "title": "Otahi",
+    "artist": "Paul Gauguin",
+    "artist_died": 1903,
+    "year": 1893,
+    "year_text": "1893",
+    "medium": "oil on canvas",
+    "image": "Paul_Gauguin_093.jpg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Otahi",
+    "sales": [
+      {
+        "date": "2013",
+        "price_usd": 120000000,
+        "channel": "Private sale",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "reclining-nude-with-blue-cushion",
+    "title": "Reclining Nude With Blue Cushion",
+    "artist": "Amedeo Modigliani",
+    "artist_died": 1920,
+    "year": 1916,
+    "year_text": "1916",
+    "medium": "oil on canvas",
+    "image": "Amedeo_Modigliani_Nu_Couché_au_coussin_Bleu.jpg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Nu_Couch%C3%A9_au_coussin_Bleu",
+    "sales": [
+      {
+        "date": "2012",
+        "price_usd": 118000000,
+        "channel": "Private sale via Yves Bouvier",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "young-girl-with-a-flower-basket",
+    "title": "Young Girl with a Flower Basket",
+    "artist": "Pablo Picasso",
+    "artist_died": 1973,
+    "year": 1905,
+    "year_text": "1905",
+    "medium": "oil on canvas",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Young_Girl_with_a_Flower_Basket",
+    "sales": [
+      {
+        "date": "2018-05-08",
+        "price_usd": 115000000,
+        "channel": "Christie's, New York",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "anna-s-light",
+    "title": "Anna's Light",
+    "artist": "Barnett Newman",
+    "artist_died": 1970,
+    "year": 1968,
+    "year_text": "1968",
+    "medium": "acrylic on canvas",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Anna%27s_Light",
+    "sales": [
+      {
+        "date": "2013-10-04",
+        "price_usd": 105700000,
+        "channel": "Private sale",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings",
+        "approx": true,
+        "amount_original": 10300.0,
+        "currency_original": "JPY"
+      }
+    ]
+  },
+  {
+    "id": "portrait-of-a-young-man-holding-a-roundel",
+    "title": "Portrait of a Young Man holding a Roundel",
+    "artist": "Sandro Botticelli",
+    "artist_died": 1510,
+    "year": 1480,
+    "year_text": "c. 1480",
+    "medium": "tempera on poplar wood",
+    "image": "Botticelli_-_Portrait_of_a_Young_Man_Holding_a_Roundel.jpg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Portrait_of_a_Young_Man_holding_a_Medallion",
+    "sales": [
+      {
+        "date": "2021-01-21",
+        "price_usd": 92200000,
+        "channel": "Sotheby's, New York",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "boy-and-dog-in-a-johnnypump",
+    "title": "Boy and Dog in a Johnnypump",
+    "artist": "Jean-Michel Basquiat",
+    "artist_died": 1988,
+    "year": 1982,
+    "year_text": "1982",
+    "medium": "oil on canvas",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Boy_and_Dog_in_a_Johnnypump",
+    "sales": [
+      {
+        "date": "2020",
+        "price_usd": 100000000,
+        "channel": "Private sale",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "portrait-of-an-artist-pool-with-two-figures",
+    "title": "Portrait of an Artist (Pool with Two Figures)",
+    "artist": "David Hockney",
+    "artist_died": 2026,
+    "year": 1972,
+    "year_text": "1972",
+    "medium": "acrylic on canvas",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Portrait_of_an_Artist_(Pool_with_Two_Figures)",
+    "sales": [
+      {
+        "date": "1972",
+        "price_usd": 18000,
+        "channel": "private sale (via the artist's dealer, primary market)",
+        "source": "https://en.wikipedia.org/wiki/Portrait_of_an_Artist_(Pool_with_Two_Figures)"
+      },
+      {
+        "date": "2018-11-15",
+        "price_usd": 90300000,
+        "channel": "Christie's, New York",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "buffalo-ii",
+    "title": "Buffalo II",
+    "artist": "Robert Rauschenberg",
+    "artist_died": 2008,
+    "year": 1964,
+    "year_text": "1964",
+    "medium": "oil and silkscreen ink on canvas",
+    "image": null,
+    "wikipedia_url": null,
+    "sales": [
+      {
+        "date": "2019-05-15",
+        "price_usd": 88800000,
+        "channel": "Christie's, New York",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "suprematist-composition",
+    "title": "Suprematist Composition",
+    "artist": "Kazimir Malevich",
+    "artist_died": 1935,
+    "year": 1916,
+    "year_text": "1916",
+    "medium": "oil on canvas",
+    "image": "Suprematist_Composition_-_Kazimir_Malevich.jpg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Suprematist_Composition",
+    "sales": [
+      {
+        "date": "2008-11",
+        "price_usd": 60000000,
+        "channel": "Sotheby's, New York",
+        "source": "https://en.wikipedia.org/wiki/Suprematist_Composition",
+        "note": "Article gives this as a rounded '$60 million' figure, month-level date only, not a precise hammer price. Artist's heirs sold to the Nahmad family, before the 2018 Christie's $85.8M sale in the seed."
+      },
+      {
+        "date": "2018-05-15",
+        "price_usd": 85800000,
+        "channel": "Christie's, New York",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  },
+  {
+    "id": "the-gross-clinic",
+    "title": "The Gross Clinic",
+    "artist": "Thomas Eakins",
+    "artist_died": 1916,
+    "year": 1875,
+    "year_text": "1875",
+    "medium": "oil on canvas",
+    "image": "Thomas_Eakins,_American_-_Portrait_of_Dr._Samuel_D._Gross_(The_Gross_Clinic)_-_Google_Art_Project.jpg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/The_Gross_Clinic",
+    "sales": [
+      {
+        "date": "2007-04-12",
+        "price_usd": 68000000,
+        "channel": "Private sale",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
+      }
+    ]
+  }
+]

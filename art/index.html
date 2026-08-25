@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Art catalog · Meadow</title>
+<meta name="description" content="A real-world art catalog: repeat-sale trophy index, sales history, and indexed estimates for tracked works.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 5 5'%3E%3Crect width='5' height='5' fill='%23e0e0e0'/%3E%3Crect x='0' y='0' width='1' height='1' fill='%231f56d6'/%3E%3Crect x='4' y='0' width='1' height='1' fill='%231f56d6'/%3E%3Crect x='0' y='1' width='1' height='1' fill='%231f56d6'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%231f56d6'/%3E%3Crect x='3' y='1' width='1' height='1' fill='%231f56d6'/%3E%3Crect x='4' y='1' width='1' height='1' fill='%231f56d6'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%231f56d6'/%3E%3Crect x='1' y='3' width='1' height='1' fill='%231f56d6'/%3E%3Crect x='3' y='3' width='1' height='1' fill='%231f56d6'/%3E%3Crect x='0' y='4' width='1' height='1' fill='%231f56d6'/%3E%3Crect x='4' y='4' width='1' height='1' fill='%231f56d6'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Pixelify+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="art.css">
+</head>
+<body class="art-body" data-page="catalog">
+
+<header class="nav" id="nav">
+  <a class="brand" href="../#top" aria-label="Meadow home">
+    <svg viewBox="0 0 5 5" aria-hidden="true"><rect x="0" y="0" width="1" height="1"/><rect x="4" y="0" width="1" height="1"/><rect x="0" y="1" width="1" height="1"/><rect x="1" y="1" width="1" height="1"/><rect x="3" y="1" width="1" height="1"/><rect x="4" y="1" width="1" height="1"/><rect x="2" y="2" width="1" height="1"/><rect x="1" y="3" width="1" height="1"/><rect x="3" y="3" width="1" height="1"/><rect x="0" y="4" width="1" height="1"/><rect x="4" y="4" width="1" height="1"/></svg>
+    Meadow
+  </a>
+  <nav class="links" id="links">
+    <a href="../#product">Product</a>
+    <a href="../#usecases">Use cases</a>
+    <a href="../#pricing">Pricing</a>
+    <a href="../#changelog">Changelog</a>
+    <a href="../#contact">Contact</a>
+    <a href="./" aria-current="page">Art</a>
+  </nav>
+  <a class="btn btn-dark" href="../#login">Log in</a>
+  <button class="menu" id="menu" aria-label="Open menu" aria-expanded="false" aria-controls="links">
+    <span></span><span></span>
+  </button>
+</header>
+
+<main class="art-main">
+  <div class="panel market-panel" data-reveal>
+    <div class="titlebar" aria-hidden="true"><span></span><span>index</span></div>
+    <div class="panel-body">
+      <p class="eyebrow">market</p>
+      <h2>meadow trophy index</h2>
+      <canvas class="index-chart" id="indexChart" height="160"></canvas>
+      <p class="caption" id="indexCaption"></p>
+      <p class="method" id="indexMethod"></p>
+      <details class="excluded">
+        <summary>excluded pairs</summary>
+        <ul id="excludedList"></ul>
+      </details>
+    </div>
+  </div>
+
+  <div class="controls" data-reveal>
+    <label>Artist
+      <select id="artistFilter"></select>
+    </label>
+    <label>Sort by
+      <select id="sortBy">
+        <option value="last">last price</option>
+        <option value="est">indexed estimate</option>
+        <option value="gain">gain</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="grid" id="grid"></div>
+</main>
+
+<footer class="art-footer" id="artFooter"></footer>
+
+<script src="art.js"></script>
+</body>
+</html>
