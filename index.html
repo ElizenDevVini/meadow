@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meadow · Design at a walking pace</title>
+<meta name="description" content="Meadow is a design tool that understands what you're making and handles the busywork. So you can take a breath.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='9' fill='%23e2602a'/%3E%3Cpath d='M2 13c3-3 5-3 8 0s5 3 8 0' stroke='%23fff' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#top" aria-label="Meadow home">
+    <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#e2602a"/><path d="M2 13c3-3 5-3 8 0s5 3 8 0" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
+    Meadow
+  </a>
+  <nav class="links" id="links">
+    <a href="#product">Product</a>
+    <a href="#usecases">Use cases</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#changelog">Changelog</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <a class="btn btn-dark" href="#login">Log in</a>
+  <button class="menu" id="menu" aria-label="Open menu" aria-expanded="false" aria-controls="links">
+    <span></span><span></span>
+  </button>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-media" id="media">
+    <video autoplay muted loop playsinline preload="auto" poster="assets/hero.jpg">
+      <source src="assets/hero.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="pollen" aria-hidden="true">
+    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+  </div>
+
+  <div class="hero-copy" id="copy">
+    <p class="badge rv" style="--d:.55s">Now in public beta</p>
+    <h1>
+      <span class="w"><span style="--d:.65s">Design</span></span>
+      <span class="w"><span style="--d:.72s">at</span></span>
+      <span class="w"><span style="--d:.79s">a</span></span>
+      <span class="w"><span style="--d:.86s">walking</span></span>
+      <span class="w"><span style="--d:.93s">pace.</span></span>
+    </h1>
+    <p class="lede rv" style="--d:1.05s">Meadow understands what you're making and handles the busywork. So you can take a breath.</p>
+    <div class="cta rv" style="--d:1.2s">
+      <a class="btn btn-light" href="#pricing">Get started <span aria-hidden="true">&rarr;</span></a>
+      <a class="btn btn-ghost" href="#product">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.5v9l7-4.5z" fill="currentColor"/></svg>
+        Watch demo
+      </a>
+    </div>
+  </div>
+
+  <a class="scroll-cue rv" id="cue" href="#product" style="--d:1.6s">Scroll <span aria-hidden="true">&darr;</span></a>
+</section>
+
+<main>
+  <section class="section" id="product">
+    <div class="split">
+      <div class="split-head" data-reveal>
+        <p class="eyebrow">Product</p>
+        <h2>Less fiddling.<br>More making.</h2>
+        <p class="sub">Most design tools are fast at the wrong things. Meadow is quick where it counts and quiet everywhere else.</p>
+      </div>
+      <div class="feature-list">
+        <div class="feature" data-reveal style="--d:.05s">
+          <svg viewBox="0 0 28 28" aria-hidden="true"><path d="M3 14s4-7 11-7 11 7 11 7-4 7-11 7S3 14 3 14z"/><circle cx="14" cy="14" r="3.5"/></svg>
+          <div>
+            <h3>Understands the file</h3>
+            <p>Name a frame and Meadow reads the rest: spacing, type scale, what a component is for. You stop explaining and start adjusting.</p>
+          </div>
+        </div>
+        <div class="feature" data-reveal style="--d:.15s">
+          <svg viewBox="0 0 28 28" aria-hidden="true"><path d="M5 23l9-9M17 4l7 7-4 4-7-7z"/><path d="M14 14l-2 2"/></svg>
+          <div>
+            <h3>Fixes the boring parts</h3>
+            <p>Alignment, naming, exports, dark mode variants. Ask once and it handles the whole batch, then shows you the diff before anything lands.</p>
+          </div>
+        </div>
+        <div class="feature" data-reveal style="--d:.25s">
+          <svg viewBox="0 0 28 28" aria-hidden="true"><path d="M8 13V7a2 2 0 014 0v6M12 12V5a2 2 0 014 0v7M16 13V7a2 2 0 014 0v9a7 7 0 01-7 7h-1a7 7 0 01-6-3.4L4 15.5a2 2 0 013.3-2.2L8 14"/></svg>
+          <div>
+            <h3>Stays out of the way</h3>
+            <p>No sidebar full of suggestions. Meadow speaks when spoken to and keeps the canvas yours.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="usecases">
+    <div class="wrap">
+      <div class="center-head" data-reveal>
+        <p class="eyebrow">Use cases</p>
+        <h2>Built for people who have other things to do.</h2>
+      </div>
+      <ol class="cases">
+        <li data-reveal style="--d:.05s"><span class="n">01</span><span class="t">Product teams</span><span class="d">Ship the small screens nobody has time for.</span><span class="a" aria-hidden="true">&rarr;</span></li>
+        <li data-reveal style="--d:.1s"><span class="n">02</span><span class="t">Agencies</span><span class="d">Ten client brands, one set of habits.</span><span class="a" aria-hidden="true">&rarr;</span></li>
+        <li data-reveal style="--d:.15s"><span class="n">03</span><span class="t">Founders</span><span class="d">A real interface before the first hire.</span><span class="a" aria-hidden="true">&rarr;</span></li>
+        <li data-reveal style="--d:.2s"><span class="n">04</span><span class="t">Students</span><span class="d">Learn the craft, skip the chores.</span><span class="a" aria-hidden="true">&rarr;</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="pricing">
+    <div class="wrap">
+      <div class="center-head" data-reveal>
+        <p class="eyebrow">Pricing</p>
+        <h2>Simple. Like the rest of it.</h2>
+      </div>
+      <div class="tiers">
+        <div class="tier" data-reveal style="--d:.05s">
+          <h3>Free</h3>
+          <p class="price">$0</p>
+          <p class="tier-sub">For side projects and seeing if it fits.</p>
+          <ul>
+            <li>3 files</li>
+            <li>Every editing tool</li>
+            <li>Community templates</li>
+          </ul>
+          <a class="btn btn-outline" href="#login">Start free</a>
+        </div>
+        <div class="tier tier-featured" data-reveal style="--d:.15s">
+          <h3>Studio</h3>
+          <p class="price">$16<span> / seat / month</span></p>
+          <p class="tier-sub">For teams doing this every day.</p>
+          <ul>
+            <li>Unlimited files</li>
+            <li>Batch edits with diffs</li>
+            <li>Shared libraries</li>
+            <li>Priority support</li>
+          </ul>
+          <a class="btn btn-dark" href="#login">Start a 14-day trial</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer" id="contact">
+  <div class="wrap footer-row">
+    <a class="brand" href="#top">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#e2602a"/><path d="M2 13c3-3 5-3 8 0s5 3 8 0" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
+      Meadow
+    </a>
+    <nav class="footer-links">
+      <a href="#product">Product</a>
+      <a href="#usecases">Use cases</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#changelog" id="changelog">Changelog</a>
+      <a href="mailto:hello@meadow.example">Contact</a>
+    </nav>
+    <p class="copy">&copy; 2026 Meadow</p>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

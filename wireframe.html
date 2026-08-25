@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meadow · wireframe</title>
+<style>
+  :root { --wf: #6b7580; --wf-2: #aab2ba; --wf-3: #e3e7ea; --note: #d9541f; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font: 12px/1.5 ui-monospace, "SF Mono", Menlo, monospace;
+    color: var(--wf);
+    background:
+      linear-gradient(rgba(107,117,128,.07) 1px, transparent 1px) 0 0 / 24px 24px,
+      linear-gradient(90deg, rgba(107,117,128,.07) 1px, transparent 1px) 0 0 / 24px 24px,
+      #fbfbfc;
+    padding: 32px 24px 96px;
+  }
+  a { color: inherit; }
+  .bar { max-width: 1120px; margin: 0 auto 24px; display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+  .bar h1 { font-size: 13px; font-weight: 600; }
+  .bar a { text-decoration: underline; }
+  .page { max-width: 1120px; margin: 0 auto; border: 1.5px solid var(--wf); background: #fff; }
+
+  .box { border: 1.5px solid var(--wf); position: relative; }
+  .dash { border-style: dashed; border-color: var(--wf-2); }
+  .lbl { position: absolute; top: 6px; left: 8px; font-size: 11px; color: var(--wf); background: #fff; padding: 0 4px; }
+  .dim { position: absolute; right: 8px; top: 6px; font-size: 10px; color: var(--wf-2); }
+  .txt { height: 10px; background: var(--wf-3); border-radius: 2px; }
+  .pill { border: 1.5px solid var(--wf); border-radius: 999px; height: 36px; display: flex; align-items: center; justify-content: center; padding: 0 16px; font-size: 11px; }
+  .pill.solid { background: var(--wf); color: #fff; }
+  .img { background: repeating-linear-gradient(45deg, transparent 0 10px, rgba(107,117,128,.08) 10px 11px); }
+  .img::before, .img::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top right, transparent calc(50% - .6px), var(--wf-2) 50%, transparent calc(50% + .6px)); pointer-events: none; }
+  .img::after { background: linear-gradient(to top left, transparent calc(50% - .6px), var(--wf-2) 50%, transparent calc(50% + .6px)); }
+  .n { display: inline-flex; width: 18px; height: 18px; border-radius: 50%; background: var(--note); color: #fff; font-size: 10px; align-items: center; justify-content: center; position: absolute; z-index: 2; }
+
+  .hero { height: 720px; position: relative; overflow: hidden; }
+  .nav { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); width: 560px; height: 48px; border-radius: 999px; border: 1.5px solid var(--wf); background: #fff; display: flex; align-items: center; gap: 8px; padding: 6px 6px 6px 14px; z-index: 1; }
+  .nav .logo { width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--wf); }
+  .nav .links { display: flex; gap: 14px; margin: 0 auto; }
+  .nav .links i { display: block; width: 44px; height: 8px; background: var(--wf-3); border-radius: 2px; }
+  .nav .cta { width: 72px; height: 34px; padding: 0 8px; white-space: nowrap; }
+
+  .copy { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -54%); width: 620px; display: flex; flex-direction: column; align-items: center; gap: 14px; z-index: 1; }
+  .badge { width: 130px; height: 26px; border-radius: 999px; border: 1.5px dashed var(--wf-2); background: #fff; }
+  .h1 { width: 560px; height: 78px; border: 1.5px solid var(--wf); background: #fff; display: flex; align-items: center; justify-content: center; font-size: 36px; letter-spacing: -.03em; color: var(--wf); }
+  .lede { display: flex; flex-direction: column; gap: 6px; align-items: center; width: 100%; }
+  .lede .txt { width: 380px; }
+  .lede .txt + .txt { width: 260px; }
+  .ctas { display: flex; gap: 10px; margin-top: 8px; }
+  .ctas .pill { width: 130px; background: #fff; }
+  .cue { position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); width: 104px; white-space: nowrap; height: 26px; border-radius: 999px; font-size: 9px; letter-spacing: .15em; z-index: 1; background: #fff; }
+
+  .section { padding: 96px 64px; position: relative; border-top: 1.5px solid var(--wf); }
+  .section .lbl { top: -8px; }
+  .split { display: grid; grid-template-columns: 5fr 7fr; gap: 64px; }
+  .head { display: flex; flex-direction: column; gap: 10px; }
+  .h2 { height: 52px; width: 70%; border: 1.5px solid var(--wf); display: flex; align-items: center; padding-left: 10px; font-size: 20px; letter-spacing: -.02em; }
+  .head .txt { width: 85%; }
+  .rows { border-top: 1.5px solid var(--wf-2); }
+  .row { display: grid; grid-template-columns: 44px 1fr; gap: 20px; padding: 24px 0; border-bottom: 1.5px solid var(--wf-2); }
+  .row .ico { width: 28px; height: 28px; border: 1.5px dashed var(--wf-2); border-radius: 6px; }
+  .row .txt { margin-bottom: 6px; }
+  .row .txt.t { height: 14px; width: 40%; background: var(--wf-2); }
+  .row .txt.b { width: 92%; }
+
+  .center { width: 560px; margin: 0 auto 48px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .center .h2 { width: 100%; justify-content: center; padding: 0; }
+  .list { border-top: 1.5px solid var(--wf-2); }
+  .list .row { grid-template-columns: 56px 1.1fr 2fr 32px; align-items: center; padding: 22px 8px; }
+  .list .row .txt { margin: 0; }
+  .list .num { font-size: 10px; color: var(--wf-2); }
+  .list .arrow { text-align: right; color: var(--wf-2); }
+
+  .tiers { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 820px; margin: 0 auto; }
+  .tier { border: 1.5px solid var(--wf); border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 10px; min-height: 300px; }
+  .tier .price { height: 40px; width: 40%; border: 1.5px solid var(--wf); }
+  .tier .pill { margin-top: auto; }
+
+  .footer { border-top: 1.5px solid var(--wf); padding: 32px 64px; display: flex; align-items: center; justify-content: space-between; }
+  .footer .links { display: flex; gap: 16px; }
+  .footer .links i { display: block; width: 44px; height: 8px; background: var(--wf-3); border-radius: 2px; }
+
+  .notes { max-width: 1120px; margin: 32px auto 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px 32px; }
+  .notes li { display: grid; grid-template-columns: 22px 1fr; gap: 8px; align-items: start; list-style: none; }
+  .notes .n { position: static; }
+  .notes b { color: #333; font-weight: 600; }
+
+  @media (max-width: 1000px) {
+    .page { overflow-x: auto; }
+    .page > * { min-width: 960px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <h1>Meadow / landing wireframe</h1>
+  <div>1120 canvas · 24px grid · <a href="index.html">open live site</a></div>
+</div>
+
+<div class="page">
+  <div class="hero box img">
+    <span class="lbl">hero · 100svh, min 640</span>
+    <span class="dim">video 16:9, object-fit cover, focus 38% 55%</span>
+    <span class="n" style="top:12px;left:calc(50% - 300px)">1</span>
+    <span class="n" style="top:320px;left:calc(50% - 330px)">2</span>
+    <span class="n" style="bottom:60px;right:40px">3</span>
+
+    <div class="nav">
+      <span class="logo"></span>
+      <span style="width:44px;height:8px;background:var(--wf-2);border-radius:2px"></span>
+      <div class="links"><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="pill solid cta">log in</div>
+    </div>
+
+    <div class="copy">
+      <div class="badge"></div>
+      <div class="h1">headline · 5 words</div>
+      <div class="lede"><div class="txt"></div><div class="txt"></div></div>
+      <div class="ctas"><div class="pill">primary →</div><div class="pill dash">▶ secondary</div></div>
+    </div>
+
+    <div class="pill cue">scroll ↓</div>
+  </div>
+
+  <div class="section">
+    <span class="lbl">product · split 5/7 · left column sticky</span>
+    <span class="n" style="top:80px;left:24px">4</span>
+    <div class="split">
+      <div class="head">
+        <div class="txt" style="width:60px;height:8px"></div>
+        <div class="h2">h2 · two lines</div>
+        <div class="h2" style="width:55%"></div>
+        <div class="txt"></div><div class="txt" style="width:70%"></div>
+      </div>
+      <div class="rows">
+        <div class="row"><div class="ico"></div><div><div class="txt t"></div><div class="txt b"></div><div class="txt b" style="width:60%"></div></div></div>
+        <div class="row"><div class="ico"></div><div><div class="txt t"></div><div class="txt b"></div><div class="txt b" style="width:70%"></div></div></div>
+        <div class="row"><div class="ico"></div><div><div class="txt t"></div><div class="txt b"></div><div class="txt b" style="width:50%"></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="background:#f4f5f6">
+    <span class="lbl">use cases · alt background · numbered rows, arrow on hover</span>
+    <div class="center">
+      <div class="txt" style="width:60px;height:8px"></div>
+      <div class="h2">h2 · centered</div>
+    </div>
+    <div class="list">
+      <div class="row"><span class="num">01</span><div class="txt t" style="width:60%;height:16px"></div><div class="txt" style="width:80%"></div><span class="arrow">→</span></div>
+      <div class="row"><span class="num">02</span><div class="txt t" style="width:50%;height:16px"></div><div class="txt" style="width:70%"></div><span class="arrow">→</span></div>
+      <div class="row"><span class="num">03</span><div class="txt t" style="width:55%;height:16px"></div><div class="txt" style="width:75%"></div><span class="arrow">→</span></div>
+      <div class="row"><span class="num">04</span><div class="txt t" style="width:45%;height:16px"></div><div class="txt" style="width:65%"></div><span class="arrow">→</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <span class="lbl">pricing · two tiers, max 820, right tier elevated</span>
+    <div class="center">
+      <div class="txt" style="width:60px;height:8px"></div>
+      <div class="h2">h2 · centered</div>
+    </div>
+    <div class="tiers">
+      <div class="tier">
+        <div class="txt" style="width:40px;height:8px"></div>
+        <div class="price"></div>
+        <div class="txt" style="width:80%"></div>
+        <div class="txt" style="width:50%"></div><div class="txt" style="width:55%"></div><div class="txt" style="width:45%"></div>
+        <div class="pill">start free</div>
+      </div>
+      <div class="tier" style="box-shadow:0 12px 30px -16px rgba(0,0,0,.35)">
+        <div class="txt" style="width:40px;height:8px"></div>
+        <div class="price"></div>
+        <div class="txt" style="width:80%"></div>
+        <div class="txt" style="width:50%"></div><div class="txt" style="width:55%"></div><div class="txt" style="width:45%"></div><div class="txt" style="width:50%"></div>
+        <div class="pill solid">start trial</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div style="display:flex;align-items:center;gap:8px"><span class="nav logo" style="position:static;transform:none;width:16px;height:16px;border-radius:50%;padding:0"></span><span class="txt" style="width:44px;background:var(--wf-2)"></span></div>
+    <div class="links"><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="txt" style="width:80px"></div>
+  </div>
+</div>
+
+<ul class="notes">
+  <li><span class="n">1</span><div><b>Nav pill</b> fixed, 20px from top, frosted white (blur 18px). Drops in at 0.25s. Collapses to logo + burger under 680px.</div></li>
+  <li><span class="n">2</span><div><b>Hero copy</b> staggered entrance: badge 0.55s, headline words rise from a clip mask 0.65 to 0.93s, lede 1.05s, CTAs 1.2s. Parallax on scroll: copy moves at 0.32x and fades, media at 0.18x.</div></li>
+  <li><span class="n">3</span><div><b>Background</b> Higgsfield still (Soul Location) animated with Kling 3.0, same frame as start and end so the 10s loop is seamless. Poster jpg for first paint. Slow 40s scale drift on top. Pollen specks float upward.</div></li>
+  <li><span class="n">4</span><div><b>Sections</b> reveal on intersection (fade + 22px rise, staggered by row). Left heading sticks while feature rows scroll. Type: Bricolage Grotesque display, Instrument Sans body.</div></li>
+</ul>
+
+</body>
+</html>
