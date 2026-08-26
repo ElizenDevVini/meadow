@@ -52,7 +52,7 @@ decision; the code builds the mechanism, it does not make it compliant.
 ## Deploy
 
 Store your key in a keystore, do not paste it anywhere:
-    cast wallet import meadow-owner --interactive   # paste key ONCE, into cast
+    cast wallet import meadow-deployer --interactive   # paste key ONCE, into cast
 
 Set env and broadcast:
     export PROJECT_TOKEN=0x...            # launched on Pons
@@ -63,7 +63,7 @@ Set env and broadcast:
 
     forge script script/DeployMeadowArt.s.sol \
       --rpc-url https://rpc.mainnet.chain.robinhood.com \
-      --account meadow-owner \
+      --account meadow-deployer \
       --broadcast
 
 Copy the deployed MeadowArt address from the broadcast output.
@@ -73,7 +73,7 @@ Copy the deployed MeadowArt address from the broadcast output.
 Transfer the stock amounts your economics require to the MeadowArt address, per
 stock. Example for one stock (repeat per stock, amount in wei, 18 decimals):
     cast send <STOCK_ADDR> "transfer(address,uint256)" <MEADOWART> <AMOUNT_WEI> \
-      --rpc-url https://rpc.mainnet.chain.robinhood.com --account meadow-owner
+      --rpc-url https://rpc.mainnet.chain.robinhood.com --account meadow-deployer
 
 A piece cannot be claimed against an unfunded stock (availablePayout clamps to
 the contract balance), so fund before you announce.
@@ -123,7 +123,7 @@ does not have to be the same token MeadowArt prices pieces in):
 
     forge script script/DeployMeadowMarket.s.sol \
       --rpc-url https://rpc.mainnet.chain.robinhood.com \
-      --account meadow-owner \
+      --account meadow-deployer \
       --broadcast
 
 Copy the deployed MeadowMarket address from the broadcast output.
@@ -150,3 +150,42 @@ transfer timestamp on every ownership change, and it has no owner-change
 settlement, so any stock accrued and unclaimed at sale time is forfeited, not
 paid to the seller. The list screen should surface `art.claimable(tokenId)`
 and prompt a `claim()` first if it is nonzero.
+
+## Vol. 2 (MeadowArtV2)
+
+Deployed 2026-08-26, block 46493057, tx
+0xb9edd680971a07a3517924c20c6f8438a1d75815ee998622c21d2da5b694faca:
+
+    MeadowArtV2  0xf9d6ff6423Af6d21e2F8bC93542630a41FE1303D   (config.js art2)
+    owner        0x598597a5056438Ac9A7206E2C36B0553fc7e34C7   (the Safe)
+    stocks       AAPL, NVDA, AMZN in that order (onchain2.json stock_idx)
+    base URI     https://elizendevvini.github.io/meadow/art/v2/meta/  (set in the constructor)
+    reward end   1819273781 (365 days from deploy)
+
+Differences from Vol. 1: one mint per wallet (hasMinted, permanent; resales are
+not capped), tokenURI/contractURI for marketplaces, and the base URI is a
+constructor argument (BASE_URI env in DeployMeadowArtV2), so the Safe never
+has to send setBaseURI.
+
+### Treasury (not funded yet)
+
+Claims pay 0 until the contract holds stock. The committed rates need, for a
+full 365-day period across all 30 pieces:
+
+    NVDA  0.0513 shares
+    AMZN  0.0421 shares
+    AAPL  0.0355 shares
+
+Fund per stock, from the wallet holding the tokenized stock:
+    cast send <STOCK_ADDR> "transfer(address,uint256)" 0xf9d6ff6423Af6d21e2F8bC93542630a41FE1303D <AMOUNT_WEI> \
+      --rpc-url https://rpc.mainnet.chain.robinhood.com --account meadow-deployer
+
+availablePayout clamps to the contract balance, so partial funding pays out
+partially rather than reverting. Withdrawals are owner-only (the Safe).
+
+### Secondary market for Vol. 2
+
+MeadowMarket binds to one ERC-721, so Vol. 2 needs its own deploy:
+ART=0xf9d6ff6423Af6d21e2F8bC93542630a41FE1303D, same PAY/FEE/OWNER as above.
+Put the address in config.js `market2`; the market page reads every volume
+whose `market` is set.

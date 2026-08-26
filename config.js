@@ -15,6 +15,11 @@ const active = {
   art: '0x50414b4ea451A9E4ce7212F879F473fa727F8bb0', // MeadowArt (Robinhood Chain)
   token: '0xf2bc01ed47006fbd7dc5c9efd60037e8f516b560', // project token (meadow / RWArt)
   market: '', // MeadowMarket -- unset until deploy; the market page stays dormant until this is filled in
+  // Vol. 2 is its own ERC-721 (MeadowArtV2, one piece per wallet on the
+  // mint) with its own secondary market. Both unset until deployed: the 30
+  // pieces still show in the gallery, buy/claim/list stay dormant.
+  art2: '0xf9d6ff6423Af6d21e2F8bC93542630a41FE1303D', // MeadowArtV2 (Vol. 2), deployed 2026-08-26 block 46493057
+  market2: '',
   // Only the stocks funded in the treasury Safe. Symbol order matches
   // onchain.json's stock_idx and the deployed contract's constructor argument
   // order. TSLA and MSFT are excluded until funded.
@@ -33,7 +38,35 @@ const rpc = runtime.rpcUrl || active.rpc;
 const art = runtime.artAddress || active.art;
 const token = runtime.tokenAddress || active.token;
 const market = runtime.marketAddress || active.market;
+const art2 = runtime.art2Address || active.art2;
+const market2 = runtime.market2Address || active.market2;
 const stocks = runtime.stocks || active.stocks;
+
+function volume(vol, label, artAddr, marketAddr, suffix, extra) {
+  return Object.freeze({
+    vol,
+    label,
+    art: artAddr,
+    market: marketAddr,
+    catalog: `data/catalog${suffix}.json`,
+    onchain: `data/onchain${suffix}.json`,
+    ready: Boolean(artAddr && token),
+    activationIssue: token ? (artAddr ? '' : `${label} contract pending deploy`) : 'contract addresses pending',
+    // the secondary market has its own contract and deploys separately from
+    // primary mint/claim, so it gets its own readiness flag
+    marketReady: Boolean(marketAddr && artAddr && token),
+    ...extra,
+  });
+}
+
+// One entry per drop, newest first (the gallery groups in this order). Each
+// volume is a separate ERC-721 with its own catalog/onchain json pair and
+// its own MeadowMarket. art/art.js is a classic script and keeps a matching
+// list of the catalog paths.
+export const VOLUMES = Object.freeze([
+  volume(2, 'Vol. 2', art2, market2, '2', { onePerWallet: true }),
+  volume(1, 'Vol. 1', art, market, '', { onePerWallet: false }),
+]);
 
 export const NET = Object.freeze({
   ...active,
@@ -42,13 +75,12 @@ export const NET = Object.freeze({
   art,
   token,
   market,
+  art2,
+  market2,
   stocks: Object.freeze(stocks.map(s => Object.freeze({ ...s }))),
-  ready: Boolean(art && token),
-  activationIssue: art && token ? '' : 'contract addresses pending',
-  // the secondary market has its own contract and deploys separately from
-  // primary mint/claim, so it gets its own readiness flag instead of folding
-  // into NET.ready
-  marketReady: Boolean(market && art && token),
+  ready: VOLUMES.some(v => v.ready),
+  activationIssue: token ? (VOLUMES.some(v => v.art) ? '' : 'art contract pending deploy') : 'contract addresses pending',
+  marketReady: VOLUMES.some(v => v.marketReady),
 });
 
 export function addressUrl(address) {

@@ -230,17 +230,36 @@ function renderAttribution(root, attr) {
 
 /* ---------- entry ---------- */
 
-async function fetchCatalog() {
-  const res = await fetch('data/catalog.json');
-  if (!res.ok) throw new Error('catalog fetch failed: ' + res.status);
-  return res.json();
+// Newest first; the gallery groups in this order. Mirrors the catalog paths
+// in config.js VOLUMES (this file is a classic script and cannot import it).
+const CATALOGS = [
+  { vol: 2, label: 'Vol. 2', path: 'data/catalog2.json', note: 'one piece per wallet on the mint' },
+  { vol: 1, label: 'Vol. 1', path: 'data/catalog.json', note: '' },
+];
+
+async function fetchCatalogs() {
+  const docs = await Promise.all(CATALOGS.map(async c => {
+    const res = await fetch(c.path);
+    if (!res.ok) throw new Error(c.path + ' fetch failed: ' + res.status);
+    return { ...c, data: await res.json() };
+  }));
+  // The hero index stays Vol. 1's: it is the trophy index over the 50 record
+  // sales. Attribution comes from the newest catalog, whose wording covers
+  // both image sources (Commons scans and generated name-plates).
+  const v1 = docs.find(d => d.vol === 1).data;
+  return {
+    index: v1.index,
+    attribution: docs[0].data.attribution,
+    works: docs.flatMap(d => d.data.works.map(w => ({ ...w, vol: d.vol, volLabel: d.label }))),
+    volumes: docs.map(d => ({ vol: d.vol, label: d.label, note: d.note, count: d.data.works.length })),
+  };
 }
 
 initNav();
 initReveal();
 
 const page = document.body.dataset.page;
-fetchCatalog()
+fetchCatalogs()
   .then(data => {
     if (page === 'catalog') renderCatalogPage(data);
     if (page === 'work') renderWorkPage(data);
@@ -275,9 +294,19 @@ function cardHtml(work, i) {
   `;
 }
 
-function renderGrid(grid, works) {
-  grid.innerHTML = works.map(cardHtml).join('');
-  for (const canvas of grid.querySelectorAll('canvas[data-spark]')) {
+// One group per volume, in CATALOGS order, skipping volumes the current
+// filter empties out. Sort applies within each group.
+function renderGrid(root, works, volumes) {
+  const groups = volumes
+    .map(v => ({ ...v, works: works.filter(w => w.vol === v.vol) }))
+    .filter(g => g.works.length);
+  root.innerHTML = groups.map(g => `
+    <section class="vol-group">
+      <h2 class="vol-head">${g.label} <span>${g.works.length} of ${g.count} works${g.note ? ' · ' + g.note : ''}</span></h2>
+      <div class="grid">${g.works.map(cardHtml).join('')}</div>
+    </section>
+  `).join('');
+  for (const canvas of root.querySelectorAll('canvas[data-spark]')) {
     const work = works.find(w => w.id === canvas.dataset.spark);
     if (work) drawSpark(canvas, work.spark);
   }
@@ -287,6 +316,10 @@ function renderGrid(grid, works) {
 function buildArtistOptions(select, works) {
   const artists = [...new Set(works.map(w => w.artist))].sort();
   select.innerHTML = '<option value="">all artists</option>' + artists.map(a => `<option value="${a}">${a}</option>`).join('');
+}
+
+function buildVolumeOptions(select, volumes) {
+  select.innerHTML = '<option value="">all volumes</option>' + volumes.map(v => `<option value="${v.vol}">${v.label}</option>`).join('');
 }
 
 function sortWorks(works, key) {
@@ -379,15 +412,19 @@ function renderCatalogPage(data) {
   initScrollCue();
 
   const grid = document.getElementById('grid');
+  const volSelect = document.getElementById('volFilter');
   const artistSelect = document.getElementById('artistFilter');
   const sortSelect = document.getElementById('sortBy');
+  buildVolumeOptions(volSelect, data.volumes);
   buildArtistOptions(artistSelect, data.works);
 
   const apply = () => {
     let works = data.works;
+    if (volSelect.value) works = works.filter(w => String(w.vol) === volSelect.value);
     if (artistSelect.value) works = works.filter(w => w.artist === artistSelect.value);
-    renderGrid(grid, sortWorks(works, sortSelect.value));
+    renderGrid(grid, sortWorks(works, sortSelect.value), data.volumes);
   };
+  volSelect.addEventListener('change', apply);
   artistSelect.addEventListener('change', apply);
   sortSelect.addEventListener('change', apply);
   apply();
@@ -487,7 +524,7 @@ function renderWorkPage(data) {
   document.title = `${work.title} · Meadow Art`;
   document.getElementById('workArtist').textContent = work.artist;
   document.getElementById('workTitle').textContent = work.title;
-  document.getElementById('workMeta').textContent = `${work.year_text}, ${work.medium}${lifetimeText(work)}`;
+  document.getElementById('workMeta').textContent = `${work.year_text}, ${work.medium}${lifetimeText(work)} · ${work.volLabel}`;
   document.getElementById('workMedia').innerHTML = workMediaHtml(work);
   document.getElementById('worthFigure').textContent = fmtUsd(work.last.price_usd);
   document.getElementById('worthSub').textContent = `last sale · ${work.last.year} · ${work.last.channel}`;

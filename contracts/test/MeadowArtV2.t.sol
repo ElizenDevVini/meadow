@@ -39,7 +39,7 @@ contract MeadowArtV2Test is Test {
         stocks[0] = IERC20(address(stockA));
         stocks[1] = IERC20(address(stockB));
 
-        art = new MeadowArtV2(IERC20(address(projectToken)), stocks, prices, stockIdx, rates, rewardEnd, owner);
+        art = new MeadowArtV2(IERC20(address(projectToken)), stocks, prices, stockIdx, rates, rewardEnd, owner, "");
 
         projectToken.mint(buyer, 10_000e18);
         projectToken.mint(buyer2, 10_000e18);
@@ -203,6 +203,23 @@ contract MeadowArtV2Test is Test {
         art.setBaseURI(base);
 
         assertEq(art.contractURI(), string.concat(base, "collection.json"));
+    }
+
+    function test_ConstructorSetsBaseURI() public {
+        IERC20[] memory stocks = new IERC20[](1);
+        stocks[0] = IERC20(address(stockA));
+        string memory base = "https://example.com/v2/meta/";
+        vm.expectEmit(false, false, false, true);
+        emit MeadowArtV2.BaseURISet(base);
+        MeadowArtV2 preset = new MeadowArtV2(
+            IERC20(address(projectToken)), stocks, prices, new uint8[](4), rates, rewardEnd, owner, base
+        );
+        assertEq(preset.contractURI(), string.concat(base, "collection.json"));
+        vm.startPrank(buyer);
+        projectToken.approve(address(preset), prices[1]);
+        preset.buy(1);
+        vm.stopPrank();
+        assertEq(preset.tokenURI(1), string.concat(base, "1"));
     }
 
     function test_ContractURIEmptyBeforeBaseURISet() public {

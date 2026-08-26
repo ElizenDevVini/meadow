@@ -1,9 +1,11 @@
 // Wallet connect + buy + claim for the Meadow art pages. Loaded by both
 // art/index.html (wallet button + your-collection panel) and art/work.html
 // (wallet button + per-piece buy/claim panel). Stays fully dormant -- no RPC
-// calls, no wallet prompts beyond discovery -- until NET.ready.
+// calls, no wallet prompts beyond discovery -- until NET.ready. Every piece
+// carries the address of its own volume's contract (config.js VOLUMES);
+// nothing here assumes a single art contract.
 import { createWalletClient, custom, parseAbi } from '../vendor/viem.js';
-import { chain, walletChain, NET, addressUrl } from '../config.js';
+import { chain, walletChain, NET, VOLUMES, addressUrl } from '../config.js';
 import { pub } from '../chain.js';
 
 const artAbi = parseAbi([
@@ -15,6 +17,8 @@ const artAbi = parseAbi([
   'function buy(uint256 id)',
   'function claim(uint256 id)',
   'function claimMany(uint256[] ids)',
+  // MeadowArtV2 only; Vol. 1 never reads it
+  'function hasMinted(address) view returns (bool)',
 ]);
 
 const erc20Abi = parseAbi([
@@ -23,7 +27,6 @@ const erc20Abi = parseAbi([
   'function approve(address,uint256) returns (bool)',
 ]);
 
-const artAddr = NET.art;
 const tokenAddr = NET.token;
 
 function short(addr) {
@@ -45,10 +48,13 @@ function symbolForStock(address, fallbackSymbol) {
   return match ? match.symbol : fallbackSymbol;
 }
 
-function notLiveNotice() {
+// the Pons link only makes sense while the payment token itself is missing;
+// a volume whose art contract is still pending has nothing to launch
+function notLiveNotice(issue = NET.activationIssue) {
+  const launch = NET.token ? '' : `<a class="btn btn-outline" href="${NET.launchpad}" target="_blank" rel="noopener">see the Pons launch</a>`;
   return `<div class="not-live">
-    <p>not live yet: ${NET.activationIssue}.</p>
-    <a class="btn btn-outline" href="${NET.launchpad}" target="_blank" rel="noopener">see the Pons launch</a>
+    <p>not live yet: ${issue}.</p>
+    ${launch}
   </div>`;
 }
 
@@ -307,9 +313,9 @@ function wireWalletButton() {
 
 /* ---------- work page: buy / claim one piece ---------- */
 
-async function ownerOfSafe(id) {
+async function ownerOfSafe(art, id) {
   try {
-    return await pub.readContract({ address: artAddr, abi: artAbi, functionName: 'ownerOf', args: [BigInt(id)] });
+    return await pub.readContract({ address: art, abi: artAbi, functionName: 'ownerOf', args: [BigInt(id)] });
   } catch {
     return null; // unminted piece (ERC721 reverts on a non-existent token id)
   }
@@ -320,7 +326,7 @@ async function refreshClaimable(work, root) {
   if (!el) return;
   try {
     const [claimableAmounts, availableAmounts] = await pub.readContract({
-      address: artAddr, abi: artAbi, functionName: 'claimableMany', args: [[BigInt(work.id)]],
+      address: work.art, abi: artAbi, functionName: 'claimableMany', args: [[BigInt(work.id)]],
     });
     const claimableAmt = claimableAmounts[0];
     const availableAmt = availableAmounts[0];
@@ -333,8 +339,9 @@ async function refreshClaimable(work, root) {
 }
 
 // single claim() for one piece, claimMany() for a batch -- same tx-state
-// handling either way, reused by the work page and the collection panel
-async function doClaim(ids, root) {
+// handling either way, reused by the work page and the collection panel.
+// One contract per call: ids must all belong to `art`.
+async function doClaim(art, ids, root) {
   const state = root.querySelector('.txstate');
   root.querySelectorAll('button').forEach(b => { b.disabled = true; });
   try {
@@ -342,8 +349,8 @@ async function doClaim(ids, root) {
     if (!wallet) return false;
     if (state) state.textContent = 'confirm the claim in your wallet…';
     const { request } = ids.length === 1
-      ? await pub.simulateContract({ address: artAddr, abi: artAbi, functionName: 'claim', args: [BigInt(ids[0])], account })
-      : await pub.simulateContract({ address: artAddr, abi: artAbi, functionName: 'claimMany', args: [ids.map(BigInt)], account });
+      ? await pub.simulateContract({ address: art, abi: artAbi, functionName: 'claim', args: [BigInt(ids[0])], account })
+      : await pub.simulateContract({ address: art, abi: artAbi, functionName: 'claimMany', args: [ids.map(BigInt)], account });
     const hash = await wallet.writeContract(request);
     showTxPending(root, hash);
     const receipt = await pub.waitForTransactionReceipt({ hash });
@@ -366,7 +373,7 @@ async function doBuy(work, root) {
     const wallet = walletClient || await connect({ prompt: true });
     if (!wallet) { btn.disabled = false; return; }
 
-    const price = await pub.readContract({ address: artAddr, abi: artAbi, functionName: 'priceOf', args: [BigInt(work.id)] });
+    const price = await pub.readContract({ address: work.art, abi: artAbi, functionName: 'priceOf', args: [BigInt(work.id)] });
     const balance = await pub.readContract({ address: tokenAddr, abi: erc20Abi, functionName: 'balanceOf', args: [account] });
     if (balance < price) {
       state.textContent = 'not enough project tokens in this wallet.';
@@ -375,12 +382,12 @@ async function doBuy(work, root) {
     }
 
     const allowance = await pub.readContract({
-      address: tokenAddr, abi: erc20Abi, functionName: 'allowance', args: [account, artAddr],
+      address: tokenAddr, abi: erc20Abi, functionName: 'allowance', args: [account, work.art],
     });
     if (allowance < price) {
       state.textContent = 'step 1 of 2 · approve in your wallet…';
       const approveHash = await wallet.writeContract({
-        address: tokenAddr, abi: erc20Abi, functionName: 'approve', args: [artAddr, price], account,
+        address: tokenAddr, abi: erc20Abi, functionName: 'approve', args: [work.art, price], account,
       });
       showTxPending(root, approveHash);
       const approveReceipt = await pub.waitForTransactionReceipt({ hash: approveHash });
@@ -389,7 +396,7 @@ async function doBuy(work, root) {
 
     state.textContent = 'confirm the buy in your wallet…';
     const { request } = await pub.simulateContract({
-      address: artAddr, abi: artAbi, functionName: 'buy', args: [BigInt(work.id)], account,
+      address: work.art, abi: artAbi, functionName: 'buy', args: [BigInt(work.id)], account,
     });
     const hash = await wallet.writeContract(request);
     showTxPending(root, hash);
@@ -404,10 +411,16 @@ async function doBuy(work, root) {
 
 async function renderBuyPanel(work, root) {
   root.innerHTML = '<p>checking on-chain status…</p>';
-  const [owner, stockAddr, rate] = await Promise.all([
-    ownerOfSafe(work.id),
-    pub.readContract({ address: artAddr, abi: artAbi, functionName: 'stockOf', args: [BigInt(work.id)] }).catch(() => null),
-    pub.readContract({ address: artAddr, abi: artAbi, functionName: 'rateOf', args: [BigInt(work.id)] }).catch(() => null),
+  const art = work.art;
+  const [owner, stockAddr, rate, alreadyMinted] = await Promise.all([
+    ownerOfSafe(art, work.id),
+    pub.readContract({ address: art, abi: artAbi, functionName: 'stockOf', args: [BigInt(work.id)] }).catch(() => null),
+    pub.readContract({ address: art, abi: artAbi, functionName: 'rateOf', args: [BigInt(work.id)] }).catch(() => null),
+    // a read failure here must not block the buy button: the contract
+    // enforces the cap anyway, the wallet would just see a revert
+    work.onePerWallet && account
+      ? pub.readContract({ address: art, abi: artAbi, functionName: 'hasMinted', args: [account] }).catch(() => false)
+      : false,
   ]);
   work.stockSymbol = stockAddr ? symbolForStock(stockAddr, work.stock_symbol) : work.stock_symbol;
   // Read the rate live from the deployed contract, not onchain.json, so the
@@ -432,7 +445,7 @@ async function renderBuyPanel(work, root) {
     `;
     refreshClaimable(work, root);
     root.querySelector('#claimBtn').addEventListener('click', async () => {
-      const ok = await doClaim([work.id], root);
+      const ok = await doClaim(art, [work.id], root);
       if (ok) refreshClaimable(work, root);
     });
     wireAddTokenButtons(root);
@@ -451,19 +464,41 @@ async function renderBuyPanel(work, root) {
     return;
   }
 
+  const capLine = work.onePerWallet ? '<p class="meta">one piece per wallet on the mint. resales are not capped.</p>' : '';
+  const buyControl = alreadyMinted
+    ? '<p class="meta">this wallet already minted its ' + work.volLabel + ' piece.</p>'
+    : account
+      ? '<button class="btn btn-dark" id="buyBtn" type="button">buy</button>'
+      : '<button class="btn btn-outline" id="connectBtn" type="button">connect to buy</button>';
   root.innerHTML = `
     <p class="price-line">${priceText}</p>
     ${payWith}
     <p class="meta">pays ${rateText}, streamed per second while you hold it</p>
+    ${capLine}
     ${addTokenRow(tokenAddr, 'RWArt')}
-    ${account
-      ? '<button class="btn btn-dark" id="buyBtn" type="button">buy</button>'
-      : '<button class="btn btn-outline" id="connectBtn" type="button">connect to buy</button>'}
+    ${buyControl}
     <p class="txstate"></p>
   `;
-  if (account) root.querySelector('#buyBtn').addEventListener('click', () => doBuy(work, root));
-  else root.querySelector('#connectBtn').addEventListener('click', () => connect({ prompt: true }).catch(() => {}));
+  root.querySelector('#buyBtn')?.addEventListener('click', () => doBuy(work, root));
+  root.querySelector('#connectBtn')?.addEventListener('click', () => connect({ prompt: true }).catch(() => {}));
   wireAddTokenButtons(root);
+}
+
+// the slug is unique across volumes (checked at catalog build time), so the
+// first volume whose onchain json has it wins
+async function loadOnchainWork(slug) {
+  const found = await Promise.all(VOLUMES.map(async v => {
+    try {
+      const res = await fetch(v.onchain);
+      if (!res.ok) return null;
+      const data = await res.json();
+      const w = data.works.find(x => x.slug === slug);
+      return w ? { ...w, art: v.art, vol: v.vol, volLabel: v.label, ready: v.ready, activationIssue: v.activationIssue, onePerWallet: v.onePerWallet } : null;
+    } catch {
+      return null; // this volume's json failed to load; the piece may still be in another
+    }
+  }));
+  return found.find(Boolean) || null;
 }
 
 async function initWorkPage() {
@@ -472,21 +507,12 @@ async function initWorkPage() {
   if (!buyPanel || !buyBody) return;
 
   const slug = new URLSearchParams(location.search).get('id');
-  let work = null;
-  try {
-    const res = await fetch('data/onchain.json');
-    if (res.ok) {
-      const data = await res.json();
-      work = slug ? data.works.find(w => w.slug === slug) : null;
-    }
-  } catch {
-    // onchain.json failed to load -- treat as no on-chain data for this piece
-  }
+  const work = slug ? await loadOnchainWork(slug) : null;
   if (!work) { buyPanel.hidden = true; return; }
 
-  if (!NET.ready) {
-    buyBody.innerHTML = notLiveNotice();
-    return; // no RPC calls while dormant
+  if (!work.ready) {
+    buyBody.innerHTML = notLiveNotice(work.activationIssue);
+    return; // no RPC calls while this volume is dormant
   }
 
   renderBuyPanel(work, buyBody);
@@ -495,7 +521,28 @@ async function initWorkPage() {
 
 /* ---------- catalog page: your collection ---------- */
 
-let collectionWorks = null;
+let collectionWorks = null; // every live volume's pieces, each tagged with its own art address
+
+async function loadCollectionWorks() {
+  const docs = await Promise.all(VOLUMES.filter(v => v.ready).map(async v => {
+    const res = await fetch(v.onchain);
+    if (!res.ok) throw new Error(v.onchain + ' fetch failed: ' + res.status);
+    const data = await res.json();
+    return (data.works || []).map(w => ({ ...w, art: v.art, vol: v.vol, volLabel: v.label }));
+  }));
+  return docs.flat();
+}
+
+// claimableMany and claimMany are per contract, so owned pieces are handled
+// one volume at a time
+function groupByArt(works) {
+  const groups = new Map();
+  for (const w of works) {
+    if (!groups.has(w.art)) groups.set(w.art, []);
+    groups.get(w.art).push(w);
+  }
+  return groups;
+}
 
 async function renderCollection(root) {
   if (!account) {
@@ -505,7 +552,7 @@ async function renderCollection(root) {
   root.innerHTML = '<p>checking your collection…</p>';
 
   const calls = collectionWorks.map(w => ({
-    address: artAddr, abi: artAbi, functionName: 'ownerOf', args: [BigInt(w.id)],
+    address: w.art, abi: artAbi, functionName: 'ownerOf', args: [BigInt(w.id)],
   }));
   let results;
   try {
@@ -524,25 +571,29 @@ async function renderCollection(root) {
     return;
   }
 
-  let claimableAmounts = new Array(owned.length).fill(0n);
-  let availableAmounts = new Array(owned.length).fill(0n);
-  try {
-    [claimableAmounts, availableAmounts] = await pub.readContract({
-      address: artAddr, abi: artAbi, functionName: 'claimableMany', args: [owned.map(w => BigInt(w.id))],
-    });
-  } catch {
-    // leave both at 0 -- rows still render, claim buttons still work
-  }
+  const byArt = groupByArt(owned);
+  await Promise.all([...byArt].map(async ([art, ws]) => {
+    try {
+      const [claimableAmounts, availableAmounts] = await pub.readContract({
+        address: art, abi: artAbi, functionName: 'claimableMany', args: [ws.map(w => BigInt(w.id))],
+      });
+      ws.forEach((w, i) => { w.claimableAmt = claimableAmounts[i]; w.availableAmt = availableAmounts[i]; });
+    } catch {
+      // leave both at 0 -- rows still render, claim buttons still work
+    }
+  }));
 
   const rows = owned.map((w, i) => {
-    const claimLine = availableAmounts[i] < claimableAmounts[i]
-      ? `${fmtAmount(claimableAmounts[i])} ${w.stock_symbol} claimable (treasury has ${fmtAmount(availableAmounts[i])} available)`
-      : `${fmtAmount(claimableAmounts[i])} ${w.stock_symbol} claimable`;
+    const claimableAmt = w.claimableAmt ?? 0n;
+    const availableAmt = w.availableAmt ?? 0n;
+    const claimLine = availableAmt < claimableAmt
+      ? `${fmtAmount(claimableAmt)} ${w.stock_symbol} claimable (treasury has ${fmtAmount(availableAmt)} available)`
+      : `${fmtAmount(claimableAmt)} ${w.stock_symbol} claimable`;
     return `
     <div class="collection-row">
-      <span class="collection-title">${w.title}</span>
+      <span class="collection-title">${w.title}<span class="collection-vol">${w.volLabel}</span></span>
       <span class="collection-claim">${claimLine}</span>
-      <button class="btn btn-outline collection-claim-btn" type="button" data-id="${w.id}">claim</button>
+      <button class="btn btn-outline collection-claim-btn" type="button" data-idx="${i}">claim</button>
     </div>
   `;
   }).join('');
@@ -553,12 +604,19 @@ async function renderCollection(root) {
   `;
   root.querySelectorAll('.collection-claim-btn').forEach(btn => {
     btn.addEventListener('click', async () => {
-      const ok = await doClaim([Number(btn.dataset.id)], root);
+      const w = owned[Number(btn.dataset.idx)];
+      const ok = await doClaim(w.art, [w.id], root);
       if (ok) renderCollection(root);
     });
   });
+  // one claimMany per volume the wallet holds pieces in, so "claim all" is
+  // one wallet confirmation per volume; stops at the first failure
   root.querySelector('#claimAllBtn').addEventListener('click', async () => {
-    const ok = await doClaim(owned.map(w => w.id), root);
+    let ok = true;
+    for (const [art, ws] of byArt) {
+      ok = await doClaim(art, ws.map(w => w.id), root);
+      if (!ok) break;
+    }
     if (ok) renderCollection(root);
   });
 }
@@ -573,11 +631,7 @@ async function initCollectionPage() {
   }
 
   try {
-    const res = await fetch('data/onchain.json');
-    if (res.ok) {
-      const data = await res.json();
-      collectionWorks = data.works || [];
-    }
+    collectionWorks = await loadCollectionWorks();
   } catch {
     collectionWorks = null;
   }

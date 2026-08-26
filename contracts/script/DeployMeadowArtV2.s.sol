@@ -18,6 +18,8 @@ import {MeadowArtV2} from "../src/MeadowArtV2.sol";
 ///   STOCKS         comma-separated addresses, in onchain2.json's stock order
 ///   REWARD_END     unix timestamp when streaming rewards stop accruing
 ///   OWNER          address that receives Ownable2Step ownership
+///   BASE_URI       metadata base, must end in "/"; tokenURI(id) = BASE_URI + id
+///                  and contractURI() = BASE_URI + "collection.json"
 contract DeployMeadowArtV2 is Script {
     string internal constant ONCHAIN_JSON_PATH = "../art/data/onchain2.json";
 
@@ -31,12 +33,15 @@ contract DeployMeadowArtV2 is Script {
         address[] memory stocks = vm.envAddress("STOCKS", ",");
         uint256 rewardEndRaw = vm.envUint("REWARD_END");
         address owner = vm.envAddress("OWNER");
+        string memory baseURI = vm.envString("BASE_URI");
 
         require(projectToken.code.length > 0, "PROJECT_TOKEN has no code: deploy or fund the project token first");
         require(stocks.length > 0, "STOCKS must be a non-empty comma-separated address list");
         require(rewardEndRaw <= type(uint64).max, "REWARD_END overflows uint64, pass a unix timestamp in seconds");
         require(rewardEndRaw > block.timestamp, "REWARD_END must be in the future");
         require(owner != address(0), "OWNER must not be the zero address");
+        require(bytes(baseURI).length > 0, "BASE_URI must be set, e.g. https://elizendevvini.github.io/meadow/art/v2/meta/");
+        require(bytes(baseURI)[bytes(baseURI).length - 1] == "/", "BASE_URI must end in / so tokenURI(id) = BASE_URI + id resolves");
 
         (uint256[] memory prices, uint8[] memory stockIdx, uint256[] memory rates) = _readOnchainJson(stocks.length);
 
@@ -50,7 +55,7 @@ contract DeployMeadowArtV2 is Script {
         // rewardEndRaw was checked against type(uint64).max above.
         // forge-lint: disable-next-line(unsafe-typecast)
         MeadowArtV2 art = new MeadowArtV2(
-            IERC20(projectToken), stockTokens, prices, stockIdx, rates, uint64(rewardEndRaw), owner
+            IERC20(projectToken), stockTokens, prices, stockIdx, rates, uint64(rewardEndRaw), owner, baseURI
         );
         vm.stopBroadcast();
 
@@ -58,6 +63,7 @@ contract DeployMeadowArtV2 is Script {
         console.log("Owner:", owner);
         console.log("Pieces:", prices.length);
         console.log("Reward end:", rewardEndRaw);
+        console.log("Base URI:", baseURI);
     }
 
     uint256 internal constant MAX_WORKS = 1000;

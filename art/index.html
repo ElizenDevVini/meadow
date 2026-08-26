@@ -49,7 +49,7 @@
       <span class="w"><span style="--d:.72s">trophy</span></span>
       <span class="w"><span style="--d:.79s">index</span></span>
     </h1>
-    <p class="lede rv" style="--d:.95s">Fifty of the most expensive artworks ever sold, and an index built from every documented resale we could source.</p>
+    <p class="lede rv" style="--d:.95s">Fifty of the most expensive artworks ever sold, thirty more in Vol. 2, and an index built from every documented resale we could source.</p>
 
     <div class="hero-chart rv" style="--d:1.15s">
       <canvas class="index-chart" id="indexChart" height="150"></canvas>
@@ -68,6 +68,9 @@
 <main class="art-main">
   <section id="catalog">
     <div class="controls" data-reveal>
+      <label>Volume
+        <select id="volFilter"></select>
+      </label>
       <label>Artist
         <select id="artistFilter"></select>
       </label>
@@ -80,7 +83,7 @@
       </label>
     </div>
 
-    <div class="grid" id="grid"></div>
+    <div id="grid"></div>
   </section>
 
   <section id="collection">

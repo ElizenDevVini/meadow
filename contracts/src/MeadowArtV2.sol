@@ -78,7 +78,8 @@ contract MeadowArtV2 is ERC721, Ownable2Step, ReentrancyGuard {
         uint8[] memory stockIdx_,
         uint256[] memory rates_,
         uint64 rewardEnd_,
-        address owner_
+        address owner_,
+        string memory baseURI_
     ) ERC721("meadow art v2", "PIECE2") Ownable(owner_) {
         uint256 n = prices_.length;
         if (n == 0 || stockIdx_.length != n || rates_.length != n) revert InvalidConfig();
@@ -109,6 +110,13 @@ contract MeadowArtV2 is ERC721, Ownable2Step, ReentrancyGuard {
         _stockIdx = stockIdx_;
         _rates = rates_;
         rewardEnd = rewardEnd_;
+
+        // Set at deploy so the owner (a Safe) never has to send a separate
+        // setBaseURI transaction before marketplaces can render the pieces.
+        if (bytes(baseURI_).length != 0) {
+            _base = baseURI_;
+            emit BaseURISet(baseURI_);
+        }
     }
 
     // ---- piece attributes ----
