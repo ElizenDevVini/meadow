@@ -1,0 +1,33 @@
+{
+  "name": "Standard Station, Ten-Cent Western Being Torn in Half",
+  "description": "Standard Station, Ten-Cent Western Being Torn in Half by Ed Ruscha. A Meadow Vol. 2 piece on Robinhood Chain: hold it to earn streaming NVDA, trade it on the Meadow marketplace.",
+  "image": "https://elizendevvini.github.io/meadow/art/img2/20.png",
+  "external_url": "https://elizendevvini.github.io/meadow/art/",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Ed Ruscha"
+    },
+    {
+      "trait_type": "Year",
+      "value": "1964"
+    },
+    {
+      "trait_type": "Medium",
+      "value": "Oil on canvas"
+    },
+    {
+      "trait_type": "Reward stock",
+      "value": "NVDA"
+    },
+    {
+      "trait_type": "Last sale USD",
+      "value": 68300000,
+      "display_type": "number"
+    },
+    {
+      "trait_type": "Tier",
+      "value": "100 RWArt"
+    }
+  ]
+}

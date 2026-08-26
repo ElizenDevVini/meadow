@@ -1,0 +1,33 @@
+{
+  "name": "Untitled #96",
+  "description": "Untitled #96 by Cindy Sherman. A Meadow Vol. 2 piece on Robinhood Chain: hold it to earn streaming AMZN, trade it on the Meadow marketplace.",
+  "image": "https://elizendevvini.github.io/meadow/art/img2/29.png",
+  "external_url": "https://elizendevvini.github.io/meadow/art/",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Cindy Sherman"
+    },
+    {
+      "trait_type": "Year",
+      "value": "1981"
+    },
+    {
+      "trait_type": "Medium",
+      "value": "chromogenic color print"
+    },
+    {
+      "trait_type": "Reward stock",
+      "value": "AMZN"
+    },
+    {
+      "trait_type": "Last sale USD",
+      "value": 2882500,
+      "display_type": "number"
+    },
+    {
+      "trait_type": "Tier",
+      "value": "100 RWArt"
+    }
+  ]
+}

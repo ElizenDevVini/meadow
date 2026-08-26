@@ -1,0 +1,33 @@
+{
+  "name": "Hanging Heart (Magenta/Gold)",
+  "description": "Hanging Heart (Magenta/Gold) by Jeff Koons. A Meadow Vol. 2 piece on Robinhood Chain: hold it to earn streaming AAPL, trade it on the Meadow marketplace.",
+  "image": "https://elizendevvini.github.io/meadow/art/img2/23.png",
+  "external_url": "https://elizendevvini.github.io/meadow/art/",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Jeff Koons"
+    },
+    {
+      "trait_type": "Year",
+      "value": "1994-2006"
+    },
+    {
+      "trait_type": "Medium",
+      "value": "High chromium stainless steel with transparent color coating"
+    },
+    {
+      "trait_type": "Reward stock",
+      "value": "AAPL"
+    },
+    {
+      "trait_type": "Last sale USD",
+      "value": 23600000,
+      "display_type": "number"
+    },
+    {
+      "trait_type": "Tier",
+      "value": "100 RWArt"
+    }
+  ]
+}

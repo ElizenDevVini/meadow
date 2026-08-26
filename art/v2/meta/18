@@ -1,0 +1,33 @@
+{
+  "name": "Tête de femme (Dora Maar)",
+  "description": "Tête de femme (Dora Maar) by Pablo Picasso. A Meadow Vol. 2 piece on Robinhood Chain: hold it to earn streaming AMZN, trade it on the Meadow marketplace.",
+  "image": "https://elizendevvini.github.io/meadow/art/img2/18.png",
+  "external_url": "https://elizendevvini.github.io/meadow/art/",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Pablo Picasso"
+    },
+    {
+      "trait_type": "Year",
+      "value": "1941 (plaster); cast in bronze early 1950s"
+    },
+    {
+      "trait_type": "Medium",
+      "value": "Bronze"
+    },
+    {
+      "trait_type": "Reward stock",
+      "value": "AMZN"
+    },
+    {
+      "trait_type": "Last sale USD",
+      "value": 29100000,
+      "display_type": "number"
+    },
+    {
+      "trait_type": "Tier",
+      "value": "100 RWArt"
+    }
+  ]
+}

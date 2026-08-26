@@ -1,0 +1,33 @@
+{
+  "name": "Rhein II",
+  "description": "Rhein II by Andreas Gursky. A Meadow Vol. 2 piece on Robinhood Chain: hold it to earn streaming NVDA, trade it on the Meadow marketplace.",
+  "image": "https://elizendevvini.github.io/meadow/art/img2/28.png",
+  "external_url": "https://elizendevvini.github.io/meadow/art/",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Andreas Gursky"
+    },
+    {
+      "trait_type": "Year",
+      "value": "1999"
+    },
+    {
+      "trait_type": "Medium",
+      "value": "chromogenic (C-print) color photograph mounted to acrylic glass"
+    },
+    {
+      "trait_type": "Reward stock",
+      "value": "NVDA"
+    },
+    {
+      "trait_type": "Last sale USD",
+      "value": 4338500,
+      "display_type": "number"
+    },
+    {
+      "trait_type": "Tier",
+      "value": "100 RWArt"
+    }
+  ]
+}

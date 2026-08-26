@@ -1,0 +1,33 @@
+{
+  "name": "Wheat Field with Cypresses",
+  "description": "Wheat Field with Cypresses by Vincent van Gogh. A Meadow Vol. 2 piece on Robinhood Chain: hold it to earn streaming AMZN, trade it on the Meadow marketplace.",
+  "image": "https://elizendevvini.github.io/meadow/art/img2/9.png",
+  "external_url": "https://elizendevvini.github.io/meadow/art/",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Vincent van Gogh"
+    },
+    {
+      "trait_type": "Year",
+      "value": "June 1889"
+    },
+    {
+      "trait_type": "Medium",
+      "value": "Oil on canvas"
+    },
+    {
+      "trait_type": "Reward stock",
+      "value": "AMZN"
+    },
+    {
+      "trait_type": "Last sale USD",
+      "value": 57000000,
+      "display_type": "number"
+    },
+    {
+      "trait_type": "Tier",
+      "value": "100 RWArt"
+    }
+  ]
+}

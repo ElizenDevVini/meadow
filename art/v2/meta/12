@@ -1,0 +1,33 @@
+{
+  "name": "L'Homme au doigt (Pointing Man)",
+  "description": "L'Homme au doigt (Pointing Man) by Alberto Giacometti. A Meadow Vol. 2 piece on Robinhood Chain: hold it to earn streaming AMZN, trade it on the Meadow marketplace.",
+  "image": "https://elizendevvini.github.io/meadow/art/img2/12.png",
+  "external_url": "https://elizendevvini.github.io/meadow/art/",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Alberto Giacometti"
+    },
+    {
+      "trait_type": "Year",
+      "value": "1947"
+    },
+    {
+      "trait_type": "Medium",
+      "value": "Painted bronze"
+    },
+    {
+      "trait_type": "Reward stock",
+      "value": "AMZN"
+    },
+    {
+      "trait_type": "Last sale USD",
+      "value": 141300000,
+      "display_type": "number"
+    },
+    {
+      "trait_type": "Tier",
+      "value": "Premium 10M RWArt"
+    }
+  ]
+}

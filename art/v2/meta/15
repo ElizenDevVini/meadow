@@ -1,0 +1,33 @@
+{
+  "name": "Nu de dos, 4 état (The Back IV)",
+  "description": "Nu de dos, 4 état (The Back IV) by Henri Matisse. A Meadow Vol. 2 piece on Robinhood Chain: hold it to earn streaming AAPL, trade it on the Meadow marketplace.",
+  "image": "https://elizendevvini.github.io/meadow/art/img2/15.png",
+  "external_url": "https://elizendevvini.github.io/meadow/art/",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Henri Matisse"
+    },
+    {
+      "trait_type": "Year",
+      "value": "c. 1930 (modeled); cast in bronze 1950"
+    },
+    {
+      "trait_type": "Medium",
+      "value": "Bronze relief"
+    },
+    {
+      "trait_type": "Reward stock",
+      "value": "AAPL"
+    },
+    {
+      "trait_type": "Last sale USD",
+      "value": 48800000,
+      "display_type": "number"
+    },
+    {
+      "trait_type": "Tier",
+      "value": "100 RWArt"
+    }
+  ]
+}

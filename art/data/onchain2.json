@@ -1,0 +1,351 @@
+{
+  "generated": "2026-08-26T09:04:33Z",
+  "stocks": [
+    {
+      "symbol": "AAPL",
+      "address": "0xaF3D76f1834A1d425780943C99Ea8A608f8a93f9"
+    },
+    {
+      "symbol": "NVDA",
+      "address": "0xd0601CE157Db5bdC3162BbaC2a2C8aF5320D9EEC"
+    },
+    {
+      "symbol": "AMZN",
+      "address": "0x12f190a9F9d7D37a250758b26824B97CE941bF54"
+    }
+  ],
+  "project_token": "",
+  "reward_days": 365,
+  "works": [
+    {
+      "id": 0,
+      "slug": "bal-du-moulin-de-la-galette-renoir",
+      "title": "Bal du moulin de la Galette",
+      "price_tokens": 250,
+      "price_wei": "250000000000000000000",
+      "stock_symbol": "NVDA",
+      "stock_idx": 1,
+      "rate_wei": "62467364",
+      "rate_display": "~0.0020 NVDA / 365d"
+    },
+    {
+      "id": 1,
+      "slug": "massacre-of-the-innocents-rubens",
+      "title": "Massacre of the Innocents",
+      "price_tokens": 250,
+      "price_wei": "250000000000000000000",
+      "stock_symbol": "NVDA",
+      "stock_idx": 1,
+      "rate_wei": "62467364",
+      "rate_display": "~0.0020 NVDA / 365d"
+    },
+    {
+      "id": 2,
+      "slug": "darmstadt-madonna-holbein",
+      "title": "Darmstadt Madonna",
+      "price_tokens": 250,
+      "price_wei": "250000000000000000000",
+      "stock_symbol": "AMZN",
+      "stock_idx": 2,
+      "rate_wei": "58947539",
+      "rate_display": "~0.0019 AMZN / 365d"
+    },
+    {
+      "id": 3,
+      "slug": "portrait-of-a-halberdier-pontormo",
+      "title": "Portrait of a Halberdier",
+      "price_tokens": 100,
+      "price_wei": "100000000000000000000",
+      "stock_symbol": "AAPL",
+      "stock_idx": 0,
+      "rate_wei": "10170661",
+      "rate_display": "~0.0003 AAPL / 365d"
+    },
+    {
+      "id": 4,
+      "slug": "irises-van-gogh",
+      "title": "Irises",
+      "price_tokens": 100,
+      "price_wei": "100000000000000000000",
+      "stock_symbol": "AAPL",
+      "stock_idx": 0,
+      "rate_wei": "10170661",
+      "rate_display": "~0.0003 AAPL / 365d"
+    },
+    {
+      "id": 5,
+      "slug": "rideau-cruchon-et-compotier-cezanne",
+      "title": "Rideau, Cruchon et Compotier",
+      "price_tokens": 100,
+      "price_wei": "100000000000000000000",
+      "stock_symbol": "NVDA",
+      "stock_idx": 1,
+      "rate_wei": "24986945",
+      "rate_display": "~0.0008 NVDA / 365d"
+    },
+    {
+      "id": 6,
+      "slug": "portrait-of-alfonso-davalos-with-a-page-titian",
+      "title": "Portrait of Alfonso d'Avalos with a Page",
+      "price_tokens": 100,
+      "price_wei": "100000000000000000000",
+      "stock_symbol": "NVDA",
+      "stock_idx": 1,
+      "rate_wei": "24986945",
+      "rate_display": "~0.0008 NVDA / 365d"
+    },
+    {
+      "id": 7,
+      "slug": "le-bassin-aux-nympheas-monet",
+      "title": "Le Bassin aux Nymph\u00e9as",
+      "price_tokens": 250,
+      "price_wei": "250000000000000000000",
+      "stock_symbol": "AAPL",
+      "stock_idx": 0,
+      "rate_wei": "25426654",
+      "rate_display": "~0.0008 AAPL / 365d"
+    },
+    {
+      "id": 8,
+      "slug": "lady-with-a-fan-klimt",
+      "title": "Lady with a Fan",
+      "price_tokens": 10000000,
+      "price_wei": "10000000000000000000000000",
+      "stock_symbol": "AAPL",
+      "stock_idx": 0,
+      "rate_wei": "508533088",
+      "rate_display": "~0.0160 AAPL / 365d"
+    },
+    {
+      "id": 9,
+      "slug": "wheat-field-with-cypresses-van-gogh",
+      "title": "Wheat Field with Cypresses",
+      "price_tokens": 100,
+      "price_wei": "100000000000000000000",
+      "stock_symbol": "AMZN",
+      "stock_idx": 2,
+      "rate_wei": "23579015",
+      "rate_display": "~0.0007 AMZN / 365d"
+    },
+    {
+      "id": 10,
+      "slug": "diana-and-actaeon-titian",
+      "title": "Diana and Actaeon",
+      "price_tokens": 100,
+      "price_wei": "100000000000000000000",
+      "stock_symbol": "NVDA",
+      "stock_idx": 1,
+      "rate_wei": "24986945",
+      "rate_display": "~0.0008 NVDA / 365d"
+    },
+    {
+      "id": 11,
+      "slug": "les-alyscamps-van-gogh",
+      "title": "Les Alyscamps (L'All\u00e9e des Alyscamps)",
+      "price_tokens": 100,
+      "price_wei": "100000000000000000000",
+      "stock_symbol": "NVDA",
+      "stock_idx": 1,
+      "rate_wei": "24986945",
+      "rate_display": "~0.0008 NVDA / 365d"
+    },
+    {
+      "id": 12,
+      "slug": "pointing-man-giacometti",
+      "title": "L'Homme au doigt (Pointing Man)",
+      "price_tokens": 10000000,
+      "price_wei": "10000000000000000000000000",
+      "stock_symbol": "AMZN",
+      "stock_idx": 2,
+      "rate_wei": "1178950781",
+      "rate_display": "~0.0372 AMZN / 365d"
+    },
+    {
+      "id": 13,
+      "slug": "danaide-brancusi",
+      "title": "Dana\u00efde",
+      "price_tokens": 10000000,
+      "price_wei": "10000000000000000000000000",
+      "stock_symbol": "AAPL",
+      "stock_idx": 0,
+      "rate_wei": "508533088",
+      "rate_display": "~0.0160 AAPL / 365d"
+    },
+    {
+      "id": 14,
+      "slug": "tete-modigliani",
+      "title": "T\u00eate",
+      "price_tokens": 100,
+      "price_wei": "100000000000000000000",
+      "stock_symbol": "AMZN",
+      "stock_idx": 2,
+      "rate_wei": "23579015",
+      "rate_display": "~0.0007 AMZN / 365d"
+    },
+    {
+      "id": 15,
+      "slug": "back-iv-matisse",
+      "title": "Nu de dos, 4 \u00e9tat (The Back IV)",
+      "price_tokens": 100,
+      "price_wei": "100000000000000000000",
+      "stock_symbol": "AAPL",
+      "stock_idx": 0,
+      "rate_wei": "10170661",
+      "rate_display": "~0.0003 AAPL / 365d"
+    },
+    {
+      "id": 16,
+      "slug": "reclining-figure-festival-moore",
+      "title": "Reclining Figure: Festival",
+      "price_tokens": 100,
+      "price_wei": "100000000000000000000",
+      "stock_symbol": "AAPL",
+      "stock_idx": 0,
+      "rate_wei": "10170661",
+      "rate_display": "~0.0003 AAPL / 365d"
+    },
+    {
+      "id": 17,
+      "slug": "spider-bourgeois-1996",
+      "title": "Spider",
+      "price_tokens": 100,
+      "price_wei": "100000000000000000000",
+      "stock_symbol": "NVDA",
+      "stock_idx": 1,
+      "rate_wei": "24986945",
+      "rate_display": "~0.0008 NVDA / 365d"
+    },
+    {
+      "id": 18,
+      "slug": "tete-de-femme-dora-maar-picasso",
+      "title": "T\u00eate de femme (Dora Maar)",
+      "price_tokens": 100,
+      "price_wei": "100000000000000000000",
+      "stock_symbol": "AMZN",
+      "stock_idx": 2,
+      "rate_wei": "23579015",
+      "rate_display": "~0.0007 AMZN / 365d"
+    },
+    {
+      "id": 19,
+      "slug": "tulips-koons",
+      "title": "Tulips",
+      "price_tokens": 100,
+      "price_wei": "100000000000000000000",
+      "stock_symbol": "NVDA",
+      "stock_idx": 1,
+      "rate_wei": "24986945",
+      "rate_display": "~0.0008 NVDA / 365d"
+    },
+    {
+      "id": 20,
+      "slug": "standard-station-ruscha",
+      "title": "Standard Station, Ten-Cent Western Being Torn in Half",
+      "price_tokens": 100,
+      "price_wei": "100000000000000000000",
+      "stock_symbol": "NVDA",
+      "stock_idx": 1,
+      "rate_wei": "24986945",
+      "rate_display": "~0.0008 NVDA / 365d"
+    },
+    {
+      "id": 21,
+      "slug": "everydays-first-5000-days-beeple",
+      "title": "Everydays: the First 5000 Days",
+      "price_tokens": 100,
+      "price_wei": "100000000000000000000",
+      "stock_symbol": "AAPL",
+      "stock_idx": 0,
+      "rate_wei": "10170661",
+      "rate_display": "~0.0003 AAPL / 365d"
+    },
+    {
+      "id": 22,
+      "slug": "domplatz-mailand-richter",
+      "title": "Domplatz, Mailand",
+      "price_tokens": 100,
+      "price_wei": "100000000000000000000",
+      "stock_symbol": "NVDA",
+      "stock_idx": 1,
+      "rate_wei": "24986945",
+      "rate_display": "~0.0008 NVDA / 365d"
+    },
+    {
+      "id": 23,
+      "slug": "hanging-heart-magenta-gold-koons",
+      "title": "Hanging Heart (Magenta/Gold)",
+      "price_tokens": 100,
+      "price_wei": "100000000000000000000",
+      "stock_symbol": "AAPL",
+      "stock_idx": 0,
+      "rate_wei": "10170661",
+      "rate_display": "~0.0003 AAPL / 365d"
+    },
+    {
+      "id": 24,
+      "slug": "for-the-love-of-god-hirst",
+      "title": "For the Love of God",
+      "price_tokens": 10000000,
+      "price_wei": "10000000000000000000000000",
+      "stock_symbol": "NVDA",
+      "stock_idx": 1,
+      "rate_wei": "1249347285",
+      "rate_display": "~0.0394 NVDA / 365d"
+    },
+    {
+      "id": 25,
+      "slug": "journey-of-humanity-jafri",
+      "title": "The Journey of Humanity",
+      "price_tokens": 100,
+      "price_wei": "100000000000000000000",
+      "stock_symbol": "AAPL",
+      "stock_idx": 0,
+      "rate_wei": "10170661",
+      "rate_display": "~0.0003 AAPL / 365d"
+    },
+    {
+      "id": 26,
+      "slug": "steichen-the-flatiron-1904",
+      "title": "The Flatiron",
+      "price_tokens": 100,
+      "price_wei": "100000000000000000000",
+      "stock_symbol": "AAPL",
+      "stock_idx": 0,
+      "rate_wei": "10170661",
+      "rate_display": "~0.0003 AAPL / 365d"
+    },
+    {
+      "id": 27,
+      "slug": "man-ray-le-violon-dingres-1924",
+      "title": "Le Violon d'Ingres",
+      "price_tokens": 100,
+      "price_wei": "100000000000000000000",
+      "stock_symbol": "NVDA",
+      "stock_idx": 1,
+      "rate_wei": "24986945",
+      "rate_display": "~0.0008 NVDA / 365d"
+    },
+    {
+      "id": 28,
+      "slug": "gursky-rhein-ii-1999",
+      "title": "Rhein II",
+      "price_tokens": 100,
+      "price_wei": "100000000000000000000",
+      "stock_symbol": "NVDA",
+      "stock_idx": 1,
+      "rate_wei": "24986945",
+      "rate_display": "~0.0008 NVDA / 365d"
+    },
+    {
+      "id": 29,
+      "slug": "sherman-untitled-96-1981",
+      "title": "Untitled #96",
+      "price_tokens": 100,
+      "price_wei": "100000000000000000000",
+      "stock_symbol": "AMZN",
+      "stock_idx": 2,
+      "rate_wei": "23579015",
+      "rate_display": "~0.0007 AMZN / 365d"
+    }
+  ]
+}

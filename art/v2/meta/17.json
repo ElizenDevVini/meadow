@@ -1,0 +1,33 @@
+{
+  "name": "Spider",
+  "description": "Spider by Louise Bourgeois. A Meadow Vol. 2 piece on Robinhood Chain: hold it to earn streaming NVDA, trade it on the Meadow marketplace.",
+  "image": "https://elizendevvini.github.io/meadow/art/img2/17.png",
+  "external_url": "https://elizendevvini.github.io/meadow/art/",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Louise Bourgeois"
+    },
+    {
+      "trait_type": "Year",
+      "value": "1996 (this cast 1997)"
+    },
+    {
+      "trait_type": "Medium",
+      "value": "Bronze, steel, silver, gold, wood, fabric, and other materials"
+    },
+    {
+      "trait_type": "Reward stock",
+      "value": "NVDA"
+    },
+    {
+      "trait_type": "Last sale USD",
+      "value": 32100000,
+      "display_type": "number"
+    },
+    {
+      "trait_type": "Tier",
+      "value": "100 RWArt"
+    }
+  ]
+}

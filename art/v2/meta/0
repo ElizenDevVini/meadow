@@ -1,0 +1,33 @@
+{
+  "name": "Bal du moulin de la Galette",
+  "description": "Bal du moulin de la Galette by Pierre-Auguste Renoir. A Meadow Vol. 2 piece on Robinhood Chain: hold it to earn streaming NVDA, trade it on the Meadow marketplace.",
+  "image": "https://elizendevvini.github.io/meadow/art/img2/0.png",
+  "external_url": "https://elizendevvini.github.io/meadow/art/",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Pierre-Auguste Renoir"
+    },
+    {
+      "trait_type": "Year",
+      "value": "1876"
+    },
+    {
+      "trait_type": "Medium",
+      "value": "Oil on canvas"
+    },
+    {
+      "trait_type": "Reward stock",
+      "value": "NVDA"
+    },
+    {
+      "trait_type": "Last sale USD",
+      "value": 78100000,
+      "display_type": "number"
+    },
+    {
+      "trait_type": "Tier",
+      "value": "250 RWArt"
+    }
+  ]
+}

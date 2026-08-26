@@ -1,0 +1,33 @@
+{
+  "name": "Le Violon d'Ingres",
+  "description": "Le Violon d'Ingres by Man Ray. A Meadow Vol. 2 piece on Robinhood Chain: hold it to earn streaming NVDA, trade it on the Meadow marketplace.",
+  "image": "https://elizendevvini.github.io/meadow/art/img2/27.png",
+  "external_url": "https://elizendevvini.github.io/meadow/art/",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Man Ray"
+    },
+    {
+      "trait_type": "Year",
+      "value": "1924"
+    },
+    {
+      "trait_type": "Medium",
+      "value": "gelatin silver print"
+    },
+    {
+      "trait_type": "Reward stock",
+      "value": "NVDA"
+    },
+    {
+      "trait_type": "Last sale USD",
+      "value": 12412500,
+      "display_type": "number"
+    },
+    {
+      "trait_type": "Tier",
+      "value": "100 RWArt"
+    }
+  ]
+}

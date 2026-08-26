@@ -1,0 +1,33 @@
+{
+  "name": "Danaïde",
+  "description": "Danaïde by Constantin Brâncuși. A Meadow Vol. 2 piece on Robinhood Chain: hold it to earn streaming AAPL, trade it on the Meadow marketplace.",
+  "image": "https://elizendevvini.github.io/meadow/art/img2/13.png",
+  "external_url": "https://elizendevvini.github.io/meadow/art/",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Constantin Brâncuși"
+    },
+    {
+      "trait_type": "Year",
+      "value": "c. 1913"
+    },
+    {
+      "trait_type": "Medium",
+      "value": "Bronze with gold leaf and black patina"
+    },
+    {
+      "trait_type": "Reward stock",
+      "value": "AAPL"
+    },
+    {
+      "trait_type": "Last sale USD",
+      "value": 107600000,
+      "display_type": "number"
+    },
+    {
+      "trait_type": "Tier",
+      "value": "Premium 10M RWArt"
+    }
+  ]
+}

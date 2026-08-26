@@ -1,0 +1,33 @@
+{
+  "name": "Les Alyscamps (L'Allée des Alyscamps)",
+  "description": "Les Alyscamps (L'Allée des Alyscamps) by Vincent van Gogh. A Meadow Vol. 2 piece on Robinhood Chain: hold it to earn streaming NVDA, trade it on the Meadow marketplace.",
+  "image": "https://elizendevvini.github.io/meadow/art/img2/11.png",
+  "external_url": "https://elizendevvini.github.io/meadow/art/",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Vincent van Gogh"
+    },
+    {
+      "trait_type": "Year",
+      "value": "1888"
+    },
+    {
+      "trait_type": "Medium",
+      "value": "Oil on canvas"
+    },
+    {
+      "trait_type": "Reward stock",
+      "value": "NVDA"
+    },
+    {
+      "trait_type": "Last sale USD",
+      "value": 66300000,
+      "display_type": "number"
+    },
+    {
+      "trait_type": "Tier",
+      "value": "100 RWArt"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "name": "Lady with a Fan",
+  "description": "Lady with a Fan by Gustav Klimt. A Meadow Vol. 2 piece on Robinhood Chain: hold it to earn streaming AAPL, trade it on the Meadow marketplace.",
+  "image": "https://elizendevvini.github.io/meadow/art/img2/8.png",
+  "external_url": "https://elizendevvini.github.io/meadow/art/",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Gustav Klimt"
+    },
+    {
+      "trait_type": "Year",
+      "value": "1917–1918"
+    },
+    {
+      "trait_type": "Medium",
+      "value": "Oil on canvas"
+    },
+    {
+      "trait_type": "Reward stock",
+      "value": "AAPL"
+    },
+    {
+      "trait_type": "Last sale USD",
+      "value": 108400000,
+      "display_type": "number"
+    },
+    {
+      "trait_type": "Tier",
+      "value": "Premium 10M RWArt"
+    }
+  ]
+}

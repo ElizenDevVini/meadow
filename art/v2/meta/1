@@ -1,0 +1,33 @@
+{
+  "name": "Massacre of the Innocents",
+  "description": "Massacre of the Innocents by Peter Paul Rubens. A Meadow Vol. 2 piece on Robinhood Chain: hold it to earn streaming NVDA, trade it on the Meadow marketplace.",
+  "image": "https://elizendevvini.github.io/meadow/art/img2/1.png",
+  "external_url": "https://elizendevvini.github.io/meadow/art/",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Peter Paul Rubens"
+    },
+    {
+      "trait_type": "Year",
+      "value": "c. 1611–1612"
+    },
+    {
+      "trait_type": "Medium",
+      "value": "Oil on oak panel"
+    },
+    {
+      "trait_type": "Reward stock",
+      "value": "NVDA"
+    },
+    {
+      "trait_type": "Last sale USD",
+      "value": 76700000,
+      "display_type": "number"
+    },
+    {
+      "trait_type": "Tier",
+      "value": "250 RWArt"
+    }
+  ]
+}
