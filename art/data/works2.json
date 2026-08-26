@@ -1,0 +1,669 @@
+[
+  {
+    "id": "bal-du-moulin-de-la-galette-renoir",
+    "title": "Bal du moulin de la Galette",
+    "artist": "Pierre-Auguste Renoir",
+    "artist_died": 1919,
+    "year": 1876,
+    "year_text": "1876",
+    "medium": "Oil on canvas",
+    "image": "Auguste Renoir - Dance at Le Moulin de la Galette (ex Whitney collection).jpg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Bal_du_moulin_de_la_Galette",
+    "sales": [
+      {
+        "date": "1990-05-17",
+        "price_usd": 78100000,
+        "channel": "Sotheby's, New York",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings",
+        "note": "Sold by the estate of John Hay Whitney to Ryoei Saito, honorary chairman of Daishowa Paper Manufacturing; the painting's own Wikipedia article rounds this to $78 million.",
+        "index": true,
+        "index_note": "Rank ~23 on Wikipedia's List of most expensive paintings"
+      }
+    ]
+  },
+  {
+    "id": "massacre-of-the-innocents-rubens",
+    "title": "Massacre of the Innocents",
+    "artist": "Peter Paul Rubens",
+    "artist_died": 1640,
+    "year": 1611,
+    "year_text": "c. 1611–1612",
+    "medium": "Oil on oak panel",
+    "image": "Rubens - Massacre of the Innocents - Art Gallery of Ontario 2.jpg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Massacre_of_the_Innocents_(Rubens)",
+    "sales": [
+      {
+        "date": "2002-07-10",
+        "price_usd": 76700000,
+        "channel": "Sotheby's, London",
+        "source": "https://en.wikipedia.org/wiki/Massacre_of_the_Innocents_(Rubens)",
+        "note": "Sold for £49.5 million to Kenneth Thomson, 2nd Baron Thomson of Fleet, then the most expensive Old Master ever sold at auction. USD figure is a currency conversion per Wikipedia's List of most expensive paintings.",
+        "approx": true,
+        "index": true,
+        "index_note": "Rank ~48 on Wikipedia's List of most expensive paintings"
+      }
+    ]
+  },
+  {
+    "id": "darmstadt-madonna-holbein",
+    "title": "Darmstadt Madonna",
+    "artist": "Hans Holbein the Younger",
+    "artist_died": 1543,
+    "year": 1526,
+    "year_text": "1526–1528",
+    "medium": "Oil and tempera on limewood",
+    "image": "Darmstadtmadonna.jpg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Darmstadt_Madonna",
+    "sales": [
+      {
+        "date": "2011-07-12",
+        "price_usd": 75000000,
+        "channel": "private sale",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings",
+        "note": "Sold by Donatus, Landgrave of Hesse to industrialist Reinhold Würth, brokered by art advisor Christoph Graf Douglas; the painting's own Wikipedia article does not state a price.",
+        "approx": true,
+        "index": true,
+        "index_note": "Rank ~83 on Wikipedia's List of most expensive paintings"
+      }
+    ]
+  },
+  {
+    "id": "portrait-of-a-halberdier-pontormo",
+    "title": "Portrait of a Halberdier",
+    "artist": "Jacopo Pontormo",
+    "artist_died": 1557,
+    "year": 1529,
+    "year_text": "1529–1530",
+    "medium": "Oil (and tempera) on panel, transferred to canvas",
+    "image": "Pontormo (Jacopo Carucci) (Italian, Florentine) - Portrait of a Halberdier (Francesco Guardi?) - Google Art Project.jpg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Portrait_of_a_Halberdier",
+    "sales": [
+      {
+        "date": "1989-06-01",
+        "price_usd": 35200000,
+        "channel": "Christie's, New York",
+        "source": "https://juddtully.net/auctions/old-master-nets-record-35-million-pontormo-portrait-sold-to-getty-museum/",
+        "note": "Purchased by the J. Paul Getty Museum from the Frick Collection sale; a record at the time for an Old Master painting at auction.",
+        "index": true,
+        "index_note": "Rank ~110 on Wikipedia's List of most expensive paintings"
+      }
+    ]
+  },
+  {
+    "id": "irises-van-gogh",
+    "title": "Irises",
+    "artist": "Vincent van Gogh",
+    "artist_died": 1890,
+    "year": 1889,
+    "year_text": "1889",
+    "medium": "Oil on canvas",
+    "image": "Irises-Vincent van Gogh.jpg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Irises_(painting)",
+    "sales": [
+      {
+        "date": "1987-11",
+        "price_usd": 53900000,
+        "channel": "Sotheby's, New York",
+        "source": "https://en.wikipedia.org/wiki/Irises_(painting)",
+        "note": "Bought by Australian businessman Alan Bond, who could not fully pay; the painting was privately resold to the J. Paul Getty Museum in 1990 for an undisclosed sum.",
+        "index": true,
+        "index_note": "Rank ~36 on Wikipedia's List of most expensive paintings"
+      }
+    ]
+  },
+  {
+    "id": "rideau-cruchon-et-compotier-cezanne",
+    "title": "Rideau, Cruchon et Compotier",
+    "artist": "Paul Cézanne",
+    "artist_died": 1906,
+    "year": 1893,
+    "year_text": "1893–1894",
+    "medium": "Oil on canvas",
+    "image": "Rideau, Cruchon et Compotier, par Paul Cézanne, Yorck Project.jpg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Rideau,_Cruchon_et_Compotier",
+    "sales": [
+      {
+        "date": "1999-05-10",
+        "price_usd": 60502500,
+        "channel": "Sotheby's, New York",
+        "source": "https://en.wikipedia.org/wiki/Rideau,_Cruchon_et_Compotier",
+        "note": "Bought by hedge-fund manager Ken Griffin; became the most expensive still-life ever sold at auction. Privately resold to Steve Wynn months later for an undisclosed price.",
+        "index": true,
+        "index_note": "Rank ~66 on Wikipedia's List of most expensive paintings"
+      }
+    ]
+  },
+  {
+    "id": "portrait-of-alfonso-davalos-with-a-page-titian",
+    "title": "Portrait of Alfonso d'Avalos with a Page",
+    "artist": "Titian",
+    "artist_died": 1576,
+    "year": 1533,
+    "year_text": "c. 1533",
+    "medium": "Oil on canvas",
+    "image": "Titian (Tiziano Vecellio) (Italian) - Portrait of Alfonso d'Avalos, Marquis of Vasto, in Armor with a Page - Google Art Project.jpg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Portrait_of_Alfonso_d%27Avalos_with_a_Page",
+    "sales": [
+      {
+        "date": "2003-11",
+        "price_usd": 70000000,
+        "channel": "private sale",
+        "source": "https://en.wikipedia.org/wiki/Portrait_of_Alfonso_d%27Avalos_with_a_Page",
+        "note": "J. Paul Getty Museum acquired the painting from French insurer AXA after AXA's 12-year loan of the work to the Louvre expired.",
+        "index": true,
+        "index_note": "Rank ~62 on Wikipedia's List of most expensive paintings"
+      }
+    ]
+  },
+  {
+    "id": "le-bassin-aux-nympheas-monet",
+    "title": "Le Bassin aux Nymphéas",
+    "artist": "Claude Monet",
+    "artist_died": 1926,
+    "year": 1919,
+    "year_text": "1919",
+    "medium": "Oil on canvas",
+    "image": "Le bassin aux nymphéas - Claude Monet.jpg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Le_Bassin_aux_Nymph%C3%A9as",
+    "sales": [
+      {
+        "date": "1971-05",
+        "price_usd": 320000,
+        "channel": "Sotheby's, New York",
+        "source": "https://en.wikipedia.org/wiki/Le_Bassin_aux_Nymph%C3%A9as"
+      },
+      {
+        "date": "2008-06-24",
+        "price_usd": 80500000,
+        "channel": "Christie's, London",
+        "source": "https://en.wikipedia.org/wiki/Le_Bassin_aux_Nymph%C3%A9as",
+        "note": "Sold for £40.9 million, a world auction record for a Monet at the time.",
+        "index": true,
+        "index_note": "Rank ~64 on Wikipedia's List of most expensive paintings"
+      }
+    ]
+  },
+  {
+    "id": "lady-with-a-fan-klimt",
+    "title": "Lady with a Fan",
+    "artist": "Gustav Klimt",
+    "artist_died": 1918,
+    "year": 1917,
+    "year_text": "1917–1918",
+    "medium": "Oil on canvas",
+    "image": "Gustav Klimt - Dame mit Fächer.jpeg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Lady_with_a_Fan_(Klimt)",
+    "sales": [
+      {
+        "date": "1994-05-11",
+        "price_usd": 11600000,
+        "channel": "Sotheby's",
+        "source": "https://en.wikipedia.org/wiki/Lady_with_a_Fan_(Klimt)"
+      },
+      {
+        "date": "2023-06-27",
+        "price_usd": 108400000,
+        "channel": "Sotheby's, London",
+        "source": "https://en.wikipedia.org/wiki/Lady_with_a_Fan_(Klimt)",
+        "note": "Set an auction record for Klimt and the highest price ever paid for an artwork sold in Europe; bought by art dealer Patti Wong on behalf of a Hong Kong collector.",
+        "index": true,
+        "index_note": "Rank ~68 on Wikipedia's List of most expensive paintings"
+      }
+    ]
+  },
+  {
+    "id": "wheat-field-with-cypresses-van-gogh",
+    "title": "Wheat Field with Cypresses",
+    "artist": "Vincent van Gogh",
+    "artist_died": 1890,
+    "year": 1889,
+    "year_text": "June 1889",
+    "medium": "Oil on canvas",
+    "image": "Wheat-Field-with-Cypresses-(1889)-Vincent-van-Gogh-Met.jpg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Wheat_Field_with_Cypresses",
+    "sales": [
+      {
+        "date": "1993",
+        "price_usd": 57000000,
+        "channel": "private sale",
+        "source": "https://en.wikipedia.org/wiki/Wheat_Field_with_Cypresses",
+        "note": "Bought by Dieter Bührle with funds donated by Walter Annenberg and given to the Metropolitan Museum of Art, New York.",
+        "index": true,
+        "index_note": "Rank ~54 on Wikipedia's List of most expensive paintings"
+      }
+    ]
+  },
+  {
+    "id": "diana-and-actaeon-titian",
+    "title": "Diana and Actaeon",
+    "artist": "Titian",
+    "artist_died": 1576,
+    "year": 1556,
+    "year_text": "1556–1559",
+    "medium": "Oil on canvas",
+    "image": "Titian - Diana and Actaeon - Google Art Project.jpg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Diana_and_Actaeon_(Titian)",
+    "sales": [
+      {
+        "date": "2009-02",
+        "price_usd": 70600000,
+        "channel": "private sale",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings",
+        "note": "Acquired jointly by the National Gallery, London and the National Galleries of Scotland from the Duke of Sutherland's Bridgewater Collection for £50 million, following a public fundraising campaign.",
+        "approx": true,
+        "index": true,
+        "index_note": "Rank ~85 on Wikipedia's List of most expensive paintings"
+      }
+    ]
+  },
+  {
+    "id": "les-alyscamps-van-gogh",
+    "title": "Les Alyscamps (L'Allée des Alyscamps)",
+    "artist": "Vincent van Gogh",
+    "artist_died": 1890,
+    "year": 1888,
+    "year_text": "1888",
+    "medium": "Oil on canvas",
+    "image": "Van gogh lallee des alyscamps.jpg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Les_Alyscamps",
+    "sales": [
+      {
+        "date": "2003-11",
+        "price_usd": 11767500,
+        "channel": "Christie's, New York",
+        "source": "https://en.wikipedia.org/wiki/Les_Alyscamps"
+      },
+      {
+        "date": "2015-05-05",
+        "price_usd": 66300000,
+        "channel": "Sotheby's, New York",
+        "source": "https://en.wikipedia.org/wiki/Les_Alyscamps",
+        "note": "Resold for nearly six times its 2003 price.",
+        "index": true,
+        "index_note": "Rank ~111 on Wikipedia's List of most expensive paintings"
+      }
+    ]
+  },
+  {
+    "id": "pointing-man-giacometti",
+    "title": "L'Homme au doigt (Pointing Man)",
+    "artist": "Alberto Giacometti",
+    "artist_died": 1966,
+    "year": 1947,
+    "year_text": "1947",
+    "medium": "Painted bronze",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Pointing_Man",
+    "sales": [
+      {
+        "date": "2015-05-11",
+        "price_usd": 141300000,
+        "channel": "Christie's, New York",
+        "source": "https://en.wikipedia.org/wiki/Pointing_Man",
+        "note": "Sold in the 'Looking Forward to the Past' sale for a hammer price of $126 million ($141.3 million with fees), becoming the most expensive sculpture ever sold at auction at the time. Consigned from Sheldon Solow's collection, where it had been held for 45 years; now owned by Steven Cohen."
+      }
+    ]
+  },
+  {
+    "id": "danaide-brancusi",
+    "title": "Danaïde",
+    "artist": "Constantin Brâncuși",
+    "artist_died": 1957,
+    "year": 1913,
+    "year_text": "c. 1913",
+    "medium": "Bronze with gold leaf and black patina",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/List_of_most_expensive_sculptures",
+    "sales": [
+      {
+        "date": "2026-05-18",
+        "price_usd": 107600000,
+        "channel": "Christie's, New York",
+        "source": "https://heni.com/news/article/constantin-brancusi-danaide-2026-05-18",
+        "note": "Sold for $107.6 million, exceeding the $100 million estimate and beating the artist's previous auction record by 51%. From the collection of S.I. Newhouse."
+      },
+      {
+        "date": "2005-05-04",
+        "price_usd": 16500000,
+        "channel": "Christie's, New York",
+        "source": "https://heni.com/news/article/constantin-brancusi-danaide-2026-05-18",
+        "note": "Earlier sale of the same work, also at Christie's New York."
+      }
+    ]
+  },
+  {
+    "id": "tete-modigliani",
+    "title": "Tête",
+    "artist": "Amedeo Modigliani",
+    "artist_died": 1920,
+    "year": 1911,
+    "year_text": "1911-1912",
+    "medium": "Limestone",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/T%C3%AAte_(sculpture)",
+    "sales": [
+      {
+        "date": "2010-06-14",
+        "price_usd": 52600000,
+        "approx": true,
+        "channel": "Christie's, Paris",
+        "source": "https://en.wikipedia.org/wiki/T%C3%AAte_(sculpture)",
+        "note": "Sold for €43,185,000 (approx. $52.6 million at the time) to an anonymous telephone bidder after roughly 20 bidders competed; set a record at the time for the most expensive work of art sold at auction in France."
+      }
+    ]
+  },
+  {
+    "id": "back-iv-matisse",
+    "title": "Nu de dos, 4 état (The Back IV)",
+    "artist": "Henri Matisse",
+    "artist_died": 1954,
+    "year": 1930,
+    "year_text": "c. 1930 (modeled); cast in bronze 1950",
+    "medium": "Bronze relief",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/The_Back_Series",
+    "sales": [
+      {
+        "date": "2010-11-03",
+        "price_usd": 48800000,
+        "channel": "Christie's, New York",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_sculptures",
+        "note": "One of four large bronze relief panels in Matisse's 'The Back' series, modeled between 1909 and 1930 and cast in an edition of 12 per panel starting in 1950."
+      }
+    ]
+  },
+  {
+    "id": "reclining-figure-festival-moore",
+    "title": "Reclining Figure: Festival",
+    "artist": "Henry Moore",
+    "artist_died": 1986,
+    "year": 1951,
+    "year_text": "1951",
+    "medium": "Bronze",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Reclining_Figure:_Festival",
+    "sales": [
+      {
+        "date": "2016-06-30",
+        "price_usd": 30100000,
+        "channel": "Christie's, London",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_sculptures",
+        "note": "Sold for £24,722,500, the fourth of five full-size bronze casts, setting a new record price for the work. Surpassed the £19,081,250 paid for a different cast of the same sculpture in 2012, and the £553,250 paid in 2008 for a related 1950 working-model cast."
+      }
+    ]
+  },
+  {
+    "id": "spider-bourgeois-1996",
+    "title": "Spider",
+    "artist": "Louise Bourgeois",
+    "artist_died": 2010,
+    "year": 1996,
+    "year_text": "1996 (this cast 1997)",
+    "medium": "Bronze, steel, silver, gold, wood, fabric, and other materials",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Spider_(Bourgeois)",
+    "sales": [
+      {
+        "date": "2019-05",
+        "price_usd": 32100000,
+        "channel": "Christie's, New York",
+        "source": "https://en.wikipedia.org/wiki/Spider_(Bourgeois)",
+        "note": "One of several bronze casts of Bourgeois's 1996 Spider, part of her 'Cells' series. Prices for other casts of the same design rose across earlier sales: $4 million (2006, Christie's London), $4.5 million (2008), and $10,722,500 (November 2011, Christie's)."
+      }
+    ]
+  },
+  {
+    "id": "tete-de-femme-dora-maar-picasso",
+    "title": "Tête de femme (Dora Maar)",
+    "artist": "Pablo Picasso",
+    "artist_died": 1973,
+    "year": 1941,
+    "year_text": "1941 (plaster); cast in bronze early 1950s",
+    "medium": "Bronze",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/T%C3%AAte_de_femme_(Dora_Maar)",
+    "sales": [
+      {
+        "date": "2007-11-07",
+        "price_usd": 29100000,
+        "channel": "Sotheby's, New York",
+        "source": "https://en.wikipedia.org/wiki/T%C3%AAte_de_femme_(Dora_Maar)",
+        "note": "Bought by dealer Franck Giraud against a $20-30 million estimate, setting a new record at the time for the price of a sculpture at auction. Had failed to sell at Art Basel Miami Beach a year earlier."
+      }
+    ]
+  },
+  {
+    "id": "tulips-koons",
+    "title": "Tulips",
+    "artist": "Jeff Koons",
+    "artist_died": null,
+    "year": 1995,
+    "year_text": "1995-2004",
+    "medium": "High chromium stainless steel with transparent color coating",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/List_of_most_expensive_sculptures",
+    "sales": [
+      {
+        "date": "2012-11-14",
+        "price_usd": 33700000,
+        "channel": "Christie's, New York",
+        "source": "https://en.wikipedia.org/wiki/List_of_most_expensive_sculptures",
+        "note": "Mirror-polished stainless-steel work from Koons's Celebration series; no dedicated Wikipedia article exists for this individual work."
+      }
+    ]
+  },
+  {
+    "id": "standard-station-ruscha",
+    "title": "Standard Station, Ten-Cent Western Being Torn in Half",
+    "artist": "Ed Ruscha",
+    "artist_died": null,
+    "year": 1964,
+    "year_text": "1964",
+    "medium": "Oil on canvas",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Edward_Ruscha",
+    "sales": [
+      {
+        "date": "2024-11-19",
+        "price_usd": 68300000,
+        "channel": "Christie's",
+        "source": "https://www.forbes.com/sites/natashagural/2024/11/19/synthesis-and-climax-of-1960s-ed-ruscha-masterpieces-sets-new-artist-record-selling-for-683-million-at-christies-new-york/",
+        "note": "Set a new auction record for the artist, surpassing his previous high of $32.5M set in 2019.",
+        "index": true
+      }
+    ]
+  },
+  {
+    "id": "everydays-first-5000-days-beeple",
+    "title": "Everydays: the First 5000 Days",
+    "artist": "Beeple",
+    "artist_died": null,
+    "year": 2021,
+    "year_text": "2021",
+    "medium": "Digital artwork (NFT, collage of 5,000 daily images)",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Everydays:_the_First_5000_Days",
+    "sales": [
+      {
+        "date": "2021-03",
+        "price_usd": 69300000,
+        "channel": "Christie's",
+        "source": "https://onlineonly.christies.com/s/beeple-first-5000-days/beeple-b-1981-1/112924",
+        "note": "First purely digital NFT-based artwork sold by a major auction house; the third-highest price achieved for a work by a living artist at that time.",
+        "index": true
+      }
+    ]
+  },
+  {
+    "id": "domplatz-mailand-richter",
+    "title": "Domplatz, Mailand",
+    "artist": "Gerhard Richter",
+    "artist_died": null,
+    "year": 1968,
+    "year_text": "1968",
+    "medium": "Oil on canvas",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Domplatz,_Mailand",
+    "sales": [
+      {
+        "date": "2013-05",
+        "price_usd": 37100000,
+        "channel": "Sotheby's",
+        "source": "https://www.bbc.com/news/entertainment-arts-22538258",
+        "note": "Set an auction record for the artist at the time.",
+        "index": true
+      }
+    ]
+  },
+  {
+    "id": "hanging-heart-magenta-gold-koons",
+    "title": "Hanging Heart (Magenta/Gold)",
+    "artist": "Jeff Koons",
+    "artist_died": null,
+    "year": 2006,
+    "year_text": "1994-2006",
+    "medium": "High chromium stainless steel with transparent color coating",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Jeff_Koons",
+    "sales": [
+      {
+        "date": "2007-11",
+        "price_usd": 23600000,
+        "channel": "Sotheby's",
+        "source": "https://web.archive.org/web/20181120221237/http://www.artnews.com/2007/11/26/sothebys-scores-its-highest-ever-316m-contemporary-auction/",
+        "note": "One of a series of five Hanging Heart sculptures, each in a different color combination.",
+        "index": false
+      }
+    ]
+  },
+  {
+    "id": "for-the-love-of-god-hirst",
+    "title": "For the Love of God",
+    "artist": "Damien Hirst",
+    "artist_died": null,
+    "year": 2007,
+    "year_text": "2007",
+    "medium": "Platinum, diamonds, and human teeth (skull)",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/For_the_Love_of_God",
+    "sales": [
+      {
+        "date": "2007-08",
+        "price_usd": 100000000,
+        "channel": "private sale",
+        "source": "https://web.archive.org/web/20160601053552/http://www.artnews.com/2007/10/01/the-branding-of-damien-hirst/",
+        "note": "Privately acquired by a consortium that included the artist himself; the artist retained a stake in the work.",
+        "approx": true,
+        "index": false
+      }
+    ]
+  },
+  {
+    "id": "journey-of-humanity-jafri",
+    "title": "The Journey of Humanity",
+    "artist": "Sacha Jafri",
+    "artist_died": null,
+    "year": 2021,
+    "year_text": "2020-2021",
+    "medium": "Mixed media on canvas",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Sacha_Jafri",
+    "sales": [
+      {
+        "date": "2021-03",
+        "price_usd": 62000000,
+        "channel": "Humanity Inspired Royal Charity Auction, Dubai",
+        "source": "https://www.theguardian.com/artanddesign/2021/mar/24/british-artist-sells-worlds-largest-painting-the-journey-of-humanity-for-62m",
+        "note": "Guinness World Record for the world's largest painting; proceeds went to UNICEF, UNESCO, and other charities via the Global Gift Foundation.",
+        "index": false
+      }
+    ]
+  },
+  {
+    "id": "steichen-the-flatiron-1904",
+    "title": "The Flatiron",
+    "artist": "Edward Steichen",
+    "artist_died": 1973,
+    "year": 1904,
+    "year_text": "1904 (negative), printed 1905",
+    "medium": "gum-bichromate over platinum print",
+    "image": "Theflatiron_greenblue.jpg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/The_Flatiron_(photograph)",
+    "sales": [
+      {
+        "date": "2022-11-09",
+        "price_usd": 11840000,
+        "channel": "Christie's New York",
+        "source": "https://petapixel.com/2022/11/10/image-of-new-york-becomes-second-most-expensive-photo-ever-sold/",
+        "note": "Sold as part of the Paul G. Allen Collection ('Visionary'); pre-sale estimate was $2,000,000-3,000,000. Only three prints of this image are known to exist."
+      }
+    ]
+  },
+  {
+    "id": "man-ray-le-violon-dingres-1924",
+    "title": "Le Violon d'Ingres",
+    "artist": "Man Ray",
+    "artist_died": 1976,
+    "year": 1924,
+    "year_text": "1924",
+    "medium": "gelatin silver print",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Le_Violon_d%27Ingres",
+    "sales": [
+      {
+        "date": "2022-05-14",
+        "price_usd": 12412500,
+        "channel": "Christie's New York",
+        "source": "https://en.thevalue.com/articles/christies-new-york-iconic-man-ray-surrealist-nude-women-photograph-auction-record",
+        "note": "Sold from 'The Surrealist World of Rosalind Gersten Jacobs and Melvin Jacobs' collection; hammer price $10,500,000 against a $5,000,000-7,000,000 estimate. Set the all-time record for a photograph at auction."
+      }
+    ]
+  },
+  {
+    "id": "gursky-rhein-ii-1999",
+    "title": "Rhein II",
+    "artist": "Andreas Gursky",
+    "artist_died": null,
+    "year": 1999,
+    "year_text": "1999",
+    "medium": "chromogenic (C-print) color photograph mounted to acrylic glass",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Rhein_II",
+    "sales": [
+      {
+        "date": "2011-11-08",
+        "price_usd": 4338500,
+        "channel": "Christie's New York",
+        "source": "https://petapixel.com/2011/11/09/gurksy-photo-of-rhine-sells-for-4-3m-becomes-worlds-most-expensive-pic/",
+        "note": "Pre-sale estimate was $2,500,000-3,500,000. Held the all-time photograph auction record until 2022 and remains the most expensive photograph by a living artist."
+      }
+    ]
+  },
+  {
+    "id": "sherman-untitled-96-1981",
+    "title": "Untitled #96",
+    "artist": "Cindy Sherman",
+    "artist_died": null,
+    "year": 1981,
+    "year_text": "1981",
+    "medium": "chromogenic color print",
+    "image": null,
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Untitled_96",
+    "sales": [
+      {
+        "date": "2011-05-11",
+        "price_usd": 3890500,
+        "channel": "Christie's New York",
+        "source": "https://petapixel.com/2011/05/12/cindy-sherman-photograph-sells-for-3-8-million-setting-new-record/",
+        "note": "Set a new world auction record for a photograph, surpassing Andreas Gursky's 99 Cent II Diptychon ($3,346,456, 2007). Buyer was dealer Philippe Segalot."
+      },
+      {
+        "date": "2012-05-08",
+        "price_usd": 2882500,
+        "channel": "Christie's New York",
+        "source": "https://en.wikipedia.org/wiki/Untitled_96",
+        "note": "A different print from the same edition sold roughly a year later at a lower price."
+      }
+    ]
+  }
+]
