@@ -58,7 +58,7 @@ Set env and broadcast:
     export PROJECT_TOKEN=0x...            # launched on Pons
     export STOCKS=0x322F0929c4625eD5bAd873c95208D54E1c003b2d,0xaF3D76f1834A1d425780943C99Ea8A608f8a93f9,0xd0601CE157Db5bdC3162BbaC2a2C8aF5320D9EEC,0xe93237C50D904957Cf27E7B1133b510C669c2e74,0x12f190a9F9d7D37a250758b26824B97CE941bF54
     export REWARD_END=$(($(date +%s) + 365*24*3600))   # 1 year from now
-    export OWNER=0x...                   # your Gnosis Safe address
+    export OWNER=0x598597a5056438Ac9A7206E2C36B0553fc7e34C7   # the meadow Safe (1/1, Robinhood Chain)
 
     forge script script/DeployMeadowArt.s.sol \
       --rpc-url https://rpc.mainnet.chain.robinhood.com \
