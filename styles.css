@@ -450,3 +450,7 @@ h2 {
   [data-reveal] { opacity: 1; transform: none; transition: none; }
   .hero-media, .hero-copy { will-change: auto; }
 }
+
+/* nav X link: monochrome logo inherits ink color, inverts with the other nav links */
+.nav-x { display: inline-flex; align-items: center; padding: 8px 10px; }
+.nav-x svg { display: block; width: 15px; height: 15px; shape-rendering: geometricPrecision; }
