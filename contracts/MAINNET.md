@@ -15,15 +15,18 @@ Nothing below is reversible cheaply, so read the whole file first.
    withdraw both. For a contract custodying real securities, use a Safe multisig
    or a dedicated hardware-wallet key, never a hot key you have pasted anywhere.
 
-3. Reward economics. THE CURRENT RATES ARE PLACEHOLDERS AND ARE NOT SANE FOR
-   MAINNET. As generated, funding all 50 pieces for one year needs about 1,728
-   tokenized shares (for example the Salvator Mundi piece pays ~200 MSFT/year for
-   a 5,000-token purchase). Per stock: TSLA 184, AAPL 190, NVDA 234, MSFT 590,
-   AMZN 530. Retune tools/gen_art_onchain.py so the payout reflects real value
-   (tie the rate to the money paid and the stock price, or pick a fixed total
-   annual budget you can actually fund), regenerate art/data/onchain.json, and
-   recompute the treasury need before deploying. Ask me and I will retune it to a
-   budget you name.
+3. Reward economics: rates are now VALUE-TIED. A piece bought for
+   (price_tokens * MDW_PRICE_USD) dollars pays ANNUAL_YIELD_BPS of that value per
+   year, converted into the assigned stock at its own price. You MUST regenerate
+   art/data/onchain.json with the real numbers once the token trades, because the
+   committed defaults (MDW $0.02, every stock $250, 4%) are placeholders:
+     MDW_PRICE_USD=0.10 \
+     STOCK_PRICES_USD="TSLA:340,AAPL:230,NVDA:180,MSFT:430,AMZN:220" \
+     ANNUAL_YIELD_BPS=300 \
+     python3 ../tools/gen_art_onchain.py
+   Then recompute the treasury: sum(rate_wei) * reward_seconds per stock. At MDW
+   $0.10 / 3% this is under 1 share/year total across all 50 pieces; scale the
+   yield or the MDW price to the payout you want. Fund at least that much.
 
 ## Securities note
 
@@ -55,7 +58,7 @@ Set env and broadcast:
     export PROJECT_TOKEN=0x...            # launched on Pons
     export STOCKS=0x322F0929c4625eD5bAd873c95208D54E1c003b2d,0xaF3D76f1834A1d425780943C99Ea8A608f8a93f9,0xd0601CE157Db5bdC3162BbaC2a2C8aF5320D9EEC,0xe93237C50D904957Cf27E7B1133b510C669c2e74,0x12f190a9F9d7D37a250758b26824B97CE941bF54
     export REWARD_END=$(($(date +%s) + 365*24*3600))   # 1 year from now
-    export OWNER=0x...                   # your Safe or hardware wallet
+    export OWNER=0x...                   # your Gnosis Safe address
 
     forge script script/DeployMeadowArt.s.sol \
       --rpc-url https://rpc.mainnet.chain.robinhood.com \

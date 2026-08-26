@@ -38,13 +38,34 @@ PRICE_TIERS_USD = [
 ]
 TOP_TIER_TOKENS = 5000  # anything at or above the last breakpoint
 
-# Reference reward rate: pay out ANNUAL_YIELD_BPS of a piece's price-tier
-# token count per year, denominated in the assigned stock token (both the
-# project token and every stock token are 18-decimal ERC20s, so the tier's
-# token count doubles as the numeraire for the annual reward amount). This
-# keeps rates modest and strictly proportional to price tier, and nowhere
-# near MeadowArt.MAX_RATE (1e18 wei/sec).
-ANNUAL_YIELD_BPS = 400  # 4%
+# Reward rate is tied to a piece's REAL purchase value, not its raw token
+# count. A piece bought for (price_tokens * MDW_PRICE_USD) dollars pays
+# ANNUAL_YIELD_BPS of that value per year, and that dollar amount is converted
+# into the assigned stock at its own price. This keeps the treasury cost
+# proportional to money actually paid instead of paying whole shares per token.
+# Prices are unknown until the token trades, so pass the real numbers via env
+# before a mainnet deploy; the defaults are deliberately conservative placeholders.
+#   MDW_PRICE_USD      project token price in USD (default 0.02)
+#   STOCK_PRICES_USD   per-stock USD prices "TSLA:250,AAPL:230,..." or a single
+#                      number applied to all (default 250)
+#   ANNUAL_YIELD_BPS   target yield in bps (default 400 = 4%)
+ANNUAL_YIELD_BPS = int(os.environ.get("ANNUAL_YIELD_BPS", "400"))
+MDW_PRICE_USD = float(os.environ.get("MDW_PRICE_USD", "0.02"))
+
+
+def stock_prices_usd():
+    raw = os.environ.get("STOCK_PRICES_USD", "250")
+    if ":" not in raw:
+        flat = float(raw)
+        return {s: flat for s in STOCK_SYMBOLS}
+    out = {}
+    for part in raw.split(","):
+        sym, price = part.split(":")
+        out[sym.strip()] = float(price)
+    missing = [s for s in STOCK_SYMBOLS if s not in out]
+    if missing:
+        raise SystemExit(f"STOCK_PRICES_USD is missing prices for {missing}; list all of {STOCK_SYMBOLS}")
+    return out
 
 
 def price_tier_tokens(price_usd):
@@ -62,8 +83,11 @@ def stock_index_for(slug):
     return int(digest, 16) % len(STOCK_SYMBOLS)
 
 
-def rate_wei_per_second(price_tokens):
-    annual_wei = price_tokens * WAD * ANNUAL_YIELD_BPS // 10_000
+def rate_wei_per_second(price_tokens, stock_symbol, stock_px):
+    # annual payout value in USD, then converted to whole stock tokens
+    purchase_usd = price_tokens * MDW_PRICE_USD
+    annual_stock = purchase_usd * (ANNUAL_YIELD_BPS / 10_000) / stock_px[stock_symbol]
+    annual_wei = int(annual_stock * WAD)
     return annual_wei // SECONDS_PER_YEAR
 
 
@@ -76,13 +100,15 @@ def build_onchain_json():
     with open(CATALOG_PATH) as f:
         catalog = json.load(f)
 
+    stock_px = stock_prices_usd()
     works_out = []
     for id_, work in enumerate(catalog["works"]):
         price_usd = work["last"]["price_usd"]
         price_tokens = price_tier_tokens(price_usd)
         price_wei = price_tokens * WAD
         stock_idx = stock_index_for(work["id"])
-        rate_wei = rate_wei_per_second(price_tokens)
+        symbol = STOCK_SYMBOLS[stock_idx]
+        rate_wei = rate_wei_per_second(price_tokens, symbol, stock_px)
         annual_tokens = rate_wei * SECONDS_PER_YEAR / WAD
 
         works_out.append({
