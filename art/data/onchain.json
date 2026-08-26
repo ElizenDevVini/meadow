@@ -2,24 +2,16 @@
   "generated": "2026-08-25T23:50:02Z",
   "stocks": [
     {
-      "symbol": "TSLA",
-      "address": ""
-    },
-    {
       "symbol": "AAPL",
-      "address": ""
+      "address": "0xaF3D76f1834A1d425780943C99Ea8A608f8a93f9"
     },
     {
       "symbol": "NVDA",
-      "address": ""
-    },
-    {
-      "symbol": "MSFT",
-      "address": ""
+      "address": "0xd0601CE157Db5bdC3162BbaC2a2C8aF5320D9EEC"
     },
     {
       "symbol": "AMZN",
-      "address": ""
+      "address": "0x12f190a9F9d7D37a250758b26824B97CE941bF54"
     }
   ],
   "project_token": "",
@@ -31,10 +23,10 @@
       "title": "Salvator Mundi",
       "price_tokens": 5000,
       "price_wei": "5000000000000000000000",
-      "stock_symbol": "MSFT",
-      "stock_idx": 3,
-      "rate_wei": "507356671",
-      "rate_display": "~0.02 MSFT/year"
+      "stock_symbol": "NVDA",
+      "stock_idx": 1,
+      "rate_wei": "341926625",
+      "rate_display": "~0.0108 NVDA / 365d"
     },
     {
       "id": 1,
@@ -42,10 +34,10 @@
       "title": "Interchange",
       "price_tokens": 5000,
       "price_wei": "5000000000000000000000",
-      "stock_symbol": "AMZN",
-      "stock_idx": 4,
-      "rate_wei": "507356671",
-      "rate_display": "~0.02 AMZN/year"
+      "stock_symbol": "NVDA",
+      "stock_idx": 1,
+      "rate_wei": "341926625",
+      "rate_display": "~0.0108 NVDA / 365d"
     },
     {
       "id": 2,
@@ -53,10 +45,10 @@
       "title": "The Card Players",
       "price_tokens": 2500,
       "price_wei": "2500000000000000000000",
-      "stock_symbol": "TSLA",
-      "stock_idx": 0,
-      "rate_wei": "253678335",
-      "rate_display": "~0.01 TSLA/year"
+      "stock_symbol": "NVDA",
+      "stock_idx": 1,
+      "rate_wei": "170963312",
+      "rate_display": "~0.0054 NVDA / 365d"
     },
     {
       "id": 3,
@@ -65,9 +57,9 @@
       "price_tokens": 2500,
       "price_wei": "2500000000000000000000",
       "stock_symbol": "AMZN",
-      "stock_idx": 4,
-      "rate_wei": "253678335",
-      "rate_display": "~0.01 AMZN/year"
+      "stock_idx": 2,
+      "rate_wei": "394146267",
+      "rate_display": "~0.0124 AMZN / 365d"
     },
     {
       "id": 4,
@@ -76,9 +68,9 @@
       "price_tokens": 2500,
       "price_wei": "2500000000000000000000",
       "stock_symbol": "AAPL",
-      "stock_idx": 1,
-      "rate_wei": "253678335",
-      "rate_display": "~0.01 AAPL/year"
+      "stock_idx": 0,
+      "rate_wei": "255422301",
+      "rate_display": "~0.0081 AAPL / 365d"
     },
     {
       "id": 5,
@@ -86,10 +78,10 @@
       "title": "Number 17A",
       "price_tokens": 2500,
       "price_wei": "2500000000000000000000",
-      "stock_symbol": "AMZN",
-      "stock_idx": 4,
-      "rate_wei": "253678335",
-      "rate_display": "~0.01 AMZN/year"
+      "stock_symbol": "AAPL",
+      "stock_idx": 0,
+      "rate_wei": "255422301",
+      "rate_display": "~0.0081 AAPL / 365d"
     },
     {
       "id": 6,
@@ -97,10 +89,10 @@
       "title": "The Standard Bearer",
       "price_tokens": 1000,
       "price_wei": "1000000000000000000000",
-      "stock_symbol": "AAPL",
+      "stock_symbol": "NVDA",
       "stock_idx": 1,
-      "rate_wei": "101471334",
-      "rate_display": "~0.00 AAPL/year"
+      "rate_wei": "68385325",
+      "rate_display": "~0.0022 NVDA / 365d"
     },
     {
       "id": 7,
@@ -108,10 +100,10 @@
       "title": "Shot Sage Blue Marilyn",
       "price_tokens": 1000,
       "price_wei": "1000000000000000000000",
-      "stock_symbol": "MSFT",
-      "stock_idx": 3,
-      "rate_wei": "101471334",
-      "rate_display": "~0.00 MSFT/year"
+      "stock_symbol": "NVDA",
+      "stock_idx": 1,
+      "rate_wei": "68385325",
+      "rate_display": "~0.0022 NVDA / 365d"
     },
     {
       "id": 8,
@@ -119,10 +111,10 @@
       "title": "No. 6 (Violet, Green and Red)",
       "price_tokens": 1000,
       "price_wei": "1000000000000000000000",
-      "stock_symbol": "MSFT",
-      "stock_idx": 3,
-      "rate_wei": "101471334",
-      "rate_display": "~0.00 MSFT/year"
+      "stock_symbol": "NVDA",
+      "stock_idx": 1,
+      "rate_wei": "68385325",
+      "rate_display": "~0.0022 NVDA / 365d"
     },
     {
       "id": 9,
@@ -130,10 +122,10 @@
       "title": "Wasserschlangen II",
       "price_tokens": 1000,
       "price_wei": "1000000000000000000000",
-      "stock_symbol": "TSLA",
-      "stock_idx": 0,
-      "rate_wei": "101471334",
-      "rate_display": "~0.00 TSLA/year"
+      "stock_symbol": "NVDA",
+      "stock_idx": 1,
+      "rate_wei": "68385325",
+      "rate_display": "~0.0022 NVDA / 365d"
     },
     {
       "id": 10,
@@ -141,10 +133,10 @@
       "title": "Number 7A",
       "price_tokens": 1000,
       "price_wei": "1000000000000000000000",
-      "stock_symbol": "NVDA",
-      "stock_idx": 2,
-      "rate_wei": "101471334",
-      "rate_display": "~0.00 NVDA/year"
+      "stock_symbol": "AAPL",
+      "stock_idx": 0,
+      "rate_wei": "102168920",
+      "rate_display": "~0.0032 AAPL / 365d"
     },
     {
       "id": 11,
@@ -152,10 +144,10 @@
       "title": "Pendant portraits of Maerten Soolmans and Oopjen Coppit",
       "price_tokens": 1000,
       "price_wei": "1000000000000000000000",
-      "stock_symbol": "AMZN",
-      "stock_idx": 4,
-      "rate_wei": "101471334",
-      "rate_display": "~0.00 AMZN/year"
+      "stock_symbol": "NVDA",
+      "stock_idx": 1,
+      "rate_wei": "68385325",
+      "rate_display": "~0.0022 NVDA / 365d"
     },
     {
       "id": 12,
@@ -163,10 +155,10 @@
       "title": "Les Femmes d'Alger (\"Version O\")",
       "price_tokens": 1000,
       "price_wei": "1000000000000000000000",
-      "stock_symbol": "MSFT",
-      "stock_idx": 3,
-      "rate_wei": "101471334",
-      "rate_display": "~0.00 MSFT/year"
+      "stock_symbol": "NVDA",
+      "stock_idx": 1,
+      "rate_wei": "68385325",
+      "rate_display": "~0.0022 NVDA / 365d"
     },
     {
       "id": 13,
@@ -174,10 +166,10 @@
       "title": "Nu couch\u00e9",
       "price_tokens": 1000,
       "price_wei": "1000000000000000000000",
-      "stock_symbol": "NVDA",
-      "stock_idx": 2,
-      "rate_wei": "101471334",
-      "rate_display": "~0.00 NVDA/year"
+      "stock_symbol": "AAPL",
+      "stock_idx": 0,
+      "rate_wei": "102168920",
+      "rate_display": "~0.0032 AAPL / 365d"
     },
     {
       "id": 14,
@@ -185,10 +177,10 @@
       "title": "Masterpiece",
       "price_tokens": 1000,
       "price_wei": "1000000000000000000000",
-      "stock_symbol": "NVDA",
-      "stock_idx": 2,
-      "rate_wei": "101471334",
-      "rate_display": "~0.00 NVDA/year"
+      "stock_symbol": "AAPL",
+      "stock_idx": 0,
+      "rate_wei": "102168920",
+      "rate_display": "~0.0032 AAPL / 365d"
     },
     {
       "id": 15,
@@ -197,9 +189,9 @@
       "price_tokens": 1000,
       "price_wei": "1000000000000000000000",
       "stock_symbol": "AMZN",
-      "stock_idx": 4,
-      "rate_wei": "101471334",
-      "rate_display": "~0.00 AMZN/year"
+      "stock_idx": 2,
+      "rate_wei": "157658506",
+      "rate_display": "~0.0050 AMZN / 365d"
     },
     {
       "id": 16,
@@ -207,10 +199,10 @@
       "title": "Portrait of Adele Bloch-Bauer II",
       "price_tokens": 1000,
       "price_wei": "1000000000000000000000",
-      "stock_symbol": "MSFT",
-      "stock_idx": 3,
-      "rate_wei": "101471334",
-      "rate_display": "~0.00 MSFT/year"
+      "stock_symbol": "AMZN",
+      "stock_idx": 2,
+      "rate_wei": "157658506",
+      "rate_display": "~0.0050 AMZN / 365d"
     },
     {
       "id": 17,
@@ -218,10 +210,10 @@
       "title": "Les Poseuses, Ensemble (Petite version)",
       "price_tokens": 500,
       "price_wei": "500000000000000000000",
-      "stock_symbol": "MSFT",
-      "stock_idx": 3,
-      "rate_wei": "50735667",
-      "rate_display": "~0.00 MSFT/year"
+      "stock_symbol": "NVDA",
+      "stock_idx": 1,
+      "rate_wei": "34192662",
+      "rate_display": "~0.0011 NVDA / 365d"
     },
     {
       "id": 18,
@@ -229,10 +221,10 @@
       "title": "Three Studies of Lucian Freud",
       "price_tokens": 500,
       "price_wei": "500000000000000000000",
-      "stock_symbol": "MSFT",
-      "stock_idx": 3,
-      "rate_wei": "50735667",
-      "rate_display": "~0.00 MSFT/year"
+      "stock_symbol": "NVDA",
+      "stock_idx": 1,
+      "rate_wei": "34192662",
+      "rate_display": "~0.0011 NVDA / 365d"
     },
     {
       "id": 19,
@@ -240,10 +232,10 @@
       "title": "Twelve Landscape Screens",
       "price_tokens": 500,
       "price_wei": "500000000000000000000",
-      "stock_symbol": "MSFT",
-      "stock_idx": 3,
-      "rate_wei": "50735667",
-      "rate_display": "~0.00 MSFT/year"
+      "stock_symbol": "NVDA",
+      "stock_idx": 1,
+      "rate_wei": "34192662",
+      "rate_display": "~0.0011 NVDA / 365d"
     },
     {
       "id": 20,
@@ -252,9 +244,9 @@
       "price_tokens": 500,
       "price_wei": "500000000000000000000",
       "stock_symbol": "NVDA",
-      "stock_idx": 2,
-      "rate_wei": "50735667",
-      "rate_display": "~0.00 NVDA/year"
+      "stock_idx": 1,
+      "rate_wei": "34192662",
+      "rate_display": "~0.0011 NVDA / 365d"
     },
     {
       "id": 21,
@@ -262,10 +254,10 @@
       "title": "Femme \u00e0 la montre",
       "price_tokens": 500,
       "price_wei": "500000000000000000000",
-      "stock_symbol": "MSFT",
-      "stock_idx": 3,
-      "rate_wei": "50735667",
-      "rate_display": "~0.00 MSFT/year"
+      "stock_symbol": "AAPL",
+      "stock_idx": 0,
+      "rate_wei": "51084460",
+      "rate_display": "~0.0016 AAPL / 365d"
     },
     {
       "id": 22,
@@ -273,10 +265,10 @@
       "title": "La Montagne Sainte-Victoire",
       "price_tokens": 500,
       "price_wei": "500000000000000000000",
-      "stock_symbol": "MSFT",
-      "stock_idx": 3,
-      "rate_wei": "50735667",
-      "rate_display": "~0.00 MSFT/year"
+      "stock_symbol": "NVDA",
+      "stock_idx": 1,
+      "rate_wei": "34192662",
+      "rate_display": "~0.0011 NVDA / 365d"
     },
     {
       "id": 23,
@@ -284,10 +276,10 @@
       "title": "Woman III",
       "price_tokens": 500,
       "price_wei": "500000000000000000000",
-      "stock_symbol": "MSFT",
-      "stock_idx": 3,
-      "rate_wei": "50735667",
-      "rate_display": "~0.00 MSFT/year"
+      "stock_symbol": "AMZN",
+      "stock_idx": 2,
+      "rate_wei": "78829253",
+      "rate_display": "~0.0025 AMZN / 365d"
     },
     {
       "id": 24,
@@ -295,10 +287,10 @@
       "title": "Portrait of Adele Bloch-Bauer I",
       "price_tokens": 500,
       "price_wei": "500000000000000000000",
-      "stock_symbol": "AMZN",
-      "stock_idx": 4,
-      "rate_wei": "50735667",
-      "rate_display": "~0.00 AMZN/year"
+      "stock_symbol": "NVDA",
+      "stock_idx": 1,
+      "rate_wei": "34192662",
+      "rate_display": "~0.0011 NVDA / 365d"
     },
     {
       "id": 25,
@@ -306,10 +298,10 @@
       "title": "The Empire of Light",
       "price_tokens": 500,
       "price_wei": "500000000000000000000",
-      "stock_symbol": "MSFT",
-      "stock_idx": 3,
-      "rate_wei": "50735667",
-      "rate_display": "~0.00 MSFT/year"
+      "stock_symbol": "AAPL",
+      "stock_idx": 0,
+      "rate_wei": "51084460",
+      "rate_display": "~0.0016 AAPL / 365d"
     },
     {
       "id": 26,
@@ -317,10 +309,10 @@
       "title": "Otahi",
       "price_tokens": 500,
       "price_wei": "500000000000000000000",
-      "stock_symbol": "TSLA",
-      "stock_idx": 0,
-      "rate_wei": "50735667",
-      "rate_display": "~0.00 TSLA/year"
+      "stock_symbol": "AMZN",
+      "stock_idx": 2,
+      "rate_wei": "78829253",
+      "rate_display": "~0.0025 AMZN / 365d"
     },
     {
       "id": 27,
@@ -328,10 +320,10 @@
       "title": "The Scream",
       "price_tokens": 500,
       "price_wei": "500000000000000000000",
-      "stock_symbol": "TSLA",
+      "stock_symbol": "AAPL",
       "stock_idx": 0,
-      "rate_wei": "50735667",
-      "rate_display": "~0.00 TSLA/year"
+      "rate_wei": "51084460",
+      "rate_display": "~0.0016 AAPL / 365d"
     },
     {
       "id": 28,
@@ -340,9 +332,9 @@
       "price_tokens": 500,
       "price_wei": "500000000000000000000",
       "stock_symbol": "NVDA",
-      "stock_idx": 2,
-      "rate_wei": "50735667",
-      "rate_display": "~0.00 NVDA/year"
+      "stock_idx": 1,
+      "rate_wei": "34192662",
+      "rate_display": "~0.0011 NVDA / 365d"
     },
     {
       "id": 29,
@@ -350,10 +342,10 @@
       "title": "Verger avec cypr\u00e8s",
       "price_tokens": 500,
       "price_wei": "500000000000000000000",
-      "stock_symbol": "NVDA",
+      "stock_symbol": "AMZN",
       "stock_idx": 2,
-      "rate_wei": "50735667",
-      "rate_display": "~0.00 NVDA/year"
+      "rate_wei": "78829253",
+      "rate_display": "~0.0025 AMZN / 365d"
     },
     {
       "id": 30,
@@ -361,10 +353,10 @@
       "title": "Young Girl with a Flower Basket",
       "price_tokens": 500,
       "price_wei": "500000000000000000000",
-      "stock_symbol": "MSFT",
-      "stock_idx": 3,
-      "rate_wei": "50735667",
-      "rate_display": "~0.00 MSFT/year"
+      "stock_symbol": "AAPL",
+      "stock_idx": 0,
+      "rate_wei": "51084460",
+      "rate_display": "~0.0016 AAPL / 365d"
     },
     {
       "id": 31,
@@ -372,10 +364,10 @@
       "title": "Meules",
       "price_tokens": 500,
       "price_wei": "500000000000000000000",
-      "stock_symbol": "NVDA",
+      "stock_symbol": "AMZN",
       "stock_idx": 2,
-      "rate_wei": "50735667",
-      "rate_display": "~0.00 NVDA/year"
+      "rate_wei": "78829253",
+      "rate_display": "~0.0025 AMZN / 365d"
     },
     {
       "id": 32,
@@ -384,9 +376,9 @@
       "price_tokens": 500,
       "price_wei": "500000000000000000000",
       "stock_symbol": "AMZN",
-      "stock_idx": 4,
-      "rate_wei": "50735667",
-      "rate_display": "~0.00 AMZN/year"
+      "stock_idx": 2,
+      "rate_wei": "78829253",
+      "rate_display": "~0.0025 AMZN / 365d"
     },
     {
       "id": 33,
@@ -394,10 +386,10 @@
       "title": "Flag",
       "price_tokens": 500,
       "price_wei": "500000000000000000000",
-      "stock_symbol": "MSFT",
-      "stock_idx": 3,
-      "rate_wei": "50735667",
-      "rate_display": "~0.00 MSFT/year"
+      "stock_symbol": "NVDA",
+      "stock_idx": 1,
+      "rate_wei": "34192662",
+      "rate_display": "~0.0011 NVDA / 365d"
     },
     {
       "id": 34,
@@ -405,10 +397,10 @@
       "title": "Anna's Light",
       "price_tokens": 250,
       "price_wei": "250000000000000000000",
-      "stock_symbol": "AMZN",
-      "stock_idx": 4,
-      "rate_wei": "25367833",
-      "rate_display": "~0.00 AMZN/year"
+      "stock_symbol": "AAPL",
+      "stock_idx": 0,
+      "rate_wei": "25542230",
+      "rate_display": "~0.0008 AAPL / 365d"
     },
     {
       "id": 35,
@@ -416,10 +408,10 @@
       "title": "Silver Car Crash (Double Disaster)",
       "price_tokens": 250,
       "price_wei": "250000000000000000000",
-      "stock_symbol": "AAPL",
-      "stock_idx": 1,
-      "rate_wei": "25367833",
-      "rate_display": "~0.00 AAPL/year"
+      "stock_symbol": "AMZN",
+      "stock_idx": 2,
+      "rate_wei": "39414626",
+      "rate_display": "~0.0012 AMZN / 365d"
     },
     {
       "id": 36,
@@ -427,10 +419,10 @@
       "title": "Gar\u00e7on \u00e0 la pipe",
       "price_tokens": 250,
       "price_wei": "250000000000000000000",
-      "stock_symbol": "MSFT",
-      "stock_idx": 3,
-      "rate_wei": "25367833",
-      "rate_display": "~0.00 MSFT/year"
+      "stock_symbol": "NVDA",
+      "stock_idx": 1,
+      "rate_wei": "17096331",
+      "rate_display": "~0.0005 NVDA / 365d"
     },
     {
       "id": 37,
@@ -438,10 +430,10 @@
       "title": "Boy and Dog in a Johnnypump",
       "price_tokens": 250,
       "price_wei": "250000000000000000000",
-      "stock_symbol": "AAPL",
+      "stock_symbol": "NVDA",
       "stock_idx": 1,
-      "rate_wei": "25367833",
-      "rate_display": "~0.00 AAPL/year"
+      "rate_wei": "17096331",
+      "rate_display": "~0.0005 NVDA / 365d"
     },
     {
       "id": 38,
@@ -450,9 +442,9 @@
       "price_tokens": 250,
       "price_wei": "250000000000000000000",
       "stock_symbol": "AAPL",
-      "stock_idx": 1,
-      "rate_wei": "25367833",
-      "rate_display": "~0.00 AAPL/year"
+      "stock_idx": 0,
+      "rate_wei": "25542230",
+      "rate_display": "~0.0008 AAPL / 365d"
     },
     {
       "id": 39,
@@ -461,9 +453,9 @@
       "price_tokens": 250,
       "price_wei": "250000000000000000000",
       "stock_symbol": "AAPL",
-      "stock_idx": 1,
-      "rate_wei": "25367833",
-      "rate_display": "~0.00 AAPL/year"
+      "stock_idx": 0,
+      "rate_wei": "25542230",
+      "rate_display": "~0.0008 AAPL / 365d"
     },
     {
       "id": 40,
@@ -471,10 +463,10 @@
       "title": "Portrait of a Young Man holding a Roundel",
       "price_tokens": 250,
       "price_wei": "250000000000000000000",
-      "stock_symbol": "NVDA",
+      "stock_symbol": "AMZN",
       "stock_idx": 2,
-      "rate_wei": "25367833",
-      "rate_display": "~0.00 NVDA/year"
+      "rate_wei": "39414626",
+      "rate_display": "~0.0012 AMZN / 365d"
     },
     {
       "id": 41,
@@ -482,10 +474,10 @@
       "title": "Chop Suey",
       "price_tokens": 250,
       "price_wei": "250000000000000000000",
-      "stock_symbol": "NVDA",
+      "stock_symbol": "AMZN",
       "stock_idx": 2,
-      "rate_wei": "25367833",
-      "rate_display": "~0.00 NVDA/year"
+      "rate_wei": "39414626",
+      "rate_display": "~0.0012 AMZN / 365d"
     },
     {
       "id": 42,
@@ -493,10 +485,10 @@
       "title": "Rabbit",
       "price_tokens": 250,
       "price_wei": "250000000000000000000",
-      "stock_symbol": "MSFT",
-      "stock_idx": 3,
-      "rate_wei": "25367833",
-      "rate_display": "~0.00 MSFT/year"
+      "stock_symbol": "NVDA",
+      "stock_idx": 1,
+      "rate_wei": "17096331",
+      "rate_display": "~0.0005 NVDA / 365d"
     },
     {
       "id": 43,
@@ -504,10 +496,10 @@
       "title": "Portrait of an Artist (Pool with Two Figures)",
       "price_tokens": 250,
       "price_wei": "250000000000000000000",
-      "stock_symbol": "MSFT",
-      "stock_idx": 3,
-      "rate_wei": "25367833",
-      "rate_display": "~0.00 MSFT/year"
+      "stock_symbol": "AMZN",
+      "stock_idx": 2,
+      "rate_wei": "39414626",
+      "rate_display": "~0.0012 AMZN / 365d"
     },
     {
       "id": 44,
@@ -516,9 +508,9 @@
       "price_tokens": 250,
       "price_wei": "250000000000000000000",
       "stock_symbol": "AAPL",
-      "stock_idx": 1,
-      "rate_wei": "25367833",
-      "rate_display": "~0.00 AAPL/year"
+      "stock_idx": 0,
+      "rate_wei": "25542230",
+      "rate_display": "~0.0008 AAPL / 365d"
     },
     {
       "id": 45,
@@ -526,10 +518,10 @@
       "title": "Orange, Red, Yellow",
       "price_tokens": 250,
       "price_wei": "250000000000000000000",
-      "stock_symbol": "NVDA",
+      "stock_symbol": "AMZN",
       "stock_idx": 2,
-      "rate_wei": "25367833",
-      "rate_display": "~0.00 NVDA/year"
+      "rate_wei": "39414626",
+      "rate_display": "~0.0012 AMZN / 365d"
     },
     {
       "id": 46,
@@ -537,10 +529,10 @@
       "title": "Suprematist Composition",
       "price_tokens": 250,
       "price_wei": "250000000000000000000",
-      "stock_symbol": "MSFT",
-      "stock_idx": 3,
-      "rate_wei": "25367833",
-      "rate_display": "~0.00 MSFT/year"
+      "stock_symbol": "NVDA",
+      "stock_idx": 1,
+      "rate_wei": "17096331",
+      "rate_display": "~0.0005 NVDA / 365d"
     },
     {
       "id": 47,
@@ -548,10 +540,10 @@
       "title": "Portrait of Dr. Gachet",
       "price_tokens": 250,
       "price_wei": "250000000000000000000",
-      "stock_symbol": "MSFT",
-      "stock_idx": 3,
-      "rate_wei": "25367833",
-      "rate_display": "~0.00 MSFT/year"
+      "stock_symbol": "NVDA",
+      "stock_idx": 1,
+      "rate_wei": "17096331",
+      "rate_display": "~0.0005 NVDA / 365d"
     },
     {
       "id": 48,
@@ -559,10 +551,10 @@
       "title": "The Gross Clinic",
       "price_tokens": 100,
       "price_wei": "100000000000000000000",
-      "stock_symbol": "NVDA",
+      "stock_symbol": "AMZN",
       "stock_idx": 2,
-      "rate_wei": "10147133",
-      "rate_display": "~0.00 NVDA/year"
+      "rate_wei": "15765850",
+      "rate_display": "~0.0005 AMZN / 365d"
     },
     {
       "id": 49,
@@ -570,10 +562,10 @@
       "title": "Balloon Dog (Orange)",
       "price_tokens": 100,
       "price_wei": "100000000000000000000",
-      "stock_symbol": "TSLA",
-      "stock_idx": 0,
-      "rate_wei": "10147133",
-      "rate_display": "~0.00 TSLA/year"
+      "stock_symbol": "AMZN",
+      "stock_idx": 2,
+      "rate_wei": "15765850",
+      "rate_display": "~0.0005 AMZN / 365d"
     }
   ]
 }

@@ -14,14 +14,13 @@ const active = {
   explorer: 'https://robinhoodchain.blockscout.com',
   art: '', // MeadowArt -- set after deploy
   token: '', // project token -- set after deploy
-  // symbol order matches onchain.json's stock_idx and the deployed
-  // contract's constructor argument order; addresses fill in at launch
+  // Only the stocks funded in the treasury Safe. Symbol order matches
+  // onchain.json's stock_idx and the deployed contract's constructor argument
+  // order. TSLA and MSFT are excluded until funded.
   stocks: [
-    { symbol: 'TSLA', address: '' },
-    { symbol: 'AAPL', address: '' },
-    { symbol: 'NVDA', address: '' },
-    { symbol: 'MSFT', address: '' },
-    { symbol: 'AMZN', address: '' },
+    { symbol: 'AAPL', address: '0xaF3D76f1834A1d425780943C99Ea8A608f8a93f9' },
+    { symbol: 'NVDA', address: '0xd0601CE157Db5bdC3162BbaC2a2C8aF5320D9EEC' },
+    { symbol: 'AMZN', address: '0x12f190a9F9d7D37a250758b26824B97CE941bF54' },
   ],
   launchpad: 'https://www.ponsfamily.com/launchpad',
 };
