@@ -3,6 +3,11 @@
 // a plain script, not a module), so the EIP-6963 wallet-connect plumbing is
 // duplicated here rather than imported. Stays fully dormant -- no RPC calls
 // -- until NET.marketReady, same discipline as onchain.js does for NET.ready.
+//
+// art.js loads as a classic (non-module) script before this module script,
+// so its top-level function declarations (drawSpark, fmtUsd, fmtDate,
+// initReveal) are already on the global object by the time this file runs,
+// and are used directly below rather than reimplemented.
 import { createWalletClient, custom, parseAbi } from '../vendor/viem.js';
 import { chain, walletChain, NET, addressUrl } from '../config.js';
 import { pub } from '../chain.js';
@@ -14,6 +19,14 @@ const marketAbi = parseAbi([
   'function buy(uint256 tokenId)',
   'function listingsMany(uint256[] ids) view returns (address[] sellers, uint256[] prices, bool[] valid)',
   'function feeBps() view returns (uint16)',
+]);
+
+// Kept separate from marketAbi (which viem's parseAbi would happily also
+// accept these signatures into) so getLogs's `events` list is exactly the
+// two events the market page reads, nothing else.
+const marketEventsAbi = parseAbi([
+  'event Listed(uint256 indexed tokenId, address indexed seller, uint256 price)',
+  'event Sold(uint256 indexed tokenId, address indexed seller, address indexed buyer, uint256 price, uint256 fee)',
 ]);
 
 const artAbi = parseAbi([
@@ -28,6 +41,7 @@ const erc20Abi = parseAbi([
   'function approve(address,uint256) returns (bool)',
 ]);
 
+const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000';
 const artAddr = NET.art;
 const tokenAddr = NET.token;
 const marketAddr = NET.market;
@@ -53,21 +67,29 @@ function parseAmountToWei(input) {
   return BigInt(whole) * 10n ** 18n + BigInt(frac.padEnd(18, '0'));
 }
 
-function plateHtml(artist) {
-  return `<div class="plate" role="img" aria-label="${artist}, no image available"><span>${artist}</span></div>`;
+// mirrors MeadowMarket.buy()'s fee split exactly (fee = price * feeBps / BPS,
+// integer division, BPS = 10_000) so the preview never drifts from what the
+// contract actually charges
+function computeProceeds(priceWei, feeBps) {
+  const fee = (priceWei * BigInt(feeBps)) / 10_000n;
+  return { fee, proceeds: priceWei - fee };
 }
 
-function notLiveNotice() {
-  return `<div class="not-live">
-    <p>not live yet: ${NET.activationIssue}.</p>
-    <a class="btn btn-outline" href="${NET.launchpad}" target="_blank" rel="noopener">see the Pons launch</a>
-  </div>`;
+function plateHtml(artist) {
+  return `<div class="plate" role="img" aria-label="${artist}, no image available"><span>${artist}</span></div>`;
 }
 
 function marketNotLiveNotice() {
   return `<div class="not-live">
     <p>the secondary market isn't live yet. once MeadowMarket deploys, holders can list pieces here.</p>
     <a class="btn btn-outline" href="./">back to the catalog</a>
+  </div>`;
+}
+
+function notLiveNotice() {
+  return `<div class="not-live">
+    <p>not live yet: ${NET.activationIssue}.</p>
+    <a class="btn btn-outline" href="${NET.launchpad}" target="_blank" rel="noopener">see the Pons launch</a>
   </div>`;
 }
 
@@ -334,14 +356,115 @@ async function loadPieces() {
   const catalogById = new Map(catalog.works.map(w => [w.id, w]));
   pieces = onchain.works.map(w => {
     const c = catalogById.get(w.slug);
-    return { id: w.id, slug: w.slug, title: w.title, artist: c?.artist || '', img: c?.img || null };
+    return {
+      id: w.id,
+      slug: w.slug,
+      title: w.title,
+      artist: c?.artist || '',
+      img: c?.img || null,
+      worth: c?.last?.price_usd ?? null,
+      spark: c?.spark || [],
+      stockSymbol: w.stock_symbol,
+    };
   });
   return pieces;
 }
 
+/* ---------- pure helpers: stats, sorting, activity feed ----------
+   No DOM access in this block -- see scratchpad/market-helpers.test.mjs
+   (thrown away after use) for the node harness that exercised these against
+   mock listings/logs. */
+
+function computeMarketStats(listed, soldLogs) {
+  const floor = listed.length ? listed.reduce((min, l) => (l.price < min ? l.price : min), listed[0].price) : null;
+  const volume = soldLogs.reduce((sum, s) => sum + s.args.price, 0n);
+  const lastSale = soldLogs.reduce((latest, s) => {
+    if (!latest) return s;
+    if (s.blockNumber !== latest.blockNumber) return s.blockNumber > latest.blockNumber ? s : latest;
+    return Number(s.logIndex) > Number(latest.logIndex) ? s : latest;
+  }, null);
+  return {
+    floor,
+    listedCount: listed.length,
+    volume,
+    salesCount: soldLogs.length,
+    lastSalePrice: lastSale ? lastSale.args.price : null,
+  };
+}
+
+// tokenId (Number) -> highest blockNumber (BigInt) any Listed event for it
+// landed in. Only meaningful for tokens that are still validly listed today
+// (isListingValid already filters out cancelled/stale/resold ones upstream).
+function latestListedBlockByToken(listedLogs) {
+  const map = new Map();
+  for (const log of listedLogs) {
+    const id = Number(log.args.tokenId);
+    const bn = log.blockNumber;
+    const cur = map.get(id);
+    if (cur == null || bn > cur) map.set(id, bn);
+  }
+  return map;
+}
+
+function sortListings(listed, key, recentBlockById) {
+  const arr = listed.slice();
+  if (key === 'price-asc') return arr.sort((a, b) => (a.price < b.price ? -1 : a.price > b.price ? 1 : 0));
+  if (key === 'price-desc') return arr.sort((a, b) => (a.price < b.price ? 1 : a.price > b.price ? -1 : 0));
+  // 'recent': newest Listed block first; a listing with no matching event
+  // (shouldn't normally happen, since every valid listing came from a list()
+  // call) sorts last rather than crashing the comparator
+  return arr.sort((a, b) => {
+    const ba = recentBlockById.get(a.id);
+    const bb = recentBlockById.get(b.id);
+    if (ba == null && bb == null) return 0;
+    if (ba == null) return 1;
+    if (bb == null) return -1;
+    return ba < bb ? 1 : ba > bb ? -1 : 0;
+  });
+}
+
+function buildActivityFeed(listedLogs, soldLogs, piecesById, limit = 20) {
+  const rows = [
+    ...listedLogs.map(l => ({ kind: 'listed', tokenId: l.args.tokenId, price: l.args.price, blockNumber: l.blockNumber, logIndex: l.logIndex, txHash: l.transactionHash })),
+    ...soldLogs.map(s => ({ kind: 'sold', tokenId: s.args.tokenId, price: s.args.price, blockNumber: s.blockNumber, logIndex: s.logIndex, txHash: s.transactionHash })),
+  ];
+  rows.sort((a, b) => {
+    if (a.blockNumber !== b.blockNumber) return a.blockNumber < b.blockNumber ? 1 : -1;
+    return Number(b.logIndex) - Number(a.logIndex);
+  });
+  return rows.slice(0, limit).map(r => ({
+    ...r,
+    title: piecesById.get(Number(r.tokenId))?.title || `piece #${r.tokenId}`,
+  }));
+}
+
+/* ---------- market stats bar ---------- */
+
+// eventsError is set when getLogs failed but listingsMany/feeBps still
+// succeeded (see renderMarket) -- floor/listed/fee stay real, volume/last
+// sale fall back to "unavailable" instead of misreporting zero
+function renderMarketStats(root, stats, feeBps, eventsError) {
+  const feePct = Number(feeBps) / 100;
+  const floorText = stats.floor != null ? `${fmtAmount(stats.floor)} RWArt` : 'n/a';
+  const volumeText = eventsError
+    ? 'unavailable'
+    : stats.salesCount > 0
+      ? `${fmtAmount(stats.volume)} RWArt across ${stats.salesCount} sale${stats.salesCount === 1 ? '' : 's'}`
+      : 'no sales yet';
+  const lastSaleText = eventsError ? 'unavailable' : (stats.lastSalePrice != null ? `${fmtAmount(stats.lastSalePrice)} RWArt` : 'n/a');
+  root.innerHTML = `
+    <p class="stats-line">floor <strong>${floorText}</strong> · listed <strong>${stats.listedCount}</strong> · fee <strong>${feePct}%</strong></p>
+    <p class="stats-line">volume <strong>${volumeText}</strong> · last sale <strong>${lastSaleText}</strong></p>
+    ${eventsError ? `<p class="market-error">could not read sale history. ${shortMessage(eventsError, 'try again shortly')}</p>` : ''}
+  `;
+}
+
 /* ---------- for sale ---------- */
 
-function marketCardHtml(l) {
+let forSaleSort = 'recent';
+let forSaleArtist = '';
+
+function marketCardHtml(l, feeBps) {
   const thumb = l.img
     ? `<img src="${l.img.thumb}" alt="${l.title}, by ${l.artist}">`
     : plateHtml(l.artist);
@@ -355,6 +478,8 @@ function marketCardHtml(l) {
     : account
       ? `<button class="btn btn-dark buy-btn" type="button" data-id="${l.id}">buy</button>`
       : '<button class="btn btn-outline connect-buy-btn" type="button">connect to buy</button>';
+  const { fee, proceeds } = computeProceeds(l.price, feeBps);
+  const worthText = l.worth != null ? fmtUsd(l.worth) : 'n/a';
   return `
     <div class="market-card" data-id="${l.id}">
       <a class="title-link" href="work.html?id=${l.slug}">
@@ -362,7 +487,10 @@ function marketCardHtml(l) {
         <p class="title">${l.title}</p>
         <p class="meta">${l.artist}</p>
       </a>
+      <canvas class="spark" width="96" height="24" data-spark="${l.id}"></canvas>
       <p class="price-line">${fmtAmount(l.price)} RWArt</p>
+      <p class="worth-line">worth ${worthText} · pays ${l.stockSymbol}</p>
+      <p class="fee-line">fee ${fmtAmount(fee)} RWArt · seller receives ${fmtAmount(proceeds)} RWArt</p>
       <p class="seller">seller ${sellerText}</p>
       ${buyControl}
       <p class="txstate"></p>
@@ -431,62 +559,173 @@ async function doBuy(listing, root) {
   }
 }
 
-async function renderForSale(root) {
-  if (!NET.marketReady) { root.innerHTML = marketNotLiveNotice(); return; }
-  root.innerHTML = '<p>checking listings…</p>';
-
-  let listed;
-  try {
-    const data = await loadPieces();
-    const [sellers, prices, valid] = await pub.readContract({
-      address: marketAddr, abi: marketAbi, functionName: 'listingsMany', args: [data.map(p => BigInt(p.id))],
-    });
-    listed = data
-      .map((p, i) => ({ ...p, seller: sellers[i], price: prices[i] }))
-      .filter((_, i) => valid[i]);
-  } catch (err) {
-    root.innerHTML = `<p>could not read the listings. ${shortMessage(err, 'try again shortly')}</p>`;
-    return;
-  }
-
+// Sort/filter changes re-render from the already-fetched `listed` array --
+// no new RPC call, matching how the catalog page's own controls work.
+function renderForSale(root, listed, recentBlockById, feeBps) {
   if (!listed.length) {
     root.innerHTML = '<p class="market-empty">nothing listed yet. holders can list a piece from "your pieces" below.</p>';
     return;
   }
 
-  const floor = listed.reduce((min, l) => (l.price < min ? l.price : min), listed[0].price);
+  const artists = [...new Set(listed.map(l => l.artist).filter(Boolean))].sort();
+  const artistOptions = '<option value="">all artists</option>' +
+    artists.map(a => `<option value="${a}"${a === forSaleArtist ? ' selected' : ''}>${a}</option>`).join('');
+
   root.innerHTML = `
-    <p class="market-summary">${listed.length} listed · floor ${fmtAmount(floor)} RWArt</p>
-    <div class="market-grid">${listed.map(marketCardHtml).join('')}</div>
+    <div class="controls">
+      <label>sort
+        <select id="marketSort">
+          <option value="recent"${forSaleSort === 'recent' ? ' selected' : ''}>recently listed</option>
+          <option value="price-asc"${forSaleSort === 'price-asc' ? ' selected' : ''}>price, low to high</option>
+          <option value="price-desc"${forSaleSort === 'price-desc' ? ' selected' : ''}>price, high to low</option>
+        </select>
+      </label>
+      <label>artist
+        <select id="marketArtist">${artistOptions}</select>
+      </label>
+    </div>
+    <p class="market-summary" id="marketCount"></p>
+    <div class="market-grid" id="marketGrid"></div>
   `;
-  wireBuyButtons(root, listed);
+
+  const grid = root.querySelector('#marketGrid');
+  const count = root.querySelector('#marketCount');
+
+  const paint = () => {
+    const filtered = forSaleArtist ? listed.filter(l => l.artist === forSaleArtist) : listed;
+    const rows = sortListings(filtered, forSaleSort, recentBlockById);
+    count.textContent = `${rows.length} of ${listed.length} listed`;
+    if (!rows.length) {
+      grid.innerHTML = '<p class="market-empty">no listings match this filter.</p>';
+      return;
+    }
+    grid.innerHTML = rows.map(l => marketCardHtml(l, feeBps)).join('');
+    for (const canvas of grid.querySelectorAll('canvas[data-spark]')) {
+      const l = rows.find(r => String(r.id) === canvas.dataset.spark);
+      if (l?.spark?.length) drawSpark(canvas, l.spark);
+    }
+    wireBuyButtons(grid, rows);
+  };
+
+  root.querySelector('#marketSort').addEventListener('change', e => { forSaleSort = e.target.value; paint(); });
+  root.querySelector('#marketArtist').addEventListener('change', e => { forSaleArtist = e.target.value; paint(); });
+  paint();
+}
+
+/* ---------- activity feed ---------- */
+
+function activityRowHtml(row) {
+  const verb = row.kind === 'sold' ? 'sold' : 'listed';
+  return `<p class="activity-row">${verb} ${row.title} for ${fmtAmount(row.price)} RWArt · <a href="${txUrl(row.txHash)}" target="_blank" rel="noopener">tx</a></p>`;
+}
+
+function renderActivity(root, activity, eventsError) {
+  if (eventsError) { root.innerHTML = `<p class="market-error">could not load activity. ${shortMessage(eventsError, 'try again shortly')}</p>`; return; }
+  if (!activity.length) { root.innerHTML = '<p class="market-empty">no activity yet.</p>'; return; }
+  root.innerHTML = activity.map(activityRowHtml).join('');
+}
+
+/* ---------- market stats + for sale + activity: one shared fetch ---------- */
+
+async function renderMarket(statsRoot, forSaleRoot, activityRoot) {
+  if (statsRoot) statsRoot.innerHTML = '<p class="market-loading">loading market stats…</p>';
+  if (forSaleRoot) forSaleRoot.innerHTML = '<p class="market-loading">checking listings…</p>';
+  if (activityRoot) activityRoot.innerHTML = '<p class="market-loading">loading activity…</p>';
+
+  let piecesData, listingsResult, feeBps;
+  try {
+    piecesData = await loadPieces();
+    // Issued together (not awaited one at a time) so chain.js's multicall
+    // batching folds these two readContract calls into one request.
+    [listingsResult, feeBps] = await Promise.all([
+      pub.readContract({
+        address: marketAddr, abi: marketAbi, functionName: 'listingsMany', args: [piecesData.map(p => BigInt(p.id))],
+      }),
+      pub.readContract({ address: marketAddr, abi: marketAbi, functionName: 'feeBps' }),
+    ]);
+  } catch (err) {
+    const msg = `<p class="market-error">could not read the market. ${shortMessage(err, 'try again shortly')}</p>`;
+    if (statsRoot) statsRoot.innerHTML = msg;
+    if (forSaleRoot) forSaleRoot.innerHTML = msg;
+    if (activityRoot) activityRoot.innerHTML = msg;
+    return;
+  }
+
+  const [sellers, prices, valid] = listingsResult;
+  const listed = piecesData
+    .map((p, i) => ({ ...p, seller: sellers[i], price: prices[i] }))
+    .filter((_, i) => valid[i]);
+
+  // getLogs is a plain eth_getLogs, not part of the multicall batch above,
+  // and is read separately so a failure here (e.g. a public RPC refusing a
+  // full-history range) degrades stats/activity to "unavailable" instead of
+  // blanking the for-sale grid, which already has everything it needs from
+  // listingsMany. fromBlock 0n because no market deploy block is known yet
+  // -- see the report for what that costs against a real RPC.
+  let listedLogs = [], soldLogs = [], eventsError = null;
+  try {
+    const logs = await pub.getLogs({ address: marketAddr, events: marketEventsAbi, fromBlock: 0n, toBlock: 'latest' });
+    listedLogs = logs.filter(l => l.eventName === 'Listed');
+    soldLogs = logs.filter(l => l.eventName === 'Sold');
+  } catch (err) {
+    eventsError = err;
+  }
+
+  const stats = computeMarketStats(listed, soldLogs);
+  const recentBlockById = latestListedBlockByToken(listedLogs);
+  const piecesById = new Map(piecesData.map(p => [p.id, p]));
+  const activity = buildActivityFeed(listedLogs, soldLogs, piecesById);
+
+  if (statsRoot) renderMarketStats(statsRoot, stats, feeBps, eventsError);
+  if (forSaleRoot) renderForSale(forSaleRoot, listed, recentBlockById, feeBps);
+  if (activityRoot) renderActivity(activityRoot, activity, eventsError);
 }
 
 /* ---------- your pieces ---------- */
 
+function listingStatusText(listing) {
+  if (!listing.seller || listing.seller === ZERO_ADDRESS) return 'not listed';
+  if (listing.valid) return `listed at ${fmtAmount(listing.price)} RWArt`;
+  return 'listing inactive · re-approve the market to reactivate';
+}
+
 function yourPieceRowHtml(p, listing) {
   const isListed = listing.valid && listing.seller.toLowerCase() === account.toLowerCase();
+  const worthLine = `<span class="meta piece-worth">worth ${p.worth != null ? fmtUsd(p.worth) : 'n/a'} · pays ${p.stockSymbol}</span>`;
   const controls = isListed
     ? `
-      <span class="meta">listed at ${fmtAmount(listing.price)} RWArt</span>
+      <span class="meta">${listingStatusText(listing)}</span>
       <input class="price-input" type="text" inputmode="decimal" placeholder="new price" data-role="price">
+      <span class="proceeds-preview" data-role="proceeds"></span>
       <button class="btn btn-outline update-btn" type="button">update price</button>
       <button class="btn btn-outline cancel-btn" type="button">cancel</button>
     `
     : `
+      <span class="meta">${listingStatusText(listing)}</span>
       <input class="price-input" type="text" inputmode="decimal" placeholder="price in RWArt" data-role="price">
+      <span class="proceeds-preview" data-role="proceeds"></span>
       <button class="btn btn-dark list-btn" type="button">list</button>
     `;
   return `
     <div class="your-piece-row" data-id="${p.id}">
-      <span class="your-piece-title"><a href="work.html?id=${p.slug}">${p.title}</a></span>
+      <span class="your-piece-title"><a href="work.html?id=${p.slug}">${p.title}</a>${worthLine}</span>
       ${controls}
       <span class="txstate"></span>
     </div>
   `;
 }
 
-function wireYourPieceRows(root, approved) {
+function wireYourPieceRows(root, approved, feeBps) {
+  root.querySelectorAll('.your-piece-row').forEach(row => {
+    const input = row.querySelector('[data-role="price"]');
+    const preview = row.querySelector('[data-role="proceeds"]');
+    input.addEventListener('input', () => {
+      const wei = parseAmountToWei(input.value);
+      if (!wei) { preview.textContent = ''; return; }
+      const { fee, proceeds } = computeProceeds(wei, feeBps);
+      preview.textContent = `fee ${fmtAmount(fee)} RWArt · you receive ${fmtAmount(proceeds)} RWArt`;
+    });
+  });
   root.querySelectorAll('.list-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const row = btn.closest('.your-piece-row');
@@ -589,15 +828,14 @@ async function doCancel(id, root) {
 }
 
 async function renderYourPieces(root) {
-  if (!NET.marketReady) { root.innerHTML = marketNotLiveNotice(); return; }
   if (!account) { root.innerHTML = '<p>connect a wallet to see the pieces you own.</p>'; return; }
-  root.innerHTML = '<p>checking your pieces…</p>';
+  root.innerHTML = '<p class="market-loading">checking your pieces…</p>';
 
   let data;
   try {
     data = await loadPieces();
   } catch (err) {
-    root.innerHTML = `<p>could not load the catalog. ${shortMessage(err, 'try again shortly')}</p>`;
+    root.innerHTML = `<p class="market-error">could not load the catalog. ${shortMessage(err, 'try again shortly')}</p>`;
     return;
   }
 
@@ -608,7 +846,7 @@ async function renderYourPieces(root) {
       allowFailure: true,
     });
   } catch (err) {
-    root.innerHTML = `<p>could not read your pieces. ${shortMessage(err, 'try again shortly')}</p>`;
+    root.innerHTML = `<p class="market-error">could not read your pieces. ${shortMessage(err, 'try again shortly')}</p>`;
     return;
   }
 
@@ -637,7 +875,7 @@ async function renderYourPieces(root) {
     approved = approvedResult;
     feeBps = feeBpsResult;
   } catch (err) {
-    root.innerHTML = `<p>could not read your listings. ${shortMessage(err, 'try again shortly')}</p>`;
+    root.innerHTML = `<p class="market-error">could not read your listings. ${shortMessage(err, 'try again shortly')}</p>`;
     return;
   }
 
@@ -647,25 +885,50 @@ async function renderYourPieces(root) {
     <p class="market-fee-note">listings pay a ${feePct}% fee to the Safe on sale; you receive the rest.</p>
     ${owned.map((p, i) => yourPieceRowHtml(p, listings[i])).join('')}
   `;
-  wireYourPieceRows(root, approved);
+  wireYourPieceRows(root, approved, feeBps);
 }
 
 /* ---------- entry ---------- */
 
+const marketStatsBody = document.getElementById('marketStatsBody');
 const forSaleBody = document.getElementById('forSaleBody');
+const activityBody = document.getElementById('activityBody');
 const yourPiecesBody = document.getElementById('yourPiecesBody');
 
 function refreshAll() {
-  if (forSaleBody) renderForSale(forSaleBody);
+  renderMarket(marketStatsBody, forSaleBody, activityBody);
   if (yourPiecesBody) renderYourPieces(yourPiecesBody);
 }
 
 function init() {
   wireWalletButton();
   fetch('data/catalog.json').then(res => res.ok ? res.json() : null).then(renderFooterAttribution).catch(() => {});
+
+  const sections = document.getElementById('marketSections');
+  const notice = document.getElementById('marketNotice');
+  if (!NET.marketReady) {
+    // Dormant: no market reads, no getLogs, nothing below this point runs.
+    // wireWalletButton() above still works off NET.ready (art+token), same
+    // as onchain.js elsewhere -- connecting a wallet here just has nothing
+    // market-specific to do yet.
+    if (sections) sections.hidden = true;
+    if (notice) {
+      const body = notice.querySelector('.panel-body');
+      if (body) body.innerHTML = marketNotLiveNotice();
+      notice.hidden = false;
+    }
+    return;
+  }
+
+  if (notice) notice.hidden = true;
   onAccountChange = refreshAll;
   refreshAll();
 }
 
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
 else init();
+
+// Exported for the node harness only (art.js/market.html never import this
+// module, so these are inert in the browser) -- lets the harness exercise
+// the real implementations instead of a re-typed copy.
+export { fmtAmount, parseAmountToWei, computeProceeds, computeMarketStats, latestListedBlockByToken, sortListings, buildActivityFeed };

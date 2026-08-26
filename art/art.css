@@ -253,6 +253,23 @@ table.sales .note { display: block; opacity: .75; margin-top: 4px; }
 .market-card .seller a { text-decoration: underline; }
 .market-card .btn { justify-self: start; margin-top: 4px; }
 
+/* ---------- market stats bar ---------- */
+.stats-line { font-size: 14px; margin-bottom: 6px; }
+.stats-line:last-child { margin-bottom: 0; }
+.stats-line strong { font-family: var(--display); font-weight: 600; }
+
+/* ---------- for sale: sort/filter + card extras ---------- */
+.market-card .spark { display: block; margin: 4px 0; }
+.market-card .worth-line, .market-card .fee-line { font-size: 12px; opacity: .8; }
+
+/* ---------- activity feed ---------- */
+.activity-row { font-size: 13px; border-top: 2px solid var(--ink); padding: 8px 0; }
+.activity-row:first-child { border-top: none; padding-top: 0; }
+.activity-row a { text-decoration: underline; }
+
+/* ---------- loading / error states ---------- */
+.market-loading, .market-error { font-size: 14px; }
+
 /* ---------- your pieces ---------- */
 .market-reminder { font-size: 13px; margin-bottom: 6px; }
 .market-reminder a { text-decoration: underline; }
@@ -265,8 +282,10 @@ table.sales .note { display: block; opacity: .75; margin-top: 4px; }
   border-top: 2px solid var(--ink);
   padding: 14px 0;
 }
-.your-piece-title { font-family: var(--display); font-weight: 500; flex: 1 1 160px; }
+.your-piece-title { font-family: var(--display); font-weight: 500; flex: 1 1 160px; display: flex; flex-direction: column; gap: 4px; }
 .your-piece-title a { text-decoration: underline; }
+.piece-worth { font-family: var(--body); font-weight: 400; font-size: 12px; opacity: .8; }
+.proceeds-preview { font-size: 12px; opacity: .8; flex-basis: 100%; }
 .price-input {
   font-family: var(--body);
   font-size: 13px;
