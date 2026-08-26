@@ -101,3 +101,52 @@ green.
 Never paste a private key into chat or a file. Use the cast keystore or a
 hardware wallet. A key pasted in chat on another project had to be treated as
 public; do not repeat that.
+
+## MeadowMarket (secondary market)
+
+MeadowMarket is a separate, non-custodial contract for reselling pieces after
+the initial MeadowArt.buy(). A seller never sends the piece to the market;
+they approve it and the market moves seller -> buyer only inside buy(). The
+market never holds a piece and never holds the payment token beyond a single
+buy() call, so there is no withdraw function and nothing to fund.
+
+### Deploy
+
+Requires MeadowArt already deployed (ART below) and a payment ERC20 (PAY,
+does not have to be the same token MeadowArt prices pieces in):
+
+    export ART=<MEADOWART>                          # from the MeadowArt deploy above
+    export PAY=<PAYMENT_TOKEN>                       # ERC20 buyers pay in on the secondary market
+    export FEE_BPS=250                               # 2.5%; hard cap is 1000 (10%)
+    export FEE_RECIPIENT=0x598597a5056438Ac9A7206E2C36B0553fc7e34C7   # the meadow Safe
+    export OWNER=0x598597a5056438Ac9A7206E2C36B0553fc7e34C7           # the meadow Safe
+
+    forge script script/DeployMeadowMarket.s.sol \
+      --rpc-url https://rpc.mainnet.chain.robinhood.com \
+      --account meadow-owner \
+      --broadcast
+
+Copy the deployed MeadowMarket address from the broadcast output.
+
+### Verify
+
+Blockscout: https://robinhoodchain.blockscout.com/address/<MEADOWMARKET>
+Sanity: `cast call <MEADOWMARKET> "art()" --rpc-url ...` should return ART,
+and `cast call <MEADOWMARKET> "pay()" --rpc-url ...` should return PAY.
+
+### Go live on the site
+
+A seller must call `art.approve(MEADOWMARKET, tokenId)` (or
+`setApprovalForAll(MEADOWMARKET, true)`) before `list()` will accept the
+listing; the frontend should check `art.isApprovedForAll` first and prompt
+for approval if it is false. Use `listingsMany(ids)` to read all pieces'
+listings in one call. Add the MeadowMarket address to config.js once the
+frontend wiring is ready; do not flip it live until a real buy on mainnet has
+been verified end to end (list, approve `pay`, buy, confirm the piece moved
+and the fee split landed).
+
+Claim before you list: MeadowArt resets a piece's reward accrual to the
+transfer timestamp on every ownership change, and it has no owner-change
+settlement, so any stock accrued and unclaimed at sale time is forfeited, not
+paid to the seller. The list screen should surface `art.claimable(tokenId)`
+and prompt a `claim()` first if it is nonzero.
