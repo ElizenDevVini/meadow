@@ -76,12 +76,13 @@ ul, ol { list-style: none; }
   right: 10px;
   height: 2px;
   background: var(--ink);
-  transition: transform .15s steps(2), top .15s steps(2);
+  transition: transform .15s steps(2);
 }
 .menu span:first-child { top: 14px; }
 .menu span:last-child { top: 21px; }
-.nav.open .menu span:first-child { top: 17.5px; transform: rotate(45deg); }
-.nav.open .menu span:last-child { top: 17.5px; transform: rotate(-45deg); }
+/* top stays fixed; the X shape comes from transform only, so this never triggers layout */
+.nav.open .menu span:first-child { transform: translateY(3.5px) rotate(45deg); }
+.nav.open .menu span:last-child { transform: translateY(-3.5px) rotate(-45deg); }
 
 /* ---------- buttons ---------- */
 .btn {
@@ -268,7 +269,9 @@ h1 .w span {
   padding: 8px 14px;
   transform: translateX(-50%) translateY(14px);
   animation-name: rv-cue;
-  transition: opacity .3s steps(3);
+  /* this transition drives the scroll-linked show/hide, not the entrance;
+     kept smooth so it doesn't strobe as the user scrolls past it */
+  transition: opacity .3s ease;
 }
 @keyframes rv-cue { to { opacity: 1; transform: translateX(-50%) translateY(0); } }
 .scroll-cue span { display: inline-block; animation: bob 1.2s steps(2) infinite; }
@@ -346,10 +349,14 @@ h2 {
   gap: 24px;
   padding: 26px 8px;
   border-bottom: 2px solid var(--ink);
-  transition: background .15s steps(3), color .15s steps(3), padding .15s steps(3);
+  transition: background .15s steps(3), color .15s steps(3);
   cursor: default;
 }
-.cases li:hover { background: var(--ink); color: var(--paper); padding-left: 16px; }
+.cases li:hover { background: var(--ink); color: var(--paper); }
+/* nudge the text right on hover instead of the row itself, so the row's own
+   border-bottom stays put and doesn't shift out of line with its neighbors */
+.cases .n, .cases .t, .cases .d { transition: transform .15s steps(3); }
+.cases li:hover .n, .cases li:hover .t, .cases li:hover .d { transform: translateX(8px); }
 .cases .n { font-size: 12px; color: inherit; letter-spacing: .08em; }
 .cases .t { font-family: var(--display); font-size: 1.5rem; font-weight: 500; letter-spacing: 0; }
 .cases .d { color: inherit; }
@@ -390,10 +397,12 @@ h2 {
 .copy { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink); }
 
 /* ---------- scroll reveal ---------- */
+/* opacity fades smoothly so the reveal reads as an appearance, not a strobe;
+   the transform keeps a slight stepped snap for the pixel-aesthetic feel */
 [data-reveal] {
   opacity: 0;
   transform: translateY(22px);
-  transition: opacity .3s steps(4) var(--d, 0s), transform .3s steps(4) var(--d, 0s);
+  transition: opacity .5s ease-out var(--d, 0s), transform .3s steps(3) var(--d, 0s);
 }
 [data-reveal].in { opacity: 1; transform: none; }
 
@@ -439,4 +448,5 @@ h2 {
   .scroll-cue { transform: translateX(-50%); }
   .butterfly, .butterfly i, .scroll-cue span { animation: none; }
   [data-reveal] { opacity: 1; transform: none; transition: none; }
+  .hero-media, .hero-copy { will-change: auto; }
 }

@@ -32,6 +32,14 @@ function fmtGain(g) {
 
 /* ---------- pixel charts (fillRect only, two colors) ---------- */
 
+// A canvas can get a new drawPixelChart call (e.g. the hero chart's final
+// repaint on resize) while a previous progressive reveal is still mid-loop.
+// The loop closes over stale geometry, so without a token it keeps painting
+// after the newer call's frame, clobbering it. Bumping the token on every
+// call, before the animate/no-animate branch, cancels any older loop on
+// that same canvas as soon as a newer draw (animated or not) starts.
+const drawTokens = new WeakMap();
+
 function setupCanvas(canvas, w, h, cell) {
   const s = Math.max(1, Math.floor(devicePixelRatio || 1));
   canvas.width = w * s;
@@ -101,26 +109,34 @@ function paintFrame(ctx, cols, rows, paper, ink, geom, cutoffCol, withMarkers, f
 }
 
 function drawPixelChart(canvas, opts) {
-  const { series, w, h, cell = 2, fill = true, markers = true, log = true } = opts;
+  const { series, w, h, cell = 2, fill = true, markers = true, log = true, animate = true } = opts;
   const cs = getComputedStyle(document.documentElement);
   const paper = cs.getPropertyValue('--paper').trim();
   const ink = cs.getPropertyValue('--ink').trim();
   const { ctx, cols, rows } = setupCanvas(canvas, w, h, cell);
   const geom = buildPointMap(series, cols, rows, log);
 
+  const token = (drawTokens.get(canvas) || 0) + 1;
+  drawTokens.set(canvas, token);
+
   const paint = (cutoffCol, withMarkers) => paintFrame(ctx, cols, rows, paper, ink, geom, cutoffCol, withMarkers, fill, markers);
 
-  if (REDUCE || geom.px.length < 2) {
+  if (REDUCE || !animate || geom.px.length < 2) {
     paint(cols, true);
   } else {
-    let frame = 0;
-    const total = 12;
-    const step = () => {
-      frame++;
+    // rAF-timed rather than chained setTimeouts, so the reveal cadence
+    // doesn't drift or stutter under load; still a left-to-right step reveal.
+    const total = 16;
+    const durationMs = 640;
+    let start = null;
+    const step = ts => {
+      if (drawTokens.get(canvas) !== token) return; // a newer draw call superseded this one
+      if (start === null) start = ts;
+      const frame = Math.min(total, Math.floor((ts - start) / (durationMs / total)) + 1);
       paint(geom.xPad + Math.round(frame / total * geom.plotCols), frame === total);
-      if (frame < total) setTimeout(step, 60);
+      if (frame < total) requestAnimationFrame(step);
     };
-    step();
+    requestAnimationFrame(step);
   }
 
   return {
@@ -132,12 +148,14 @@ function drawPixelChart(canvas, opts) {
 
 function drawSpark(canvas, values) {
   const series = values.map((v, i) => ({ x: i, v, kind: 'index' })).filter(p => p.v != null);
-  drawPixelChart(canvas, { series, w: 96, h: 24, cell: 1, fill: false, markers: false });
+  // Catalog grid redraws ~50 of these on every filter/sort change; a
+  // progressive reveal buys nothing at 96px wide and multiplies badly.
+  drawPixelChart(canvas, { series, w: 96, h: 24, cell: 1, fill: false, markers: false, animate: false });
 }
 
-function drawIndexChart(canvas, bins, values, w, h) {
+function drawIndexChart(canvas, bins, values, w, h, animate = true) {
   const series = bins.map((x, i) => ({ x, v: values[i], kind: 'index' })).filter(p => p.v != null);
-  return drawPixelChart(canvas, { series, w, h, cell: 2, fill: true, markers: false, log: true });
+  return drawPixelChart(canvas, { series, w, h, cell: 2, fill: true, markers: false, log: true, animate });
 }
 
 /* ---------- axis ticks ----------
@@ -181,16 +199,23 @@ function initNav() {
   });
 }
 
+// One observer for the whole page: initReveal() runs again after every grid
+// re-render, and a fresh IntersectionObserver each time would leak.
+let revealObserver = null;
+
 function initReveal() {
-  const io = new IntersectionObserver(entries => {
-    for (const e of entries) {
-      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-    }
-  }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+  if (!revealObserver) {
+    revealObserver = new IntersectionObserver(entries => {
+      for (const e of entries) {
+        if (e.isIntersecting) { e.target.classList.add('in'); revealObserver.unobserve(e.target); }
+      }
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+  }
   document.querySelectorAll('[data-reveal]').forEach(el => {
+    if (el.classList.contains('in')) return;
     // Above-the-fold content shows at once; the observer only handles what scrolls in later.
     if (el.getBoundingClientRect().top < innerHeight) el.classList.add('in');
-    else io.observe(el);
+    else revealObserver.observe(el);
   });
 }
 
@@ -280,23 +305,46 @@ function renderExcluded(list, pairs) {
 /* The chart lives inside the hero-copy window, which reveals itself with a
    .rv transform/opacity animation. That doesn't affect layout, but the copy
    is freshly inserted, so we wait a frame for clientWidth to settle before
-   measuring it. */
-let heroIndexData = null; // kept for the resize redraw below
+   measuring it. The progressive left-to-right reveal must play exactly once:
+   the fonts.ready and resize redraws below only ever repaint the final
+   frame, and only when the measured width actually changed. */
+let heroIndexData = null;
+let heroChartLastWidth = null;
 
 function heroChartWidth(canvas) {
   const copy = canvas.closest('.hero-copy');
+  if (!copy) return 0;
   const cs = getComputedStyle(copy);
   return copy.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+}
+
+// Repaints the final chart directly (animate=false), so it is safe to call
+// more than once: it never re-runs the reveal animation, and drawing the same
+// pixels again is a no-op to the eye. Independent of the initial rAF so a
+// throttled frame callback can never leave the chart unpainted.
+function redrawHeroFinal(canvas) {
+  if (!heroIndexData) return;
+  const w = heroChartWidth(canvas);
+  if (w <= 0) return;
+  heroChartLastWidth = w;
+  drawIndexChart(canvas, heroIndexData.bins, heroIndexData.values, w, 150, false);
 }
 
 function renderHeroIndex(index) {
   heroIndexData = index;
   const canvas = document.getElementById('indexChart');
-  const draw = () => drawIndexChart(canvas, index.bins, index.values, heroChartWidth(canvas), 150);
-  requestAnimationFrame(draw);
-  // web fonts swap in after first paint (font-display: swap) and can reflow
-  // the copy width; redraw once they've settled so the chart isn't stale.
-  document.fonts?.ready.then(draw);
+
+  // Play the left-to-right reveal once, on the next frame so clientWidth has settled.
+  requestAnimationFrame(() => {
+    heroChartLastWidth = heroChartWidth(canvas);
+    drawIndexChart(canvas, index.bins, index.values, heroChartLastWidth, 150, true);
+  });
+
+  // Web fonts swap in after first paint and can reflow the copy width. Repaint
+  // the final chart once fonts are ready. This also guarantees the chart is
+  // painted even if the reveal rAF above was throttled (background tab).
+  document.fonts?.ready.then(() => redrawHeroFinal(canvas));
+
   document.getElementById('indexCaption').textContent =
     `${index.pairs_used} repeat-sale pairs, ${index.bin_years}-year bins, nominal USD, base 100 = ${index.base_year}, experimental`;
   document.getElementById('indexMethod').textContent = index.estimates_note ? `${index.method}. ${index.estimates_note}` : index.method;
@@ -309,15 +357,19 @@ function debounce(fn, ms) {
 }
 
 addEventListener('resize', debounce(() => {
-  if (!heroIndexData) return;
+  if (!heroIndexData || heroChartLastWidth == null) return;
   const canvas = document.getElementById('indexChart');
   if (!canvas) return;
-  drawIndexChart(canvas, heroIndexData.bins, heroIndexData.values, heroChartWidth(canvas), 150);
+  redrawHeroFinal(canvas);
 }, 150));
 
 function initScrollCue() {
   const cue = document.getElementById('cue');
   if (!cue) return;
+  // The entrance animation on .rv has fill:forwards, which pins opacity via
+  // the animation cascade layer, above the normal .gone{opacity:0} rule. Once
+  // it finishes, drop the animation so .gone's transition can take over.
+  cue.addEventListener('animationend', () => { cue.style.animation = 'none'; }, { once: true });
   addEventListener('scroll', () => cue.classList.toggle('gone', scrollY > 40), { passive: true });
 }
 

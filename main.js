@@ -1,4 +1,5 @@
-const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+// Read live so devtools' reduced-motion emulation takes effect without a reload.
+const motionQuery = matchMedia('(prefers-reduced-motion: reduce)');
 
 const nav = document.getElementById('nav');
 const menu = document.getElementById('menu');
@@ -18,35 +19,63 @@ const media = document.getElementById('media');
 const copy = document.getElementById('copy');
 const cue = document.getElementById('cue');
 
-if (!reduce) {
-  let ticking = false;
-  const onScroll = () => {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(() => {
-      const y = window.scrollY;
-      const h = window.innerHeight;
-      const p = Math.min(y / h, 1);
-      const mediaY = Math.round(y * 0.18 / 4) * 4;
-      const copyY = Math.round(y * 0.3 / 4) * 4;
-      const opacity = Math.max(0, Math.min(1, Math.round((1 - p * 1.4) * 4) / 4));
-      media.style.transform = 'translateY(' + mediaY + 'px)';
-      copy.style.transform = 'translateY(' + copyY + 'px)';
-      copy.style.opacity = String(opacity);
-      cue.classList.toggle('gone', y > 40);
-      ticking = false;
-    });
-  };
-  addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+// The entrance animation on .rv has fill:forwards, which pins opacity via
+// the animation cascade layer, above the normal .gone{opacity:0} rule. Once
+// it finishes, drop the animation so .gone's transition can take over.
+cue.addEventListener('animationend', () => { cue.style.animation = 'none'; }, { once: true });
+
+let ticking = false;
+function onScroll() {
+  if (motionQuery.matches) return;
+  if (ticking) return;
+  ticking = true;
+  requestAnimationFrame(() => {
+    const y = window.scrollY;
+    const h = window.innerHeight;
+    const p = Math.min(y / h, 1);
+    const mediaY = y * 0.18;
+    const copyY = y * 0.3;
+    const opacity = Math.max(0, Math.min(1, 1 - p * 1.4));
+    media.style.transform = 'translate3d(0, ' + mediaY + 'px, 0)';
+    copy.style.transform = 'translate3d(0, ' + copyY + 'px, 0)';
+    copy.style.opacity = String(opacity);
+    cue.classList.toggle('gone', y > 40);
+    ticking = false;
+  });
 }
 
-const io = new IntersectionObserver(entries => {
+function resetHero() {
+  media.style.transform = '';
+  copy.style.transform = '';
+  copy.style.opacity = '';
+  cue.classList.remove('gone');
+}
+
+// Toggling the emulated media query mid-session should react immediately,
+// not wait for the next scroll tick.
+motionQuery.addEventListener('change', () => {
+  if (motionQuery.matches) resetHero();
+  else onScroll();
+});
+
+// Attached unconditionally: onScroll's own motionQuery.matches check is what
+// gates the work, so the listener stays live if reduced-motion is toggled
+// off again later (devtools emulation, or an OS setting change mid-session).
+addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+const revealObserver = new IntersectionObserver(entries => {
   for (const e of entries) {
     if (e.isIntersecting) {
       e.target.classList.add('in');
-      io.unobserve(e.target);
+      revealObserver.unobserve(e.target);
     }
   }
 }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
-document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+
+document.querySelectorAll('[data-reveal]').forEach(el => {
+  // Above-the-fold content shows at once so there's no flash of hidden
+  // content; the observer only handles what scrolls in later.
+  if (el.getBoundingClientRect().top < innerHeight) el.classList.add('in');
+  else revealObserver.observe(el);
+});
