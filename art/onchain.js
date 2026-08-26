@@ -351,7 +351,8 @@ async function renderBuyPanel(work, root) {
     ? `~${fmtAmount(rate * 31536000n)} ${work.stockSymbol}/year`
     : work.rate_display;
   const youOwn = owner && account && owner.toLowerCase() === account.toLowerCase();
-  const priceText = work.price_tokens.toLocaleString() + ' tokens';
+  const priceText = work.price_tokens.toLocaleString() + ' RWArt';
+  const payWith = `<p class="meta pay-with">pay with RWArt <a href="${NET.explorer}/token/${NET.token}" target="_blank" rel="noopener">${short(NET.token)}</a></p>`;
 
   if (youOwn) {
     root.innerHTML = `
@@ -383,6 +384,7 @@ async function renderBuyPanel(work, root) {
 
   root.innerHTML = `
     <p class="price-line">${priceText}</p>
+    ${payWith}
     <p class="meta">pays ${rateText}, streamed per second while you hold it</p>
     ${account
       ? '<button class="btn btn-dark" id="buyBtn" type="button">buy</button>'

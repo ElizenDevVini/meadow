@@ -454,3 +454,7 @@ h2 {
 /* nav X link: monochrome logo inherits ink color, inverts with the other nav links */
 .nav-x { display: inline-flex; align-items: center; padding: 8px 10px; }
 .nav-x svg { display: block; width: 15px; height: 15px; shape-rendering: geometricPrecision; }
+
+/* token contract address line under the hero CTAs */
+.ca { font-family: var(--body); font-size: 12px; margin-top: 14px; word-break: break-all; }
+.ca a { text-decoration: underline; }
