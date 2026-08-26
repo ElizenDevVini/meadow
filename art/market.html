@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Work · Meadow Art</title>
+<title>Secondary market · Meadow Art</title>
+<meta name="description" content="Buy and sell minted Meadow art pieces peer to peer, priced in RWArt.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 5 5'%3E%3Crect width='5' height='5' fill='%23e0e0e0'/%3E%3Crect x='0' y='0' width='1' height='1' fill='%231f56d6'/%3E%3Crect x='4' y='0' width='1' height='1' fill='%231f56d6'/%3E%3Crect x='0' y='1' width='1' height='1' fill='%231f56d6'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%231f56d6'/%3E%3Crect x='3' y='1' width='1' height='1' fill='%231f56d6'/%3E%3Crect x='4' y='1' width='1' height='1' fill='%231f56d6'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%231f56d6'/%3E%3Crect x='1' y='3' width='1' height='1' fill='%231f56d6'/%3E%3Crect x='3' y='3' width='1' height='1' fill='%231f56d6'/%3E%3Crect x='0' y='4' width='1' height='1' fill='%231f56d6'/%3E%3Crect x='4' y='4' width='1' height='1' fill='%231f56d6'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +12,7 @@
 <link rel="stylesheet" href="../styles.css">
 <link rel="stylesheet" href="art.css">
 </head>
-<body class="art-body" data-page="work">
+<body class="art-body" data-page="market">
 
 <header class="nav" id="nav">
   <a class="brand" href="../#top" aria-label="Meadow home">
@@ -19,8 +20,8 @@
     Meadow
   </a>
   <nav class="links" id="links">
-    <a href="./" aria-current="page">Art</a>
-    <a href="market.html">Market</a>
+    <a href="./">Art</a>
+    <a href="market.html" aria-current="page">Market</a>
     <a href="../#how">How it works</a>
     <a href="../#idea">The idea</a>
     <a href="../#explore">Explore</a>
@@ -35,40 +36,31 @@
   <div class="wallet-picker" id="walletPicker" hidden></div>
 </header>
 
-<main class="art-main" id="workRoot">
-  <div class="work-grid" data-reveal>
-    <div class="work-media" id="workMedia"></div>
-    <div class="work-info">
-      <p class="eyebrow" id="workArtist"></p>
-      <h1 id="workTitle"></h1>
-      <p class="meta" id="workMeta"></p>
-
-      <div class="valuation">
-        <p class="worth-label">worth</p>
-        <p class="worth-figure" id="worthFigure"></p>
-        <p class="worth-sub" id="worthSub"></p>
-        <div id="worthEst"></div>
-      </div>
-
-      <div class="chart-wrap" id="chartWrap">
-        <canvas id="workChart" height="240"></canvas>
-      </div>
-
-      <div id="salesTable"></div>
-
-      <a id="wikiLink" class="btn btn-outline" target="_blank" rel="noopener">Read more</a>
-
-      <div class="panel buy-panel" id="buyPanel">
-        <div class="titlebar" aria-hidden="true"><span></span><span>ownership</span></div>
-        <div class="panel-body" id="buyPanelBody"></div>
-      </div>
-    </div>
+<main class="art-main">
+  <div class="market-head" data-reveal>
+    <p class="eyebrow">peer to peer, priced in RWArt</p>
+    <h1>Secondary market</h1>
+    <p class="lede market-lede">Holders list a piece at a price in RWArt. A buyer pays RWArt and the piece transfers straight from seller to buyer -- Meadow never holds it.</p>
   </div>
+
+  <section id="forSale">
+    <div class="panel">
+      <div class="titlebar" aria-hidden="true"><span></span><span>for sale</span></div>
+      <div class="panel-body" id="forSaleBody"></div>
+    </div>
+  </section>
+
+  <section id="yourPieces">
+    <div class="panel">
+      <div class="titlebar" aria-hidden="true"><span></span><span>your pieces</span></div>
+      <div class="panel-body" id="yourPiecesBody"></div>
+    </div>
+  </section>
 </main>
 
 <footer class="art-footer" id="artFooter"></footer>
 
 <script src="art.js"></script>
-<script type="module" src="onchain.js"></script>
+<script type="module" src="market.js"></script>
 </body>
 </html>

@@ -14,6 +14,7 @@ const active = {
   explorer: 'https://robinhoodchain.blockscout.com',
   art: '0x50414b4ea451A9E4ce7212F879F473fa727F8bb0', // MeadowArt (Robinhood Chain)
   token: '0xf2bc01ed47006fbd7dc5c9efd60037e8f516b560', // project token (meadow / RWArt)
+  market: '', // MeadowMarket -- unset until deploy; the market page stays dormant until this is filled in
   // Only the stocks funded in the treasury Safe. Symbol order matches
   // onchain.json's stock_idx and the deployed contract's constructor argument
   // order. TSLA and MSFT are excluded until funded.
@@ -31,6 +32,7 @@ const runtime = globalThis.MEADOW_RUNTIME || {};
 const rpc = runtime.rpcUrl || active.rpc;
 const art = runtime.artAddress || active.art;
 const token = runtime.tokenAddress || active.token;
+const market = runtime.marketAddress || active.market;
 const stocks = runtime.stocks || active.stocks;
 
 export const NET = Object.freeze({
@@ -39,9 +41,14 @@ export const NET = Object.freeze({
   walletRpc: runtime.rpcUrl || active.walletRpc,
   art,
   token,
+  market,
   stocks: Object.freeze(stocks.map(s => Object.freeze({ ...s }))),
   ready: Boolean(art && token),
   activationIssue: art && token ? '' : 'contract addresses pending',
+  // the secondary market has its own contract and deploys separately from
+  // primary mint/claim, so it gets its own readiness flag instead of folding
+  // into NET.ready
+  marketReady: Boolean(market && art && token),
 });
 
 export function addressUrl(address) {

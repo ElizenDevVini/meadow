@@ -223,22 +223,78 @@ table.sales .note { display: block; opacity: .75; margin-top: 4px; }
 /* ---------- not-live notice ---------- */
 .not-live { display: grid; gap: 12px; }
 
+/* ---------- secondary market ---------- */
+.market-head { margin-bottom: 24px; }
+.market-head h1 { font-size: clamp(1.8rem, 3.2vw, 2.6rem); }
+.market-lede { max-width: 62ch; margin: 12px 0 0; font-size: 14px; }
+.market-summary { font-size: 13px; margin-bottom: 20px; }
+.market-empty { font-size: 14px; }
+
+.market-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.market-card {
+  border: 2px solid var(--ink);
+  background: var(--paper);
+  box-shadow: 4px 4px 0 var(--ink);
+  padding: 16px;
+  display: grid;
+  gap: 6px;
+}
+.market-card .title-link { display: block; }
+.market-card .thumb { width: 100%; height: 150px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; overflow: hidden; }
+.market-card .thumb img { width: 100%; height: auto; }
+.market-card .title { font-family: var(--display); font-size: 16px; font-weight: 500; }
+.market-card .meta { font-size: 13px; }
+.market-card .price-line { font-family: var(--display); font-size: 16px; font-weight: 600; margin-top: 4px; }
+.market-card .seller { font-size: 12px; }
+.market-card .seller a { text-decoration: underline; }
+.market-card .btn { justify-self: start; margin-top: 4px; }
+
+/* ---------- your pieces ---------- */
+.market-reminder { font-size: 13px; margin-bottom: 6px; }
+.market-reminder a { text-decoration: underline; }
+.market-fee-note { font-size: 12px; opacity: .8; border-bottom: 2px solid var(--ink); padding-bottom: 16px; margin-bottom: 4px; }
+.your-piece-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  border-top: 2px solid var(--ink);
+  padding: 14px 0;
+}
+.your-piece-title { font-family: var(--display); font-weight: 500; flex: 1 1 160px; }
+.your-piece-title a { text-decoration: underline; }
+.price-input {
+  font-family: var(--body);
+  font-size: 13px;
+  color: var(--ink);
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  padding: 9px 10px;
+  width: 130px;
+}
+
 /* ---------- responsive ---------- */
 @media (max-width: 680px) {
   .art-hero .hero-copy { max-width: 90vw; }
 }
 @media (max-width: 1120px) {
-  .grid { grid-template-columns: repeat(3, 1fr); }
+  .grid, .market-grid { grid-template-columns: repeat(3, 1fr); }
 }
 @media (max-width: 860px) {
-  .grid { grid-template-columns: repeat(2, 1fr); }
+  .grid, .market-grid { grid-template-columns: repeat(2, 1fr); }
   .work-grid { grid-template-columns: 1fr; }
   .work-media { position: static; width: 100%; max-width: 480px; height: auto; aspect-ratio: 4 / 3; }
   .work-media img { width: 100%; }
 }
 @media (max-width: 600px) {
-  .grid { grid-template-columns: 1fr; }
+  .grid, .market-grid { grid-template-columns: 1fr; }
   .art-main { padding: 0 16px 64px; }
+  .your-piece-row { gap: 10px; }
+  .price-input { width: 100%; }
 }
 @media (max-width: 680px) {
   .wallet-btn { font-size: 11px; padding: 10px 12px; }
