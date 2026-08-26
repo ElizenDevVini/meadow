@@ -224,7 +224,7 @@ function initReveal() {
 function renderAttribution(root, attr) {
   root.innerHTML = `
     <p class="attribution">Records: <a href="${attr.records_url}" target="_blank" rel="noopener">${attr.records}</a>. Images: ${attr.images}. Prices: ${attr.prices}.</p>
-    <p class="footnote">indexed est. = last sale × index ratio, not an appraisal</p>
+    <p class="footnote">indexed est. = last sale × index ratio, shown only when close to plausible, suppressed otherwise; not an appraisal</p>
   `;
 }
 
@@ -260,7 +260,7 @@ function cardHtml(work, i) {
     ? `<img src="${work.img.thumb}" alt="${work.title}, by ${work.artist}">`
     : plateHtml(work.artist);
   const est = work.est_now != null
-    ? `<p class="est">indexed est. ${fmtUsd(work.est_now)}<sup>†</sup></p>`
+    ? `<p class="est">experimental, index-adjusted ${fmtUsd(work.est_now)}<sup>†</sup></p>`
     : '';
   return `
     <a class="card" data-reveal style="--d:${(i % 6) * 0.05}s" href="work.html?id=${work.id}">
@@ -268,7 +268,8 @@ function cardHtml(work, i) {
       <h3 class="title">${work.title}</h3>
       <p class="meta">${work.artist}, ${work.year_text}</p>
       <canvas class="spark" width="96" height="24" data-spark="${work.id}"></canvas>
-      <p class="last">last sale ${fmtUsd(work.last.price_usd)}, ${work.last.year}, ${work.last.channel}</p>
+      <p class="worth">worth ${fmtUsd(work.last.price_usd)}</p>
+      <p class="last">last sale, ${work.last.year}, ${work.last.channel}</p>
       ${est}
     </a>
   `;
@@ -425,14 +426,13 @@ function lifetimeText(work) {
   return `, d. ${work.artist_died}`;
 }
 
-function estNowHtml(work) {
-  return work.est_now != null ? fmtUsd(work.est_now) : 'no indexed estimate';
-}
-
-function estReasonHtml(work, index) {
-  if (work.est_now != null) return '';
-  if (index.estimates_enabled === false) return `<p class="meta">${index.estimates_note}</p>`;
-  return `<p class="meta">last sale is in the latest bin, or not a market comparable</p>`;
+// The worth headline is always the last documented sale -- the one number on
+// the page backed by a real transaction. The index-adjusted line only shows
+// up when build.py judged it sane (see EST_MIN_RATIO/EST_MAX_RATIO); when it
+// doesn't, the line is omitted rather than shown as an empty or negative claim.
+function estLineHtml(work) {
+  if (work.est_now == null) return '';
+  return `<p class="est-now">experimental, index-adjusted estimate today: <strong>${fmtUsd(work.est_now)}</strong></p>`;
 }
 
 function renderSalesTable(work) {
@@ -489,10 +489,9 @@ function renderWorkPage(data) {
   document.getElementById('workTitle').textContent = work.title;
   document.getElementById('workMeta').textContent = `${work.year_text}, ${work.medium}${lifetimeText(work)}`;
   document.getElementById('workMedia').innerHTML = workMediaHtml(work);
-  document.getElementById('lastSale').textContent = `${fmtUsd(work.last.price_usd)} · ${work.last.year} · ${work.last.channel}`;
-  document.getElementById('estNow').textContent = estNowHtml(work);
-  document.getElementById('estNow').classList.toggle('muted', work.est_now == null);
-  document.getElementById('estReason').innerHTML = estReasonHtml(work, data.index);
+  document.getElementById('worthFigure').textContent = fmtUsd(work.last.price_usd);
+  document.getElementById('worthSub').textContent = `last sale · ${work.last.year} · ${work.last.channel}`;
+  document.getElementById('worthEst').innerHTML = estLineHtml(work);
   document.getElementById('salesTable').innerHTML = renderSalesTable(work);
   document.getElementById('wikiLink').href = work.wikipedia_url;
 

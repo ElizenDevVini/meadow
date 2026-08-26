@@ -25,8 +25,14 @@ USER_AGENT = "meadow-art-catalog/1.0 (contact: diamondkaz578@gmail.com)"
 LIST_URL = "https://en.wikipedia.org/wiki/List_of_most_expensive_paintings"
 BASE_YEAR = 2000
 BIN_YEARS = 5
-# Below this many repeat-sale pairs the index is too thin to price individual works.
-MIN_PAIRS_FOR_ESTIMATES = 20
+# The repeat-sales index is thin (a handful of pairs across the whole
+# catalog), so an unclamped index-adjusted estimate can land anywhere -- an
+# early version of this put one work at $4.1B off a $82.5M last sale. Suppress
+# (not clamp to the edge) any estimate outside this band of the last sale;
+# showing a number the index didn't actually produce would be worse than
+# showing nothing.
+EST_MIN_RATIO = 0.5
+EST_MAX_RATIO = 3.0
 
 
 # ---------- loading and validation ----------
@@ -270,7 +276,11 @@ def estimate(work, bins, values, latest_bin):
     v_latest = values[bins.index(latest_bin)]
     if v_last is None or v_latest is None:
         return None
-    return round(last["price_usd"] * v_latest / v_last)
+    raw = last["price_usd"] * v_latest / v_last
+    ratio = raw / last["price_usd"]
+    if ratio < EST_MIN_RATIO or ratio > EST_MAX_RATIO:
+        return None
+    return round(raw)
 
 
 def series(work, bins, values, latest_bin):
@@ -420,13 +430,10 @@ def write_catalog(works):
 
     mtime = os.path.getmtime(WORKS_PATH)
     generated = datetime.datetime.fromtimestamp(mtime, datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    estimates_enabled = result["pairs_used"] >= MIN_PAIRS_FOR_ESTIMATES
-    if not estimates_enabled:
-        for e in entries:
-            e["est_now"] = None
     estimates_note = (
-        "" if estimates_enabled else
-        f"per-work estimates are off: they need at least {MIN_PAIRS_FOR_ESTIMATES} repeat-sale pairs and the index has {result['pairs_used']}"
+        f"the index has only {result['pairs_used']} repeat-sale pairs, so a per-work "
+        f"estimate is shown only when it falls within {EST_MIN_RATIO}x-{EST_MAX_RATIO}x of "
+        "the last sale; wider swings are suppressed as noise, not shown"
     )
     catalog = {
         "generated": generated,
@@ -440,7 +447,6 @@ def write_catalog(works):
             "name": "meadow trophy index", "base_year": BASE_YEAR, "bin_years": BIN_YEARS,
             "bins": bins, "values": values, "touched": touched, "latest_bin": latest_bin,
             "pairs_used": result["pairs_used"],
-            "estimates_enabled": estimates_enabled,
             "estimates_note": estimates_note,
             "pairs_excluded": excluded + result["disconnected"],
             "residuals": result["residuals"],

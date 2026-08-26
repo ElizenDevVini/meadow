@@ -72,8 +72,7 @@
     ],
     "latest_bin": 2015,
     "pairs_used": 8,
-    "estimates_enabled": false,
-    "estimates_note": "per-work estimates are off: they need at least 20 repeat-sale pairs and the index has 8",
+    "estimates_note": "the index has only 8 repeat-sale pairs, so a per-work estimate is shown only when it falls within 0.5x-3.0x of the last sale; wider swings are suppressed as noise, not shown",
     "pairs_excluded": [
       {
         "id": "salvator-mundi",
@@ -1472,7 +1471,7 @@
         "year": 1949,
         "price_usd": 1500
       },
-      "est_now": null,
+      "est_now": 218699206,
       "gain": 93333.3333,
       "series": [
         {
@@ -1722,7 +1721,7 @@
         "year": 2006,
         "price_usd": 137500000
       },
-      "est_now": null,
+      "est_now": 214793863,
       "gain": null,
       "series": [
         {
@@ -1779,7 +1778,7 @@
         "year": 2006,
         "price_usd": 135000000
       },
-      "est_now": null,
+      "est_now": 210888520,
       "gain": null,
       "series": [
         {
@@ -2718,7 +2717,7 @@
         "year": 2006,
         "price_usd": 95200000
       },
-      "est_now": null,
+      "est_now": 148715460,
       "gain": null,
       "series": [
         {
@@ -3247,7 +3246,7 @@
         "year": 2007,
         "price_usd": 68000000
       },
-      "est_now": null,
+      "est_now": 106225329,
       "gain": null,
       "series": [
         {

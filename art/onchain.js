@@ -178,25 +178,91 @@ async function connect({ prompt = true } = {}) {
   return wallet;
 }
 
+/* ---------- add a token to the connected wallet (EIP-747 wallet_watchAsset) ---------- */
+
+const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000';
+
+function isMetaMask(w) {
+  return w.info.rdns === 'io.metamask' || /metamask/i.test(w.info.name);
+}
+
+// Shared by the account menu (add RWArt) and the buy panel (add RWArt before
+// buying, add the reward stock after buying). Connects first if no wallet is
+// attached yet, so the same control works whether or not the visitor has
+// already connected.
+async function handleWatchAsset(address, symbol, msgEl) {
+  if (!account) {
+    try {
+      if (!await connect({ prompt: true })) return; // picker shown or user backed out; try again after picking
+    } catch (err) {
+      if (msgEl) msgEl.textContent = walletErrorCode(err) === 4001 ? 'connection cancelled.' : 'wallet connection failed.';
+      return;
+    }
+  }
+  if (typeof provider?.request !== 'function') {
+    if (msgEl) msgEl.textContent = 'this wallet does not support adding tokens.';
+    return;
+  }
+  if (msgEl) msgEl.textContent = 'confirm in your wallet…';
+  try {
+    const added = await provider.request({
+      method: 'wallet_watchAsset',
+      params: { type: 'ERC20', options: { address, symbol, decimals: 18 } },
+    });
+    if (msgEl) msgEl.textContent = added === false ? `${symbol} not added.` : `${symbol} added to wallet.`;
+  } catch (err) {
+    const code = walletErrorCode(err);
+    if (msgEl) msgEl.textContent = code === 4001 ? 'cancelled.'
+      : code === 4200 || code === -32601 ? 'this wallet does not support adding tokens.'
+      : shortMessage(err, `could not add ${symbol}`);
+  }
+}
+
+// Delegated over a rendered root (the wallet picker, or a buy-panel body) so
+// it works the same after any innerHTML re-render.
+function wireAddTokenButtons(root) {
+  root.querySelectorAll('[data-add-token]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const msgEl = btn.nextElementSibling;
+      btn.disabled = true;
+      await handleWatchAsset(btn.dataset.address, btn.dataset.addToken, msgEl);
+      btn.disabled = false;
+    });
+  });
+}
+
+function addTokenRow(address, symbol) {
+  return `<p class="addtoken-row"><button class="linklike" type="button" data-add-token="${symbol}" data-address="${address}">add ${symbol} to MetaMask</button> <span class="addtoken-msg"></span></p>`;
+}
+
 /* ---------- nav wallet button + picker ---------- */
 
 const walletBtn = document.getElementById('walletBtn');
 const walletPicker = document.getElementById('walletPicker');
 
 function showWalletPicker(list) {
+  // MetaMask sorted first and flagged so the picker makes it the obvious
+  // choice without hiding Phantom or any other announced wallet.
+  const sorted = [...list].sort((a, b) => isMetaMask(b) - isMetaMask(a));
   walletPicker.innerHTML = '<p class="wp-label">choose a wallet</p>' +
-    list.map(w => `<button class="wp-pick" type="button" data-rdns="${w.info.rdns}">${w.info.name}</button>`).join('');
+    sorted.map(w => `<button class="wp-pick" type="button" data-rdns="${w.info.rdns}">${w.info.name}${isMetaMask(w) ? ' (MetaMask)' : ''}</button>`).join('');
   walletPicker.hidden = false;
 }
 
 function showAccountMenu() {
-  walletPicker.innerHTML = `<p class="wp-addr">${account}</p><button class="wp-disconnect" type="button">disconnect</button>`;
+  walletPicker.innerHTML = `
+    <p class="wp-addr">${account}</p>
+    ${addTokenRow(tokenAddr, 'RWArt')}
+    <button class="wp-disconnect" type="button">disconnect</button>
+  `;
   walletPicker.hidden = false;
+  wireAddTokenButtons(walletPicker);
 }
 
 function wireWalletButton() {
   if (!walletBtn || !walletPicker) return;
   walletBtn.textContent = NET.ready ? 'connect wallet' : 'not live yet';
+  if (NET.ready) walletBtn.title = 'Connect MetaMask, Phantom, or another wallet';
 
   walletBtn.addEventListener('click', async e => {
     e.preventDefault();
@@ -355,10 +421,12 @@ async function renderBuyPanel(work, root) {
   const payWith = `<p class="meta pay-with">pay with RWArt <a href="${NET.explorer}/token/${NET.token}" target="_blank" rel="noopener">${short(NET.token)}</a></p>`;
 
   if (youOwn) {
+    const canWatchStock = stockAddr && stockAddr !== ZERO_ADDRESS;
     root.innerHTML = `
       <p class="own-line">you own this piece.</p>
       <p class="meta">streaming payout: ${rateText}</p>
       <p class="claim-amount" id="claimAmount">checking claimable…</p>
+      ${canWatchStock ? addTokenRow(stockAddr, work.stockSymbol) : ''}
       <button class="btn btn-dark" id="claimBtn" type="button">claim</button>
       <p class="txstate"></p>
     `;
@@ -367,6 +435,7 @@ async function renderBuyPanel(work, root) {
       const ok = await doClaim([work.id], root);
       if (ok) refreshClaimable(work, root);
     });
+    wireAddTokenButtons(root);
     return;
   }
 
@@ -386,6 +455,7 @@ async function renderBuyPanel(work, root) {
     <p class="price-line">${priceText}</p>
     ${payWith}
     <p class="meta">pays ${rateText}, streamed per second while you hold it</p>
+    ${addTokenRow(tokenAddr, 'RWArt')}
     ${account
       ? '<button class="btn btn-dark" id="buyBtn" type="button">buy</button>'
       : '<button class="btn btn-outline" id="connectBtn" type="button">connect to buy</button>'}
@@ -393,6 +463,7 @@ async function renderBuyPanel(work, root) {
   `;
   if (account) root.querySelector('#buyBtn').addEventListener('click', () => doBuy(work, root));
   else root.querySelector('#connectBtn').addEventListener('click', () => connect({ prompt: true }).catch(() => {}));
+  wireAddTokenButtons(root);
 }
 
 async function initWorkPage() {

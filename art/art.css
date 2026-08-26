@@ -87,7 +87,8 @@ details.excluded li { font-size: 13px; border-top: 2px solid var(--ink); padding
 .card .title { font-family: var(--display); font-size: 17px; font-weight: 500; margin-bottom: 4px; }
 .card .meta { font-size: 13px; margin-bottom: 10px; }
 .card .spark { display: block; margin-bottom: 10px; }
-.card .last, .card .est { font-size: 12px; line-height: 1.6; }
+.card .worth { font-family: var(--display); font-size: 15px; font-weight: 600; }
+.card .last, .card .est { font-size: 12px; line-height: 1.6; opacity: .8; }
 .card .est sup { font-size: 9px; }
 
 .plate {
@@ -125,10 +126,14 @@ details.excluded li { font-size: 13px; border-top: 2px solid var(--ink); padding
 .work-info h1 { font-family: var(--display); font-weight: 500; font-size: clamp(1.8rem, 3.2vw, 2.6rem); line-height: 1.05; margin-bottom: 14px; }
 .work-info .meta { font-size: 14px; margin-bottom: 28px; }
 
-.numbers { display: flex; gap: 40px; margin-bottom: 32px; border-top: 2px solid var(--ink); padding-top: 20px; }
-.numbers .label { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 6px; }
-.numbers .big { font-family: var(--display); font-size: 1.7rem; font-weight: 500; }
-.numbers .big.muted { font-size: 1rem; font-family: var(--body); opacity: .75; }
+/* worth = the last documented sale, leading and big; the index-adjusted line
+   underneath is deliberately smaller and only appears when build.py judged
+   it sane (see EST_MIN_RATIO/EST_MAX_RATIO in tools/build.py) */
+.valuation { margin-bottom: 28px; border-top: 2px solid var(--ink); padding-top: 20px; }
+.worth-label { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 6px; }
+.worth-figure { font-family: var(--display); font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 600; line-height: 1.05; }
+.worth-sub { font-size: 13px; margin-top: 8px; opacity: .8; }
+.est-now { font-size: 13px; margin-top: 10px; }
 
 .chart-wrap { position: relative; padding-left: 52px; padding-bottom: 24px; margin-bottom: 32px; }
 .chart-wrap canvas { display: block; width: 100%; }
@@ -175,6 +180,22 @@ table.sales .note { display: block; opacity: .75; margin-top: 4px; }
 .wallet-picker .wp-pick:hover,
 .wallet-picker .wp-disconnect:hover { background: var(--ink); color: var(--paper); }
 .wallet-picker .not-live { display: grid; gap: 10px; }
+
+/* ---------- add-to-wallet (wallet_watchAsset) ---------- */
+/* plain underlined text, not a bordered .btn -- this is a secondary action
+   next to the wallet picker's/buy panel's primary buttons */
+.linklike {
+  font: inherit;
+  color: var(--ink);
+  background: none;
+  border: 0;
+  padding: 0;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.linklike:disabled { opacity: .6; cursor: default; }
+.addtoken-row { font-size: 13px; }
+.addtoken-msg { font-size: 12px; opacity: .8; margin-left: 6px; }
 
 /* ---------- buy / claim ---------- */
 .buy-panel { margin-top: 32px; }
