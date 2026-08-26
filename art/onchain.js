@@ -9,6 +9,7 @@ import { pub } from '../chain.js';
 const artAbi = parseAbi([
   'function priceOf(uint256 id) view returns (uint256)',
   'function stockOf(uint256 id) view returns (address)',
+  'function rateOf(uint256 id) view returns (uint256)',
   'function claimableMany(uint256[] ids) view returns (uint256[] claimableAmounts, uint256[] availableAmounts)',
   'function ownerOf(uint256 tokenId) view returns (address)',
   'function buy(uint256 id)',
@@ -337,18 +338,25 @@ async function doBuy(work, root) {
 
 async function renderBuyPanel(work, root) {
   root.innerHTML = '<p>checking on-chain status…</p>';
-  const [owner, stockAddr] = await Promise.all([
+  const [owner, stockAddr, rate] = await Promise.all([
     ownerOfSafe(work.id),
     pub.readContract({ address: artAddr, abi: artAbi, functionName: 'stockOf', args: [BigInt(work.id)] }).catch(() => null),
+    pub.readContract({ address: artAddr, abi: artAbi, functionName: 'rateOf', args: [BigInt(work.id)] }).catch(() => null),
   ]);
   work.stockSymbol = stockAddr ? symbolForStock(stockAddr, work.stock_symbol) : work.stock_symbol;
+  // Read the rate live from the deployed contract, not onchain.json, so the
+  // displayed yield can never drift from what the contract actually pays if the
+  // catalog is regenerated after deploy. 31536000 = seconds per year.
+  const rateText = rate != null
+    ? `~${fmtAmount(rate * 31536000n)} ${work.stockSymbol}/year`
+    : work.rate_display;
   const youOwn = owner && account && owner.toLowerCase() === account.toLowerCase();
   const priceText = work.price_tokens.toLocaleString() + ' tokens';
 
   if (youOwn) {
     root.innerHTML = `
       <p class="own-line">you own this piece.</p>
-      <p class="meta">streaming payout: ${work.rate_display}</p>
+      <p class="meta">streaming payout: ${rateText}</p>
       <p class="claim-amount" id="claimAmount">checking claimable…</p>
       <button class="btn btn-dark" id="claimBtn" type="button">claim</button>
       <p class="txstate"></p>
@@ -368,14 +376,14 @@ async function renderBuyPanel(work, root) {
       : short(owner);
     root.innerHTML = `
       <p class="own-line">sold. owned by ${ownerText}.</p>
-      <p class="meta">${priceText} · pays ${work.rate_display}</p>
+      <p class="meta">${priceText} · pays ${rateText}</p>
     `;
     return;
   }
 
   root.innerHTML = `
     <p class="price-line">${priceText}</p>
-    <p class="meta">pays ${work.rate_display}, streamed per second while you hold it</p>
+    <p class="meta">pays ${rateText}, streamed per second while you hold it</p>
     ${account
       ? '<button class="btn btn-dark" id="buyBtn" type="button">buy</button>'
       : '<button class="btn btn-outline" id="connectBtn" type="button">connect to buy</button>'}
