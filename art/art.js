@@ -277,18 +277,53 @@ function renderExcluded(list, pairs) {
   list.innerHTML = pairs.map(p => `<li>${p.title}: ${p.from} &rarr; ${p.to}, ${p.reason}</li>`).join('');
 }
 
-function renderMarketPanel(index) {
+/* The chart lives inside the hero-copy window, which reveals itself with a
+   .rv transform/opacity animation. That doesn't affect layout, but the copy
+   is freshly inserted, so we wait a frame for clientWidth to settle before
+   measuring it. */
+let heroIndexData = null; // kept for the resize redraw below
+
+function heroChartWidth(canvas) {
+  const copy = canvas.closest('.hero-copy');
+  const cs = getComputedStyle(copy);
+  return copy.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+}
+
+function renderHeroIndex(index) {
+  heroIndexData = index;
   const canvas = document.getElementById('indexChart');
-  const w = canvas.parentElement.clientWidth;
-  drawIndexChart(canvas, index.bins, index.values, w, 160);
+  const draw = () => drawIndexChart(canvas, index.bins, index.values, heroChartWidth(canvas), 150);
+  requestAnimationFrame(draw);
+  // web fonts swap in after first paint (font-display: swap) and can reflow
+  // the copy width; redraw once they've settled so the chart isn't stale.
+  document.fonts?.ready.then(draw);
   document.getElementById('indexCaption').textContent =
     `${index.pairs_used} repeat-sale pairs, ${index.bin_years}-year bins, nominal USD, base 100 = ${index.base_year}, experimental`;
   document.getElementById('indexMethod').textContent = index.estimates_note ? `${index.method}. ${index.estimates_note}` : index.method;
   renderExcluded(document.getElementById('excludedList'), index.pairs_excluded);
 }
 
+function debounce(fn, ms) {
+  let t;
+  return () => { clearTimeout(t); t = setTimeout(fn, ms); };
+}
+
+addEventListener('resize', debounce(() => {
+  if (!heroIndexData) return;
+  const canvas = document.getElementById('indexChart');
+  if (!canvas) return;
+  drawIndexChart(canvas, heroIndexData.bins, heroIndexData.values, heroChartWidth(canvas), 150);
+}, 150));
+
+function initScrollCue() {
+  const cue = document.getElementById('cue');
+  if (!cue) return;
+  addEventListener('scroll', () => cue.classList.toggle('gone', scrollY > 40), { passive: true });
+}
+
 function renderCatalogPage(data) {
-  renderMarketPanel(data.index);
+  renderHeroIndex(data.index);
+  initScrollCue();
 
   const grid = document.getElementById('grid');
   const artistSelect = document.getElementById('artistFilter');

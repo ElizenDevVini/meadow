@@ -2,7 +2,11 @@
    .nav, [data-reveal] come from ../styles.css, loaded first. */
 
 .art-body { padding-top: 96px; }
+/* the catalog page opens with its own full-viewport hero, so it doesn't
+   need the clearance the fixed nav requires on the other art pages */
+body[data-page="catalog"] { padding-top: 0; }
 .art-main { max-width: 1120px; margin: 0 auto; padding: 0 24px 96px; }
+#catalog { padding-top: 96px; }
 
 .links a[aria-current="page"] { text-decoration: underline; font-weight: 600; }
 
@@ -14,11 +18,22 @@
   margin-bottom: 40px;
 }
 .panel-body { padding: 28px; }
-.panel-body h2 { margin-bottom: 20px; }
 
-.index-chart { display: block; width: 100%; margin-bottom: 16px; }
+/* ---------- catalog hero ---------- */
+/* the copy holds a full chart + caption + method note, which can run
+   taller than a viewport once real catalog data fills in; let the hero grow
+   with it instead of clipping content via the base .hero's fixed height */
+.hero.art-hero { height: auto; min-height: 100svh; }
+.art-hero .hero-media .room { object-position: 50% 22%; }
+/* wider than the landing card so the chart has room; no negative margin-top
+   since there's no butterfly to clear and the copy already runs tall */
+.art-hero .hero-copy { max-width: 760px; margin-top: 0; }
+.art-hero .lede { max-width: 56ch; margin: 16px auto 20px; }
+.hero-chart { margin-top: 20px; text-align: left; }
+
+.index-chart { display: block; width: 100%; max-width: 100%; image-rendering: pixelated; margin-bottom: 14px; }
 .caption { font-size: 13px; margin-bottom: 4px; }
-.method { font-size: 13px; opacity: .8; margin-bottom: 16px; }
+.method { font-size: 13px; opacity: .8; margin-bottom: 12px; }
 
 details.excluded summary {
   cursor: pointer;
@@ -130,6 +145,9 @@ table.sales .note { display: block; opacity: .75; margin-top: 4px; }
 .notfound .panel-body { display: grid; gap: 20px; justify-items: center; }
 
 /* ---------- responsive ---------- */
+@media (max-width: 680px) {
+  .art-hero .hero-copy { max-width: 90vw; }
+}
 @media (max-width: 1120px) {
   .grid { grid-template-columns: repeat(3, 1fr); }
 }

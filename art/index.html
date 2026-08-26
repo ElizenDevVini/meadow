@@ -20,12 +20,11 @@
     Meadow
   </a>
   <nav class="links" id="links">
-    <a href="../#product">Product</a>
-    <a href="../#usecases">Use cases</a>
-    <a href="../#pricing">Pricing</a>
-    <a href="../#changelog">Changelog</a>
-    <a href="../#contact">Contact</a>
     <a href="./" aria-current="page">Art</a>
+    <a href="../#how">How it works</a>
+    <a href="../#idea">The idea</a>
+    <a href="../#explore">Explore</a>
+    <a href="../#contact">Contact</a>
   </nav>
   <a class="btn btn-dark" href="../#login">Log in</a>
   <button class="menu" id="menu" aria-label="Open menu" aria-expanded="false" aria-controls="links">
@@ -33,13 +32,23 @@
   </button>
 </header>
 
-<main class="art-main">
-  <div class="panel market-panel" data-reveal>
+<section class="hero art-hero" id="top">
+  <div class="hero-media">
+    <img class="room" src="img/gallery.png" alt="">
+  </div>
+
+  <div class="hero-copy">
     <div class="titlebar" aria-hidden="true"><span></span><span>index</span></div>
-    <div class="panel-body">
-      <p class="eyebrow">market</p>
-      <h2>meadow trophy index</h2>
-      <canvas class="index-chart" id="indexChart" height="160"></canvas>
+    <p class="eyebrow rv" style="--d:.55s">real works, real sales</p>
+    <h1>
+      <span class="w"><span style="--d:.65s">The</span></span>
+      <span class="w"><span style="--d:.72s">trophy</span></span>
+      <span class="w"><span style="--d:.79s">index</span></span>
+    </h1>
+    <p class="lede rv" style="--d:.95s">Fifty of the most expensive artworks ever sold, and an index built from every documented resale we could source.</p>
+
+    <div class="hero-chart rv" style="--d:1.15s">
+      <canvas class="index-chart" id="indexChart" height="150"></canvas>
       <p class="caption" id="indexCaption"></p>
       <p class="method" id="indexMethod"></p>
       <details class="excluded">
@@ -49,20 +58,26 @@
     </div>
   </div>
 
-  <div class="controls" data-reveal>
-    <label>Artist
-      <select id="artistFilter"></select>
-    </label>
-    <label>Sort by
-      <select id="sortBy">
-        <option value="last">last price</option>
-        <option value="est">indexed estimate</option>
-        <option value="gain">gain</option>
-      </select>
-    </label>
-  </div>
+  <a class="scroll-cue rv" id="cue" href="#catalog" style="--d:1.6s">Scroll <span aria-hidden="true">&#9660;</span></a>
+</section>
 
-  <div class="grid" id="grid"></div>
+<main class="art-main">
+  <section id="catalog">
+    <div class="controls" data-reveal>
+      <label>Artist
+        <select id="artistFilter"></select>
+      </label>
+      <label>Sort by
+        <select id="sortBy">
+          <option value="last">last price</option>
+          <option value="est">indexed estimate</option>
+          <option value="gain">gain</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="grid" id="grid"></div>
+  </section>
 </main>
 
 <footer class="art-footer" id="artFooter"></footer>
