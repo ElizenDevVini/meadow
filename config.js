@@ -12,7 +12,7 @@ const active = {
   rpc: 'https://rpc.mainnet.chain.robinhood.com',
   walletRpc: 'https://rpc.mainnet.chain.robinhood.com',
   explorer: 'https://robinhoodchain.blockscout.com',
-  art: '', // MeadowArt -- set after deploy
+  art: '0x50414b4ea451A9E4ce7212F879F473fa727F8bb0', // MeadowArt (Robinhood Chain)
   token: '0xf2bc01ed47006fbd7dc5c9efd60037e8f516b560', // project token (meadow / RWArt)
   // Only the stocks funded in the treasury Safe. Symbol order matches
   // onchain.json's stock_idx and the deployed contract's constructor argument
