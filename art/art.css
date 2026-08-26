@@ -7,6 +7,7 @@
 body[data-page="catalog"] { padding-top: 0; }
 .art-main { max-width: 1120px; margin: 0 auto; padding: 0 24px 96px; }
 #catalog { padding-top: 96px; }
+#collection { padding-top: 40px; }
 
 .links a[aria-current="page"] { text-decoration: underline; font-weight: 600; }
 
@@ -144,6 +145,63 @@ table.sales .note { display: block; opacity: .75; margin-top: 4px; }
 .notfound { max-width: 480px; margin: 80px auto; text-align: center; }
 .notfound .panel-body { display: grid; gap: 20px; justify-items: center; }
 
+/* ---------- wallet ---------- */
+.wallet-btn { white-space: nowrap; }
+.wallet-picker {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 8px;
+  min-width: 200px;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+  padding: 12px;
+  display: grid;
+  gap: 8px;
+  font-size: 13px;
+  z-index: 60;
+}
+.wallet-picker[hidden] { display: none; }
+.wallet-picker .wp-label { font-size: 12px; }
+.wallet-picker .wp-addr { font-family: var(--body); word-break: break-all; }
+.wallet-picker .wp-pick,
+.wallet-picker .wp-disconnect {
+  border: 2px solid var(--ink);
+  background: var(--paper);
+  padding: 8px 10px;
+  text-align: left;
+  transition: background .15s steps(2), color .15s steps(2);
+}
+.wallet-picker .wp-pick:hover,
+.wallet-picker .wp-disconnect:hover { background: var(--ink); color: var(--paper); }
+.wallet-picker .not-live { display: grid; gap: 10px; }
+
+/* ---------- buy / claim ---------- */
+.buy-panel { margin-top: 32px; }
+.buy-panel .panel-body { display: grid; gap: 14px; align-items: start; }
+.price-line, .own-line { font-family: var(--display); font-size: 1.2rem; font-weight: 500; }
+.claim-amount { font-size: 14px; }
+.buy-panel .btn, .not-live .btn { justify-self: start; }
+.txstate { font-size: 13px; min-height: 1.2em; }
+
+/* ---------- your collection ---------- */
+#collectionBody { display: grid; gap: 4px; }
+#collectionBody > .btn { justify-self: start; margin-top: 8px; }
+.collection-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  border-top: 2px solid var(--ink);
+  padding: 12px 0;
+}
+.collection-row:first-child { border-top: none; }
+.collection-title { font-family: var(--display); font-weight: 500; flex: 1; }
+.collection-claim { font-size: 13px; }
+
+/* ---------- not-live notice ---------- */
+.not-live { display: grid; gap: 12px; }
+
 /* ---------- responsive ---------- */
 @media (max-width: 680px) {
   .art-hero .hero-copy { max-width: 90vw; }
@@ -160,4 +218,8 @@ table.sales .note { display: block; opacity: .75; margin-top: 4px; }
 @media (max-width: 600px) {
   .grid { grid-template-columns: 1fr; }
   .art-main { padding: 0 16px 64px; }
+}
+@media (max-width: 680px) {
+  .wallet-btn { font-size: 11px; padding: 10px 12px; }
+  .wallet-picker { left: 8px; right: 8px; min-width: 0; }
 }

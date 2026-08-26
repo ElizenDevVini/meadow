@@ -25,10 +25,12 @@
     <a href="../#explore">Explore</a>
     <a href="../#contact">Contact</a>
   </nav>
+  <button class="btn btn-outline wallet-btn" id="walletBtn" type="button">connect wallet</button>
   <a class="btn btn-dark" href="../#login">Log in</a>
   <button class="menu" id="menu" aria-label="Open menu" aria-expanded="false" aria-controls="links">
     <span></span><span></span>
   </button>
+  <div class="wallet-picker" id="walletPicker" hidden></div>
 </header>
 
 <main class="art-main" id="workRoot">
@@ -58,6 +60,11 @@
       <div id="salesTable"></div>
 
       <a id="wikiLink" class="btn btn-outline" target="_blank" rel="noopener">Read more</a>
+
+      <div class="panel buy-panel" id="buyPanel">
+        <div class="titlebar" aria-hidden="true"><span></span><span>ownership</span></div>
+        <div class="panel-body" id="buyPanelBody"></div>
+      </div>
     </div>
   </div>
 </main>
@@ -65,5 +72,6 @@
 <footer class="art-footer" id="artFooter"></footer>
 
 <script src="art.js"></script>
+<script type="module" src="onchain.js"></script>
 </body>
 </html>

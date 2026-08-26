@@ -26,10 +26,12 @@
     <a href="../#explore">Explore</a>
     <a href="../#contact">Contact</a>
   </nav>
+  <button class="btn btn-outline wallet-btn" id="walletBtn" type="button">connect wallet</button>
   <a class="btn btn-dark" href="../#login">Log in</a>
   <button class="menu" id="menu" aria-label="Open menu" aria-expanded="false" aria-controls="links">
     <span></span><span></span>
   </button>
+  <div class="wallet-picker" id="walletPicker" hidden></div>
 </header>
 
 <section class="hero art-hero" id="top">
@@ -78,10 +80,18 @@
 
     <div class="grid" id="grid"></div>
   </section>
+
+  <section id="collection">
+    <div class="panel" id="collectionPanel">
+      <div class="titlebar" aria-hidden="true"><span></span><span>your collection</span></div>
+      <div class="panel-body" id="collectionBody"></div>
+    </div>
+  </section>
 </main>
 
 <footer class="art-footer" id="artFooter"></footer>
 
 <script src="art.js"></script>
+<script type="module" src="onchain.js"></script>
 </body>
 </html>
